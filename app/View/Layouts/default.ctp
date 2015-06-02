@@ -14,15 +14,16 @@
 	<!-- <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'> -->
 	<!--//web-font-->
 	<!-- Custom Theme files -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	
 	<!-- //Custom Theme files -->
 	<!-- js -->
 	<script src="<?php echo $this->base ?>/js/jquery.min.js"></script>
 	<!-- //js -->	
 	<!-- start-smoth-scrolling-->
+	<script script="netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/move-top.js"></script>
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/easing.js"></script>	
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/modernizr.custom.53451.js"></script>
@@ -79,9 +80,10 @@
 			<div class="col-md-3 header-logo">
 				<a href="<?php echo $this->base; ?>"><img src="<?php echo $this->base ?>/images/logo_test.png" alt="logo"/></a>
 			</div>	
-			<div class="clearfix"> </div>
-		</div>	
+		</div>
+		<?php echo $this->element('search'); ?>
 	</div>
+	<?php echo $this->element('searchm'); ?>
 	<!--//header-->
 	<!--services-->
 	<?php echo $this->fetch('content'); ?>

@@ -253,7 +253,7 @@ a#scrollUp i{
 }
 
 .search_box input {
-  background: #F0F0E9;
+  background: #fff;
   border: medium none;
   color: #B2B2B2;
   font-family: 'roboto';
@@ -263,9 +263,6 @@ a#scrollUp i{
   outline: medium none;
   padding-left: 10px;
   width: 155px;
-  background-image: url(../images/home/searchicon.png);
-  background-repeat: no-repeat;
-  background-position: 130px;
 }
 
 
@@ -660,7 +657,7 @@ ul.sub-menu {
   padding-top: 15px;
 }
 .left-sidebar h2, .brands_products h2 {
-  color: #00c9ff;
+  color: #353A3F;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -2522,5 +2519,76 @@ h2.title {
 .contact-info .social-networks ul li a:hover{
   color: #FE980F;
 }
+.search_box{
+  position: absolute; bottom: 7px; right: 250px
+}
+.search_box input{
+  height: 46px;
+  width: 200px;
+}
+.button_search{
+  background: url(../images/home/searchicon.png) #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 46px;
+  width: 46px;
+  border: none;
+  outline: medium none; 
+  float: right
+}
+.filter{
+    width: 100%;
+    margin-bottom: 20px
+}
+.sort-filter{
+  width: 200px;
+  height: 28px;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 0
+}
+@media (max-width: 1127px) {
+.fp{
+  right: 242px;
+}
+.search_box input, .button_search{
+  height: 43px;
+}
+}
+@media (max-width: 1024px) {
+.fp{
+  right: 216px;
+}
+.search_box input, .button_search{
+  height: 41px;
+}
 
-
+}
+@media (max-width: 768px) {
+.filter{
+  padding-left: 0px
+}
+.fp{
+  display: none
+}
+.search_box{
+  position: relative;
+  bottom: 0px;
+  right: auto;
+}
+.search_box input{
+  width: 95%;
+  border-bottom: 1px solid #f7f7f7
+}
+.button_search{
+  width: 5%;
+  border-bottom: 1px solid #f7f7f7
+}
+.product-item{
+  padding-left: 0px
+}
+.sort-filter{
+  width: 100%
+}
+}

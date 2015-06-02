@@ -40,7 +40,7 @@ body a{
 .social-icons {
   	position: absolute;
   	right: 3%;
-  	top: 88%;
+  	bottom: 0;
 }
 .social-icons ul {
   	padding: 0;
@@ -1515,7 +1515,7 @@ span.menu img {
 	margin-top:2em;
 }
 .social-icons {
-  	top: 85%;
+  	top: 83%;
 }
 .header {
   	min-height: 390px;
@@ -2512,6 +2512,9 @@ ul.nav1 {
 }
 .header {
   	min-height: 200px;
+}
+.social-icons {
+  	top: 83%;
 }
 .social-icons ul li a span{
 	width:25px;
