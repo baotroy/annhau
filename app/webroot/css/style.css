@@ -20,7 +20,7 @@ body a{
 .header {
   	position: relative;
   	background: url(../images/bnr-1.jpg) no-repeat;
-  	min-height: 790px;
+  	min-height: 550px;
   	background-size: 100% 100%;
   	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
@@ -30,7 +30,7 @@ body a{
 .banner {
   	position: relative;
   	background: url(../images/bnr-1.jpg) no-repeat;
-  	min-height: 300px;
+  	min-height: 550px;
   	background-size: 100% 100%;
   	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
@@ -40,7 +40,7 @@ body a{
 .social-icons {
   	position: absolute;
   	right: 3%;
-  	top: 253px;
+  	top: 88%;
 }
 .social-icons ul {
   	padding: 0;
@@ -116,10 +116,10 @@ ul.nav1 {
 	transition:.5s all;
 }
 .top-nav ul li a:hover{
-	color:#b33f8a;
+	color:#00c9ff;
 }
 .top-nav ul li a.active {
-  	color: #b33f8a;
+  	color: #00c9ff;
 }
 .col-md-9.top-nav {
   	padding: 0;
@@ -191,7 +191,7 @@ ul.nav1 {
 /*--services--*/
 /*--blog--*/
 .blog{
-	padding:6em 0px;
+	padding-top:6em;
 }
 .blog-top{
 	text-align:center;
@@ -206,7 +206,7 @@ ul.nav1 {
   	padding: 0;
 }
 .blog-left-two label {
-  	color: #b33f8a;
+  	color: #00c9ff;
   	font-size: 13px;
   	font-weight: 600;
   	margin-bottom: 2px;
@@ -222,7 +222,7 @@ ul.nav1 {
 	text-decoration:none;
 }
 .blog-left-two a h4:hover{
-	color: #b33f8a;
+	color: #00c9ff;
 	transition: 0.5s all ease;
 	-webkit-transition: 0.5s all ease;
 	-moz-transition: 0.5s all ease;
@@ -279,9 +279,9 @@ ul.nav1 {
 	border-bottom: 1px solid #fff;
 }
 .seemore-text a:hover{
-	color:#b33f8a;
+	color:#00c9ff;
 	text-decoration:none;
-	border-bottom: 1px solid #b33f8a;
+	border-bottom: 1px solid #00c9ff;
 	transition: 0.5s all ease;
 	-webkit-transition: 0.5s all ease;
 	-moz-transition: 0.5s all ease;
@@ -392,7 +392,7 @@ h2.resp-accordion {
   	font-size: 14px;
 }
 .footer-right a {
-	color: #b33f8a;
+	color: #00c9ff;
 	text-decoration:none;
 	transition:.5s all;
 }
@@ -466,7 +466,7 @@ h2.resp-accordion {
   	font-weight: 500;
 }
 .about-text-info a h5{
-	color:#b33f8a;
+	color:#00c9ff;
 	line-height: 1.6em ;
 	width: 80%;
 	font-size: 14px;
@@ -508,7 +508,7 @@ h2.resp-accordion {
   	color:#1B242F;
 }
 .caption h4 a:hover{
-  	color: #b33f8a;
+  	color: #00c9ff;
   	text-decoration:none;
 }
 .caption p {
@@ -525,7 +525,7 @@ h2.resp-accordion {
 	width:100%;
 }
 .portfolio {
-  	padding-bottom: 6em;
+  	/*padding-bottom: 6em;*/
 }
 .portfolio-one{
 	margin-top:20px;
@@ -591,7 +591,7 @@ h2.resp-accordion {
   	font-size: 15px;
   	font-weight: 600;
   	margin: 1.5em 0;
-  	color: #b33f8a;
+  	color: #00c9ff;
   	line-height: 1.6em;
 }
 .sample-page-info p{
@@ -692,15 +692,15 @@ img.zoom-img:hover {
 	font-weight: 500;
 	padding: .5em .8em;
 	border-radius: 3px;
-	background: #b33f8a;
-	border: 1px solid #b33f8a;
+	background: #00c9ff;
+	border: 1px solid #00c9ff;
 }
 .read-more a:hover{
 	text-decoration:none;
 	background: none;
 	transition: .5s all;
 	outline: none;
-	color: #b33f8a;
+	color: #00c9ff;
 }
 .category ul {
   	margin: 0;
@@ -720,7 +720,7 @@ img.zoom-img:hover {
 }
 .category ul li a:hover{
 	transition:.5s all;
-	color:#b33f8a;
+	color:#00c9ff;
 	text-decoration:none;
 	margin-left: 5px;
 }
@@ -741,7 +741,7 @@ img.zoom-img:hover {
 	margin: .5em 0;
 }
 .posts-right h5 a{	
-	color: #b33f8a;
+	color: #00c9ff;
 	transition:.5s all;
 	text-decoration:none;
 }
@@ -949,9 +949,9 @@ img.zoom-img:hover {
 	padding: 8px 10px;
 }
 .coment-form input[type="submit"] {
-  background: #b33f8a;
+  background: #00c9ff;
   padding: .5em 0;
-  border: 1px solid #b33f8a;
+  border: 1px solid #00c9ff;
   width: 22%;
   margin-top: 2em;
   font-size: 15px;
@@ -961,7 +961,7 @@ img.zoom-img:hover {
   outline: none;
 }
 .coment-form input[type="submit"]:hover{
-	color: #b33f8a;
+	color: #00c9ff;
 	background: none;
 	transition: .5s all;
 	outline: none;
@@ -1004,7 +1004,7 @@ img.zoom-img:hover {
 	letter-spacing: 1px;
 }
 .address a {
-	color: #b33f8a;
+	color: #00c9ff;
 	margin: 0 0 .5em 0;
 	text-align: left;
 	font-size: 14px;
@@ -1056,8 +1056,8 @@ img.zoom-img:hover {
 	padding: 10px 15px 10px 15px;
 }
 .contact-form input[type="submit"]{
-	background: #b33f8a;
-	border: 1px solid #b33f8a;
+	background: #00c9ff;
+	border: 1px solid #00c9ff;
 	padding: .6em 0;
 	width: 14%;
 	margin-top: 2em;
@@ -1069,7 +1069,7 @@ img.zoom-img:hover {
 	transition: .5s all;
 }
 .contact-form input[type="submit"]:hover{
-	color: #b33f8a;
+	color: #00c9ff;
   background: none;
 }
 /*---- responsive-design -----*/
@@ -2630,5 +2630,4 @@ ul.nav1 {
 }
 .portfolio-bottom {
   	margin-top: 1em;
-}
 }

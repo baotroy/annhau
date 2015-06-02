@@ -62,7 +62,7 @@
     <!-- Jssor Slider Begin -->
     <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
     <div id="slider1_container" style="position: relative; margin: 0 auto;
-        top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
+        top: 0px; left: 0px; width: 1300px; height: 350px; overflow: hidden;">
         <!-- Loading Screen -->
         <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
             <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block;
@@ -74,17 +74,17 @@
         </div>
         <!-- Slides Container -->
         <div data-u="slides" style="position: absolute; left: 0px; top: 0px; width: 1300px;
-            height: 500px; overflow: hidden;">
+            height: 350px; overflow: hidden;">
             <div>
                 <a href="a">
                     <img data-u="image" src="<?php echo $this->base; ?>/images/1920/red.jpg" alt="" />
                     
-                    <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
-                        text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
+                    <div style="position: absolute; width: 480px; height: 120px; top: 2%; left: 30px; padding: 5px;
+                        text-align: left; line-height: 60px; text-transform: uppercase; font-size: 30px;
                             color: #FFFFFF;">Product name 1
                     </div>
-                    <div style="position: absolute; width: 480px; height: 120px; top: 300px; left: 30px; padding: 5px;
-                        text-align: left; line-height: 36px; font-size: 30px;
+                    <div style="position: absolute; width: 480px; height: 120px; top: 60%; left: 30px; padding: 5px;
+                        text-align: left; line-height: 36px; font-size: 22px;
                             color: #FFFFFF;">
                             Build your slider with anything, includes image, content, text, html, photo, picture
                     </div>
@@ -93,12 +93,12 @@
             <div>
                 <a href="a">
                     <img data-u="image" src="<?php echo $this->base; ?>/images/1920/purple.jpg" alt="" />
-                    <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
-                        text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
+                    <div style="position: absolute; width: 480px; height: 120px; top: 2%; left: 30px; padding: 5px;
+                        text-align: left; line-height: 60px; text-transform: uppercase; font-size: 30px;
                             color: #FFFFFF;">Product name 2
                     </div>
-                    <div style="position: absolute; width: 480px; height: 120px; top: 300px; left: 30px; padding: 5px;
-                        text-align: left; line-height: 36px; font-size: 30px;
+                    <div style="position: absolute; width: 480px; height: 120px; top: 60%; left: 30px; padding: 5px;
+                        text-align: left; line-height: 36px; font-size: 22px;
                             color: #FFFFFF;">
                             Build your slider with anything, includes image, content, text, html, photo, picture
                     </div>
@@ -107,12 +107,12 @@
             <div>
                 <a href="a">
                     <img data-u="image" src="<?php echo $this->base; ?>/images/see-banner.jpg" alt="" />
-                    <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
-                        text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
+                    <div style="position: absolute; width: 480px; height: 120px; top: 2%; left: 30px; padding: 5px;
+                        text-align: left; line-height: 60px; text-transform: uppercase; font-size: 30px;
                             color: #FFFFFF;">Product name 3
                     </div>
-                    <div style="position: absolute; width: 480px; height: 120px; top: 300px; left: 30px; padding: 5px;
-                        text-align: left; line-height: 36px; font-size: 30px;
+                    <div style="position: absolute; width: 480px; height: 120px; top: 60%; left: 30px; padding: 5px;
+                        text-align: left; line-height: 36px; font-size: 22px;
                             color: #FFFFFF;">
                             Build your slider with anything, includes image, content, text, html, photo, picture
                     </div>

@@ -7,10 +7,11 @@
 	</title>
 	<link href="<?php echo $this->base ?>/css/style.css" type="text/css" rel="stylesheet" media="all">
 	<link href="<?php echo $this->base ?>/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
-	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/default.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/component.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/categ.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/font.css" />
 	<!--web-font-->
-	<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'> -->
 	<!--//web-font-->
 	<!-- Custom Theme files -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,7 +63,6 @@
 				<ul class="nav1">
 					<li><a href="<?php echo $this->base; ?>" class="active">HOME</a></li>
 					<li><a href="<?php echo $this->base; ?>/products">PRODUCTS</a></li>
-					<li><a href="samplepage.html">SAMPLE PAGE</a></li>
 					<li><a href="<?php echo $this->base.'/site/contact'; ?>" >CONTACT</a></li>
 					<li><a href="<?php echo $this->base.'/site/about'; ?>">ABOUT</a></li>
 				</ul>	
@@ -77,7 +77,7 @@
 				<!-- /script-for-menu -->
 			</div>
 			<div class="col-md-3 header-logo">
-				<a href="<?php echo $this->base; ?>"><img src="<?php echo $this->base ?>/images/logo-shadow.png" alt="logo"/></a>
+				<a href="<?php echo $this->base; ?>"><img src="<?php echo $this->base ?>/images/logo_test.png" alt="logo"/></a>
 			</div>	
 			<div class="clearfix"> </div>
 		</div>	
@@ -89,7 +89,7 @@
 	<div class="footer">
 		<div class="container">
 			<div class="footer-right">
-				<p>© 2015 Ryta Decor' Accessories. All rights reserved.</a></p>
+				<p>© <?php echo date('Y'); ?> Ryta Decor' Accessories. All rights reserved.</a></p>
 			</div>
 		</div>	
 	</div>

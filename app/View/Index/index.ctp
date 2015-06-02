@@ -1,4 +1,65 @@
-
+<!--blog-->
+	<div class="blog">
+		<div class="container">
+			<div class="blog-top">
+				<h3>CATEGORIES</h3>
+			</div>
+			<div class="blog-bottom">
+				<div class="blog-one">
+					<div class="col-md-6 blog-left">
+						<div class="col-md-5 blog-left-one">
+							<a href="samplepage.html"><img src="images/blog-1.jpg" alt="" /></a>
+						</div>
+						<div class="col-md-7 blog-left-two">
+							<label>Monday, 30 March 2014 17:09</label>
+							<a href="samplepage.html"><h4>Nullam non erat sed ante sollicitudin facilisis.</h4></a>
+							<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed nunc in ex porttitor </p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="col-md-6 blog-left">
+						<div class="col-md-5 blog-left-one">
+							<a href="samplepage.html"><img src="images/blog-2.jpg" alt="" /></a>
+						</div>
+						<div class="col-md-7 blog-left-two">
+							<label>Monday, 30 March 2014 17:09</label>
+							<a href="samplepage.html"><h4>Nullam non erat sed ante sollicitudin facilisis.</h4></a>
+							<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed nunc in ex porttitor </p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="blog-one">
+					<div class="col-md-6 blog-left">
+						<div class="col-md-5 blog-left-one">
+							<a href="samplepage.html"><img src="images/blog-3.jpg" alt="" /></a>
+						</div>
+						<div class="col-md-7 blog-left-two">
+							<label>Monday, 30 March 2014 17:09</label>
+							<a href="samplepage.html"><h4>Nullam non erat sed ante sollicitudin facilisis.</h4></a>
+							<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed nunc in ex porttitor </p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="col-md-6 blog-left">
+						<div class="col-md-5 blog-left-one">
+							<a href="samplepage.html"><img src="images/blog-4.jpg" alt="" /></a>
+						</div>
+						<div class="col-md-7 blog-left-two">
+							<label>Monday, 30 March 2014 17:09</label>
+							<a href="samplepage.html"><h4>Nullam non erat sed ante sollicitudin facilisis.</h4></a>
+							<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed nunc in ex porttitor </p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--blog-->
+	<!--//portfolio-->
 <div class="portfolio">
 	<div class="container">
 		<div class="services">
@@ -78,6 +139,20 @@
 	</div>
 </div>
 <!--portfolio-->
+
+	<!--seemore-->
+	<div class="Rate services">
+		<div class="container">
+			<h3>BEST PRODUCTS</h3>
+		</div>
+		<div class="blog-bottom">
+			<?php echo $this->element('slider'); ?>
+		</div>
+	</div>
+	
+	<!--seemore-->
+
+	
 <!--services-->
 	<div class="services">
 		<div class="container">
@@ -107,78 +182,7 @@
 		</div>
 	</div>
 	<!--//services-->
-	<!--blog-->
-	<div class="blog">
-		<div class="container">
-			<div class="blog-top">
-				<h3>CATEGORIES</h3>
-			</div>
-			<div class="blog-bottom">
-				<div class="blog-one">
-					<div class="col-md-6 blog-left">
-						<div class="col-md-5 blog-left-one">
-							<a href="samplepage.html"><img src="images/blog-1.jpg" alt="" /></a>
-						</div>
-						<div class="col-md-7 blog-left-two">
-							<label>Monday, 30 March 2014 17:09</label>
-							<a href="samplepage.html"><h4>Nullam non erat sed ante sollicitudin facilisis.</h4></a>
-							<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed nunc in ex porttitor </p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="col-md-6 blog-left">
-						<div class="col-md-5 blog-left-one">
-							<a href="samplepage.html"><img src="images/blog-2.jpg" alt="" /></a>
-						</div>
-						<div class="col-md-7 blog-left-two">
-							<label>Monday, 30 March 2014 17:09</label>
-							<a href="samplepage.html"><h4>Nullam non erat sed ante sollicitudin facilisis.</h4></a>
-							<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed nunc in ex porttitor </p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="blog-one">
-					<div class="col-md-6 blog-left">
-						<div class="col-md-5 blog-left-one">
-							<a href="samplepage.html"><img src="images/blog-3.jpg" alt="" /></a>
-						</div>
-						<div class="col-md-7 blog-left-two">
-							<label>Monday, 30 March 2014 17:09</label>
-							<a href="samplepage.html"><h4>Nullam non erat sed ante sollicitudin facilisis.</h4></a>
-							<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed nunc in ex porttitor </p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="col-md-6 blog-left">
-						<div class="col-md-5 blog-left-one">
-							<a href="samplepage.html"><img src="images/blog-4.jpg" alt="" /></a>
-						</div>
-						<div class="col-md-7 blog-left-two">
-							<label>Monday, 30 March 2014 17:09</label>
-							<a href="samplepage.html"><h4>Nullam non erat sed ante sollicitudin facilisis.</h4></a>
-							<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed nunc in ex porttitor </p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--blog-->
-	<!--seemore-->
-	<div class="Rate services">
-		<div class="container">
-			<h3>BEST PRODUCTS</h3>
-		</div>
-		<div class="blog-bottom">
-			<?php echo $this->element('slider'); ?>
-		</div>
-	</div>
-	
-	<!--seemore-->
+
 	<!--testimonials-->
 	<div class="testimonials services">
 		<div class="container">
