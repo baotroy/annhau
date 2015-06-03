@@ -165,7 +165,7 @@
 						metus ipsum imperdiet libero, vitae dignissim sapien diam ac nibh convallis.</p>
 				</div>
 				<div class="col-md-4 services-grids-info">
-					<span class="service-two active"> </span>
+					<span class="service-two"> </span>
 					<h4>QUALITY PHOTOGRAPHY</h4>
 					<p>Donec libero dui, scelerisque ac augue id, tristique ullamcorper elit. Nam ultrices, lacus vitae adipiscing aliquet, 
 						metus ipsum imperdiet libero, vitae dignissim sapien diam ac nibh convallis.</p>

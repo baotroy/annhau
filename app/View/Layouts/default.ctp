@@ -52,6 +52,7 @@
 	<div class="banner">
 		<div class="social-icons">
 				<ul>
+					<li><?php echo $this->element('search'); ?></li>
 					<li><a href="#"><span class="twt"> </span></a></li>
 					<li><a href="#"><span class="fb"> </span></a></li>
 					<li><a href="#"><span class="in"> </span></a></li>
@@ -60,20 +61,73 @@
 			</div>
 		<div class="container">
 			<div class="col-md-9 top-nav">
-				<span class="menu"><img src="<?php echo $this->base ?>/images/menu.png" alt=""/></span>
-				<ul class="nav1">
-					<li><a href="<?php echo $this->base; ?>" class="active">HOME</a></li>
-					<li><a href="<?php echo $this->base; ?>/products">PRODUCTS</a></li>
-					<li><a href="<?php echo $this->base.'/site/contact'; ?>" >CONTACT</a></li>
-					<li><a href="<?php echo $this->base.'/site/about'; ?>">ABOUT</a></li>
-				</ul>	
+				<div class="menu-bar jmitem">
+					<span class="menu jmitem closed"><img class="jmitem" src="<?php echo $this->base ?>/images/menu.png" alt=""/></span>
+					<ul class="nav1 jmitem" style="overflow: hidden; display: none;">
+						<li><a  class="jmitem" href="<?php echo $this->base; ?>" class="active">HOME</a></li>
+						<li><a  class="jmitem" href="<?php echo $this->base; ?>/products">PRODUCTS</a></li>
+						<li><a  class="jmitem" href="<?php echo $this->base.'/site/contact'; ?>" >CONTACT</a></li>
+						<li><a  class="jmitem" href="<?php echo $this->base.'/site/about'; ?>">ABOUT</a></li>
+					</ul>	
+				</div>
 				<!-- script-for-menu -->
 				 <script>
-				   $( "span.menu" ).click(function() {
-					 $( "ul.nav1" ).slideToggle( 300, function() {
-					 // Animation complete.
-					  });
-					 });
+					   	$( ".menu" ).hover(function() {
+					   		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
+						   		if($(this).hasClass('closed')){
+						   			$( "ul.nav1" ).attr('style', 'top: -100%; overflow: hidden; display: block;');
+									$( "ul.nav1" ).animate({
+										    top: 0,
+
+									  	}, 400, function() {
+									   $(".menu").removeClass('closed').addClass('open');
+									   $( "ul.nav1" ).attr('style', 'overflow: hidden; display: block;');
+									});
+								}
+							}
+						});
+					   	$('.menu').mouseleave(function(e){
+					   		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
+						   		var related= false;
+						   		if(e.toElement != null){
+						   			related = e.relatedTarget.className;
+						   		}
+
+						   		if(related != 'jmitem'){
+						   			$( "ul.nav1" ).animate({
+										    top: '-100%',
+
+										  }, 300, function() {
+										   $(".menu").removeClass('open').addClass('closed');
+										   $( "ul.nav1" ).attr('style', 'overflow: hidden; display: none;');
+									});
+						   		}
+						   	}
+					   	});
+					   	$('a.jmitem').mouseleave(function(e){
+					   		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
+						   		var related= false;
+						   		if(e.toElement != null){
+						   			related = e.relatedTarget.className;
+						   		}
+						   		if(related != 'jmitem'){
+						   			$( "ul.nav1" ).animate({
+										    top: '-100%',
+
+										  }, 300, function() {
+										   $(".menu").removeClass('open').addClass('closed');
+										   $( "ul.nav1" ).attr('style', 'overflow: hidden; display: none;');
+									});
+						   		}
+						   	}
+					   	});
+						$( "span.menu" ).click(function() {
+							if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+								$( "ul.nav1" ).slideToggle( 300, function() {
+								 
+								  });
+							}
+						 });
 				</script>
 				<!-- /script-for-menu -->
 			</div>
@@ -81,7 +135,6 @@
 				<a href="<?php echo $this->base; ?>"><img src="<?php echo $this->base ?>/images/logo_test.png" alt="logo"/></a>
 			</div>	
 		</div>
-		<?php echo $this->element('search'); ?>
 	</div>
 	<?php echo $this->element('searchm'); ?>
 	<!--//header-->
@@ -108,7 +161,11 @@
 			*/
 			
 			$().UItoTop({ easingType: 'easeOutQuart' });
-			
+			// setTimeout(function(){
+			// 	$( "ul.nav1" ).slideToggle( 300, function() {
+			// 		$('span.menu').removeClass('open').addClass('closed');
+			// 	});
+			// },2000);
 		});
 	</script>
 	 <script type="text/javascript" src="<?php echo $this->base; ?>/js/jssor.slider.mini.js"></script>
