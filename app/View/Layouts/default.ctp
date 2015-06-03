@@ -107,10 +107,13 @@
 					   	$('a.jmitem').mouseleave(function(e){
 					   		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
 						   		var related= false;
+
 						   		if(e.toElement != null){
 						   			related = e.relatedTarget.className;
+						   			target = e.relatedTarget.nodeName;
 						   		}
-						   		if(related != 'jmitem'){
+						   		
+						   		if(related != 'jmitem' && target != 'LI'){
 						   			$( "ul.nav1" ).animate({
 										    top: '-100%',
 
