@@ -112,8 +112,8 @@
 						   			related = e.relatedTarget.className;
 						   			target = e.relatedTarget.nodeName;
 						   		}
-						   		
-						   		if(related != 'jmitem' && target != 'LI'){
+						   		console.log(target);
+						   		if(related != 'jmitem' && target != 'LI' && target != 'UL'){
 						   			$( "ul.nav1" ).animate({
 										    top: '-100%',
 
