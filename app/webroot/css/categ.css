@@ -651,7 +651,7 @@ ul.sub-menu {
 }
 
 .category-products {
-  border: 1px solid #F7F7F0;
+  border: 1px solid #D2D2D2;
   margin-bottom: 35px;
   padding-bottom: 20px;
   padding-top: 15px;
@@ -843,7 +843,7 @@ h2.title {
 }
 
 .product-image-wrapper{
-	border:1px solid #F7F7F5;
+	border:1px solid #D2D2D2;
 	overflow: hidden;
 	margin-bottom:30px;
 }
@@ -1113,8 +1113,8 @@ h2.title {
 }
 
 .pagination  .active  a, .pagination  .active  span, .pagination  .active  a:hover, .pagination  .active  span:hover, .pagination  .active  a:focus, .pagination  .active  span:focus {
-  background-color: #FE980F;
-  border-color: #FE980F;
+  background-color: #00c9ff;
+  border-color: #00c9ff;
   color: #FFFFFF;
   cursor: default;
   z-index: 2;
@@ -1134,7 +1134,7 @@ h2.title {
 }
 
 .pagination  li  a:hover{
-	background:#FE980F;
+	background:#00c9ff;
 	color:#fff;
 }
 
