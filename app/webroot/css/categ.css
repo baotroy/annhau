@@ -2526,6 +2526,7 @@ h2.title {
 .search_box.fp{
   float: left;
   margin-bottom: 1px;
+  margin-right: 2px;
 }
 .search_box input{
   height: 46px;

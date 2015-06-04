@@ -2,5 +2,5 @@
 
 App::uses('Model', 'Model');
 
-class AppModel extends Model {
+class Admin extends Model {
 }

@@ -74,6 +74,7 @@
 				 <script>
 					   	$( ".menu" ).hover(function() {
 					   		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
+					   			if($(this).hasClass('open')) return false;
 						   		if($(this).hasClass('closed')){
 						   			$( "ul.nav1" ).attr('style', 'top: -100%; overflow: hidden; display: block;');
 									$( "ul.nav1" ).animate({
@@ -86,33 +87,15 @@
 								}
 							}
 						});
-					   	$('.menu').mouseleave(function(e){
+					   	$('.menu, a.jmitem, ul.nav1 li').mouseleave(function(e){
 					   		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
+					   			if($(this).hasClass('closed')) return false;
 						   		var related= false;
-						   		if(e.toElement != null){
-						   			related = e.relatedTarget.className;
-						   		}
-
-						   		if(related != 'jmitem'){
-						   			$( "ul.nav1" ).animate({
-										    top: '-100%',
-
-										  }, 300, function() {
-										   $(".menu").removeClass('open').addClass('closed');
-										   $( "ul.nav1" ).attr('style', 'overflow: hidden; display: none;');
-									});
-						   		}
-						   	}
-					   	});
-					   	$('a.jmitem').mouseleave(function(e){
-					   		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
-						   		var related= false;
-
 						   		if(e.toElement != null){
 						   			related = e.relatedTarget.className;
 						   			target = e.relatedTarget.nodeName;
 						   		}
-						   		console.log(target);
+
 						   		if(related != 'jmitem' && target != 'LI' && target != 'UL'){
 						   			$( "ul.nav1" ).animate({
 										    top: '-100%',
@@ -124,6 +107,25 @@
 						   		}
 						   	}
 					   	});
+					   	// $('a.jmitem').mouseleave(function(e){
+					   	// 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
+						   // 		var related= false;
+
+						   // 		if(e.toElement != null){
+						   // 			related = e.relatedTarget.className;
+						   // 			target = e.relatedTarget.nodeName;
+						   // 		}
+						   // 		if(related != 'jmitem' && target != 'LI' && target != 'UL'){
+						   // 			$( "ul.nav1" ).animate({
+									// 	    top: '-100%',
+
+									// 	  }, 300, function() {
+									// 	   $(".menu").removeClass('open').addClass('closed');
+									// 	   $( "ul.nav1" ).attr('style', 'overflow: hidden; display: none;');
+									// });
+						   // 		}
+						   // 	}
+					   	// });
 						$( "span.menu" ).click(function() {
 							if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 								$( "ul.nav1" ).slideToggle( 300, function() {
