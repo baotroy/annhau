@@ -2601,3 +2601,10 @@ h2.title {
   width: 100%
 }
 }
+.category-products a.submenu:hover,
+.category-products .active{
+  background-color: #dadada;
+}
+.title{
+  padding: 0px 15px;
+}

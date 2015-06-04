@@ -5,11 +5,12 @@
 	<title>
 		<?php echo $title_layout; ?> | Ryta Decor Accessories
 	</title>
-	<link href="<?php echo $this->base ?>/css/style.css" type="text/css" rel="stylesheet" media="all">
+	
 	<link href="<?php echo $this->base ?>/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/component.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/categ.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/font.css" />
+	<link href="<?php echo $this->base ?>/css/style.css" type="text/css" rel="stylesheet" media="all">
 	<!--web-font-->
 	<!-- <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'> -->
 	<!--//web-font-->
@@ -23,8 +24,9 @@
 	<script src="<?php echo $this->base ?>/js/jquery.min.js"></script>
 	<!-- //js -->	
 	<!-- start-smoth-scrolling-->
-	<script script="netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/move-top.js"></script>
+	<script type="text/javascript" src="<?php echo $this->base ?>/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/easing.js"></script>	
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/modernizr.custom.53451.js"></script>
 	<script type="text/javascript">
@@ -34,6 +36,10 @@
 					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
 				});
 			});
+			function isMobile(){
+				if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) return true;
+				return false;
+			}
 	</script>
 	<!--//end-smoth-scrolling-->
 	<script src="<?php echo $this->base ?>/js/easyResponsiveTabs.js" type="text/javascript"></script>
@@ -63,7 +69,7 @@
 			<div class="col-md-9 top-nav">
 				<div class="menu-bar jmitem">
 					<span class="menu jmitem closed"><img class="jmitem" src="<?php echo $this->base ?>/images/menu.png" alt=""/></span>
-					<ul class="nav1 jmitem" style="overflow: hidden; display: none;">
+					<ul class="nav1 jmitem" style="overflow: hidden; display: block;">
 						<li><a  class="jmitem" href="<?php echo $this->base; ?>" class="active">HOME</a></li>
 						<li><a  class="jmitem" href="<?php echo $this->base; ?>/products">PRODUCTS</a></li>
 						<li><a  class="jmitem" href="<?php echo $this->base.'/site/contact'; ?>" >CONTACT</a></li>
@@ -73,7 +79,7 @@
 				<!-- script-for-menu -->
 				 <script>
 					   	$( ".menu" ).hover(function() {
-					   		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
+					   		if(isMobile() == false) {
 					   			if($(this).hasClass('open')) return false;
 						   		if($(this).hasClass('closed')){
 						   			$( "ul.nav1" ).attr('style', 'top: -100%; overflow: hidden; display: block;');
@@ -88,7 +94,7 @@
 							}
 						});
 					   	$('.menu, a.jmitem, ul.nav1 li').mouseleave(function(e){
-					   		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
+					   		if(isMobile() == false) {
 					   			if($(this).hasClass('closed')) return false;
 						   		var related= false;
 						   		if(e.toElement != null){
@@ -107,27 +113,9 @@
 						   		}
 						   	}
 					   	});
-					   	// $('a.jmitem').mouseleave(function(e){
-					   	// 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
-						   // 		var related= false;
-
-						   // 		if(e.toElement != null){
-						   // 			related = e.relatedTarget.className;
-						   // 			target = e.relatedTarget.nodeName;
-						   // 		}
-						   // 		if(related != 'jmitem' && target != 'LI' && target != 'UL'){
-						   // 			$( "ul.nav1" ).animate({
-									// 	    top: '-100%',
-
-									// 	  }, 300, function() {
-									// 	   $(".menu").removeClass('open').addClass('closed');
-									// 	   $( "ul.nav1" ).attr('style', 'overflow: hidden; display: none;');
-									// });
-						   // 		}
-						   // 	}
-					   	// });
+					   
 						$( "span.menu" ).click(function() {
-							if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+							if(isMobile()) {
 								$( "ul.nav1" ).slideToggle( 300, function() {
 								 
 								  });
@@ -165,12 +153,12 @@
 	 		};
 			*/
 			
-			$().UItoTop({ easingType: 'easeOutQuart' });
-			// setTimeout(function(){
-			// 	$( "ul.nav1" ).slideToggle( 300, function() {
-			// 		$('span.menu').removeClass('open').addClass('closed');
-			// 	});
-			// },2000);
+			// $().UItoTop({ easingType: 'easeOutQuart' });
+			setTimeout(function(){
+				$( "ul.nav1" ).slideToggle( 300, function() {
+					$('span.menu').removeClass('open').addClass('closed');
+				});
+			},5000);
 		});
 	</script>
 	 <script type="text/javascript" src="<?php echo $this->base; ?>/js/jssor.slider.mini.js"></script>
