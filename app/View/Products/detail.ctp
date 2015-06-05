@@ -20,25 +20,34 @@
 					
 					<div class="tab-pane fade " id="reviews">
 						<div class="col-sm-12">
+						<?php foreach ($comments as $key => $comment) {?>
 							<ul>
-								<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-								<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-								<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
+								<li><i class="fa fa-user"></i><?php echo $comment['Comment']['commentator']; ?></li>
+								<li><i class="fa fa-clock-o"></i><?php echo $this->Text->time($comment['Comment']['created']); ?></li>
+								<li><i class="fa fa-calendar-o"></i><?php echo $this->Text->date($comment['Comment']['created']); ?></li>
 							</ul>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-							<p><b>Write Your Review</b></p>
+							<p><?php echo  nl2br($comment['Comment']['content']); ?></p>
+						<?php } ?>
+							<div id="comment-box">
+							<?php if(!CakeSession::check('commented')){ ?>
+								<p><b>Write Your Review</b></p>
+								
+								<form action="#" id="form-comment">
+									<span>
+										<input type="hidden" name="product" value="<?php echo $id; ?>">
+										<input type="text" placeholder="Your Name" name="commentator" class="jxcommentator" maxlength="30">
+										<input type="email" placeholder="Email Address" name="email" class="jxemail" maxlength="30">
+									</span>
+									<textarea name="content" class="jxcontent" maxlength="200"></textarea>
+									
+									<button type="button" class="btn btn-default pull-right" id="comment">
+										Submit
+									</button>
+								</form>
+							<?php }else echo '<b>'.THANK_COMMENT.'</b>';?>
+								
 							
-							<form action="#">
-								<span>
-									<input type="text" placeholder="Your Name">
-									<input type="email" placeholder="Email Address">
-								</span>
-								<textarea name=""></textarea>
-								<b>Rating: </b> <img src="images/product-details/rating.png" alt="">
-								<button type="button" class="btn btn-default pull-right">
-									Submit
-								</button>
-							</form>
+							</div>
 						</div>
 					</div>
 					
@@ -51,5 +60,14 @@
 </div>
 
 <script type="text/javascript">
-
+	$('#comment').click(function(){
+		url = "<?php echo $this->base.'/comment/write' ?>";
+		postComment(url, '<?php echo THANK_COMMENT;?>');
+		return false;	
+	});
+    $(':radio').change(
+	  function(){
+	    $('.choice').text( this.value + ' stars' );
+	  } 
+	)
 </script>

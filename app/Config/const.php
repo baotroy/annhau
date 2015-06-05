@@ -9,6 +9,7 @@ define('NO_IMAGE','no_image.png');
 define('DIR_IMAGE', 'images/');
 define('DIR_PRODUCT', 'products/');
 define('DIR_CATEGORY', 'categories/');
+define('THANK_COMMENT', 'Thank you for comment!');
 if (!class_exists('Constants')) {
 	class Constants
 	{

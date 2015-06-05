@@ -6,6 +6,33 @@ class Comment extends AppModel {
 	public $name = 'Comment';
     public $useTable ='comments';
 
+
+    public $validate = array(
+        'commentator' => array(
+                'notEmpty' => array(
+                    'rule'=> 'notEmpty',
+                    'message' =>'not empty'
+                    ),
+                'max' => array(
+                    'rule'=> array('maxLength', 10),
+                    //'message' =>'not empty'
+                    ),
+            ),
+        'email' => array(
+                'format' => array(
+                    'rule'=> 'email',
+                    'message' =>'not empty'
+                    ),
+            ),
+        'content' => array(
+                'notEmpty' => array(
+                    'rule'=> 'notEmpty',
+                    'message' =>'not empty'
+                    ),
+            ),
+
+
+    );
     function getAll($product){
     	$joins = array(
     		array(

@@ -1319,15 +1319,15 @@ h2.title {
 	display:inline-block;
 }
 
-#reviews ul li a {
+#reviews ul li {
   color: #696763;
-  display: block;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   padding-right: 15px;
+  text-transform: uppercase;
 }
 
-#reviews ul li a i{
+#reviews ul li i{
 	color:#FE980F;
 	padding-right:8px;
 }
@@ -1352,7 +1352,8 @@ h2.title {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   outline: medium none;
-  padding: 8px;
+  padding: 7px;
+  border: 1px solid #F0F0E9;
   width: 48%;
 }
 #reviews form span input:last-child {
@@ -2642,4 +2643,10 @@ h2.title {
 }
 .jszoom{
   cursor: pointer;
+}
+.error{
+  border: 1px solid #cc0000 !important;
+}
+.product-information span.star-rating input{
+  width: 20px
 }

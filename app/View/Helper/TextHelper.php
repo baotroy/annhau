@@ -30,6 +30,23 @@ class TextHelper extends Helper {
 	    return $url;
 	}
 
+	function time($text = ''){
+		if(!$text) return '';
+		$date = new DateTime($text);
+		return $date->format('H:i');
+	}
+
+	function date($text = ''){
+		$format = 'd/M/Y';
+		$type = 'en';
+		if(CakeSession::check('languague')){
+			$type = CakeSession::read('language');
+		}
+		if(!$text) return '';
+		$date = new DateTime($text);
+		return $date->format($format);
+	}
+
 	function image($file = '', $dir =''){
 		$file_path = WWW_ROOT.DIR_IMAGE.$dir.$file;
 

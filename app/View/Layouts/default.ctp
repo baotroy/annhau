@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/categ.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/font.css" />
 	<link href="<?php echo $this->base ?>/css/style.css" type="text/css" rel="stylesheet" media="all">
+	<link href="<?php echo $this->base ?>/css/ratestar.css" type="text/css" rel="stylesheet" media="all">
 	<!--web-font-->
 	<!-- <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'> -->
 	<!--//web-font-->
@@ -18,7 +19,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-	
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700' rel='stylesheet' type='text/css'>
 	<!-- //Custom Theme files -->
 	<!-- js -->
 	<script src="<?php echo $this->base ?>/js/jquery.min.js"></script>
@@ -28,6 +29,7 @@
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/move-top.js"></script>
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/easing.js"></script>	
+	<script type="text/javascript" src="<?php echo $this->base ?>/js/js5star.min.js"></script>
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/modernizr.custom.53451.js"></script>
 	<script type="text/javascript">
 			jQuery(document).ready(function($) {
@@ -153,7 +155,7 @@
 	 		};
 			*/
 			
-			// $().UItoTop({ easingType: 'easeOutQuart' });
+			$().UItoTop({ easingType: 'easeOutQuart' });
 			setTimeout(function(){
 				$( "ul.nav1" ).slideToggle( 300, function() {
 					$('span.menu').removeClass('open').addClass('closed');

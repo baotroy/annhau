@@ -3,7 +3,7 @@
 App::uses('AppController', 'Controller');
 
 class ProductsController extends AppController {
-	public $uses = array('Category', 'Product', 'SubCat');
+	public $uses = array('Category', 'Product', 'SubCat', 'Comment');
 	public $components = array('Paginator');
 
 	function beforeFilter(){
@@ -88,11 +88,16 @@ class ProductsController extends AppController {
 	function detail($id = ''){
 		$this->set('title_layout', 'Products');
 		$id =substr($id,strrpos($id, '-')+1);
+        $this->set('id', $id);
         if(!is_numeric($id)){
             throw new BadRequestException('Could not find that post');
             exit;
         }
         $res = $this->Product->getBy('first', $id);
+
+        //get comments
+        $comments = $this->Comment->getAll($id);
+        $this->set('comments', $comments);
         if($res){
             $this->set('item', $res);
             $this->set('cat', $res['SubCat']['id']);
@@ -102,4 +107,5 @@ class ProductsController extends AppController {
             exit;
         }
 	}
+   
 }

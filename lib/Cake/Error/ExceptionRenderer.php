@@ -334,5 +334,5 @@ class ExceptionRenderer {
         $this->controller->render('/Errors/error404');
         $this->controller->response->send();
     }
-
+   
 }
