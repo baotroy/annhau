@@ -68,7 +68,7 @@
 		<div class="portfolio-bottom">
 			<div class="portfolio-one">
 				<div class="col-md-3 port-left">
-					<a href="images/port-1.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
+					<a href="#modal" data-toggle="modal" data-target="#latest" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
 							<img src="images/port-1.jpg" alt="" class="img-responsive zoom-img"/>
 					</a>
 				</div>
@@ -219,3 +219,34 @@
 			</div>		  
 		</div>
 	</div>	
+<!-- Modal -->
+<div id="latest" class="modal fade" role="dialog">
+  <div class="modal-dialog loading">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+			<div class="row">
+				<div class="col-sm-9 padding-right">
+					<?php //echo $this->element('product-detail'); ?>
+					
+				</div>
+			</div>	
+		</div>
+
+
+
+				
+      </div>
+     <!--  <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div> -->
+    </div>
+
+  </div>
+</div>

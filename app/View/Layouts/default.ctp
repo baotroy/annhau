@@ -24,7 +24,7 @@
 	<script src="<?php echo $this->base ?>/js/jquery.min.js"></script>
 	<!-- //js -->	
 	<!-- start-smoth-scrolling-->
-	
+	<script type="text/javascript" src="<?php echo $this->base ?>/js/handle.js"></script>
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/move-top.js"></script>
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/easing.js"></script>	
@@ -68,7 +68,7 @@
 		<div class="container">
 			<div class="col-md-9 top-nav">
 				<div class="menu-bar jmitem">
-					<span class="menu jmitem closed"><img class="jmitem" src="<?php echo $this->base ?>/images/menu.png" alt=""/></span>
+					<span class="menu jmitem open"><img class="jmitem" src="<?php echo $this->base ?>/images/menu.png" alt=""/></span>
 					<ul class="nav1 jmitem" style="overflow: hidden; display: block;">
 						<li><a  class="jmitem" href="<?php echo $this->base; ?>" class="active">HOME</a></li>
 						<li><a  class="jmitem" href="<?php echo $this->base; ?>/products">PRODUCTS</a></li>

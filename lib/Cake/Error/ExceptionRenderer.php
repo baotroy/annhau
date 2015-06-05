@@ -326,5 +326,13 @@ class ExceptionRenderer {
 		$this->controller->response->type('html');
 		$this->controller->response->send();
 	}
+	public function badRequest($error) {
+        $this->controller->beforeFilter();
+        //$this->controller->layout = 'error';
+        $this->controller->set('message', $error);
+        $this->controller->set('title_layout', 'Bad Request');
+        $this->controller->render('/Errors/error404');
+        $this->controller->response->send();
+    }
 
 }

@@ -995,7 +995,7 @@ h2.title {
 
 .category-tab ul {
   background: #40403E;
-  border-bottom: 1px solid #FE980F;
+  border-bottom: 1px solid #007cc2;
   list-style: none outside none;
   margin: 0 0 30px;
   padding: 0;
@@ -1013,7 +1013,7 @@ h2.title {
 }
 
 .category-tab ul  li  a:hover{
-	background:#FE980F;
+	background:#007cc2;
 	color:#fff;
 }
 
@@ -1022,7 +1022,7 @@ h2.title {
   -moz-border-left-colors: none;
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
-  background-color: #FE980F;
+  background-color: #007cc2;
   border:0px;
   color: #FFFFFF;
   cursor: default;
@@ -1113,7 +1113,7 @@ h2.title {
 }
 
 .pagination  .active  a, .pagination  .active  span, .pagination  .active  a:hover, .pagination  .active  span:hover, .pagination  .active  a:focus, .pagination  .active  span:focus {
-  background-color: #00c9ff;
+  background-color: #007cc2;
   border-color: #00c9ff;
   color: #FFFFFF;
   cursor: default;
@@ -1134,7 +1134,7 @@ h2.title {
 }
 
 .pagination  li  a:hover{
-	background:#00c9ff;
+	background:#007cc2;
 	color:#fff;
 }
 
@@ -1173,7 +1173,7 @@ h2.title {
 
 .view-product img {
   border: 1px solid #F7F7F0;
-  height: 380px;
+  
   width: 100%;
 }
 
@@ -1197,6 +1197,7 @@ h2.title {
 #similar-product .carousel-inner .item img {
   display: inline-block;
   margin-left: 15px;
+  height: 70px;
 }
 
 .item-control {
@@ -1204,7 +1205,7 @@ h2.title {
   top: 35%;
 }
 .item-control i {
-  background: #FE980F;
+  background: #007cc2;
   color: #FFFFFF;
   font-size: 20px;
   padding: 5px 10px;
@@ -1373,7 +1374,7 @@ h2.title {
 }
 
 #reviews button {
-  background: #FE980F;
+  background: #007cc2;
   border: 0 none;
   border-radius: 0;
   color: #FFFFFF;
@@ -2607,4 +2608,38 @@ h2.title {
 }
 .title{
   padding: 0px 15px;
+}
+.checkbox{
+  font-weight: 400;
+  cursor: pointer;
+}
+.modal-dialog {
+  margin-left: auto;
+  margin-right: auto
+}
+}
+
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 940px;
+  }
+}
+.modal-dialog.loading{
+  width: 300px;
+  height: 150px;
+}
+.modal.in .modal-dialog{
+  transition: 0.5s all ease;
+  -webkit-transition: 0.5s all ease;
+  -moz-transition: 0.5s all ease;
+  -o-transition: 0.5s all ease;
+  -ms-transition: 0.5s all ease;
+
+}
+.carousel-inner .item img{
+  cursor: pointer;
+}
+.jszoom{
+  cursor: pointer;
 }

@@ -11,10 +11,55 @@ App::uses('Helper', 'View');
  * @package       app.View.Helper
  */
 class TextHelper extends Helper {
-	function clean($string) {
-	    $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
-	   $string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+	function clean($url) {
+	   	$url = strtolower($url);
+	    $url = strip_tags($url);
+	    $url = stripslashes($url);
+	    $url = html_entity_decode($url);
 
-	   return strtolower(preg_replace('/-+/', '-', $string));
+	    # Remove quotes (can't, etc.)
+	    $url = str_replace('\'', '', $url);
+
+	    # Replace non-alpha numeric with hyphens
+	    $match = '/[^a-z0-9]+/';
+	    $replace = '-';
+	    $url = preg_replace($match, $replace, $url);
+
+	    $url = trim($url, '-');
+
+	    return $url;
+	}
+
+	function image($file = '', $dir =''){
+		$file_path = WWW_ROOT.DIR_IMAGE.$dir.$file;
+
+		if(file_exists($file_path)){
+			return $this->base.FS.DIR_IMAGE.$dir.$file;
+		}
+		return $this->base.FS.DIR_IMAGE.NO_IMAGE;
+	}
+
+	function images($files = array(), $dir =''){
+		$file = '';
+		$file_path ='';
+		foreach ($files as $key => $file) {
+			if($file){
+				$file_path = WWW_ROOT.DIR_IMAGE.$dir.$file;
+				if(file_exists($file_path)){
+					return $this->base.FS.DIR_IMAGE.$dir.$file;
+				}
+			}
+		}			
+		return $this->base.FS.DIR_IMAGE.NO_IMAGE;
+	}
+
+	function image_exist($file='', $dir = ''){
+		if($file == '') return false;
+		$file_path = WWW_ROOT.DIR_IMAGE.$dir.$file;
+
+		if(file_exists($file_path)){
+			return true;
+		}
+		return false;
 	}
 }
