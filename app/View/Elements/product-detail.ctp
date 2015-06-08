@@ -53,14 +53,15 @@
 			
 			<!-- <img src="<?php echo $this->Text->images(array($item['Product']['image_1'], $item['Product']['image_2'], $item['Product']['image_3'], $item['Product']['image_4'], $item['Product']['image_5']) , DIR_PRODUCT); ?>" alt=""> -->
 			<!-- <p><b>Availability:</b> In Stock</p> -->
-			<p><b>Category:</b> <a href="<?php echo $this->base.'/products?c=' .$this->Text->clean($item['SubCat']['name']).'-' . $item['SubCat']['id']; ?>"><?php echo $item['SubCat']['name']; ?></a></p>
-			<span class="star-rating unrate">
+			<p>Category: <a href="<?php echo $this->base.'/products?c=' .$this->Text->clean($item['SubCat']['name']).'-' . $item['SubCat']['id']; ?>"><b><?php echo $item['SubCat']['name']; ?></b></a></p>
+			<p><?php echo $item['Product']['short_description']; ?></p>
+			<!-- <span class="star-rating unrate">
 			  <input type="radio" name="rating" value="1"><i></i>
 			  <input type="radio" name="rating" value="2"><i></i>
 			  <input type="radio" name="rating" value="3"><i></i>
 			  <input type="radio" name="rating" value="4"><i></i>
 			  <input type="radio" name="rating" value="5"><i></i>
-			</span>
+			</span> -->
 
 
 		</div><!--/product-information-->

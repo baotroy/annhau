@@ -5,56 +5,32 @@
 				<h3>CATEGORIES</h3>
 			</div>
 			<div class="blog-bottom">
-				<div class="blog-one">
+				<?php
+					$index = 0;
+				 foreach(@$cats as $key => $cat): 
+				 	if($index%2==0) echo '<div class="blog-one">';
+				 ?>
+
 					<div class="col-md-6 blog-left">
 						<div class="col-md-5 blog-left-one">
-							<a href="samplepage.html"><img src="images/blog-1.jpg" alt="" /></a>
+							<a href="<?php echo $this->base.'/products?m='.$this->Text->clean($cat['Category']['name']).'-'.$cat['Category']['id']; ?>">
+								<img src="<?php echo $this->Text->images(array($cat['Product']['image_1'], $cat['Product']['image_2'], $cat['Product']['image_3'], $cat['Product']['image_4'], $cat['Product']['image_5']) , DIR_PRODUCT); ?>" alt="<?php echo $cat['Category']['name']; ?>"/>
+							</a>
 						</div>
 						<div class="col-md-7 blog-left-two">
-							<label>Monday, 30 March 2014 17:09</label>
-							<a href="samplepage.html"><h4>Nullam non erat sed ante sollicitudin facilisis.</h4></a>
-							<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed nunc in ex porttitor </p>
+							<!-- <label>Monday, 30 March 2014 17:09</label> -->
+							<a href="<?php echo $this->base.'/products?m='.$cat['Category']['id']; ?>"><h4><?php echo $cat['Category']['name']; ?></h4></a>
+							<p><?php echo $cat['Category']['description']; ?></p>
 						</div>
 						<div class="clearfix"></div>
 					</div>
-					<div class="col-md-6 blog-left">
-						<div class="col-md-5 blog-left-one">
-							<a href="samplepage.html"><img src="images/blog-2.jpg" alt="" /></a>
-						</div>
-						<div class="col-md-7 blog-left-two">
-							<label>Monday, 30 March 2014 17:09</label>
-							<a href="samplepage.html"><h4>Nullam non erat sed ante sollicitudin facilisis.</h4></a>
-							<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed nunc in ex porttitor </p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
+					
+				<?php if($index%2==0 || $index == count($cats)-1) echo '</div>';
+				$index++;
+				endforeach; ?>
 					<div class="clearfix"></div>
 				</div>
-				<div class="blog-one">
-					<div class="col-md-6 blog-left">
-						<div class="col-md-5 blog-left-one">
-							<a href="samplepage.html"><img src="images/blog-3.jpg" alt="" /></a>
-						</div>
-						<div class="col-md-7 blog-left-two">
-							<label>Monday, 30 March 2014 17:09</label>
-							<a href="samplepage.html"><h4>Nullam non erat sed ante sollicitudin facilisis.</h4></a>
-							<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed nunc in ex porttitor </p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="col-md-6 blog-left">
-						<div class="col-md-5 blog-left-one">
-							<a href="samplepage.html"><img src="images/blog-4.jpg" alt="" /></a>
-						</div>
-						<div class="col-md-7 blog-left-two">
-							<label>Monday, 30 March 2014 17:09</label>
-							<a href="samplepage.html"><h4>Nullam non erat sed ante sollicitudin facilisis.</h4></a>
-							<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed nunc in ex porttitor </p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -66,75 +42,20 @@
 			<h3>NEW PRODUCTS</h3>
 		</div>
 		<div class="portfolio-bottom">
-			<div class="portfolio-one">
-				<div class="col-md-3 port-left">
-					<a href="#modal" data-toggle="modal" data-target="#latest" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-							<img src="images/port-1.jpg" alt="" class="img-responsive zoom-img"/>
+			
+			<?php 
+			foreach ($latest as $key => $value) :
+				if($key%4 ==0) echo '<div class="portfolio-one">';
+			 ?>
+				<div class="col-md-3 port-left product">
+					<a href="#modal" data-toggle="modal" data-target="#latest" class=" mask b-link-stripe b-animate-go   swipebox"  title="<?php echo $value['Product']['name']; ?>" data-id="<?php echo $value['Product']['id']?>" data-name="<?php echo $value['Product']['name']?>">
+							<img src="<?php echo $this->Text->images(array($value['Product']['image_1'], $value['Product']['image_2'], $value['Product']['image_3'], $value['Product']['image_4'], $value['Product']['image_5']) , DIR_PRODUCT); ?>" alt="<?php echo $value['Product']['name']; ?>" class="img-responsive zoom-img"/>
 					</a>
 				</div>
-				<div class="col-md-3 port-left">
-					<a href="images/port-2.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-							<img src="images/port-2.jpg" alt="" class="img-responsive zoom-img"/>
-					</a>
-				</div>
-				<div class="col-md-3 port-left">
-					<a href="images/port-3.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-							<img src="images/port-3.jpg" alt="" class="img-responsive zoom-img"/>
-					</a>
-				</div>
-				<div class="col-md-3 port-left">
-					<a href="images/port-4.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-							<img src="images/port-4.jpg" alt="" class="img-responsive zoom-img"/>
-					</a>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="portfolio-one">
-				<div class="col-md-3 port-left">
-					<a href="images/port-5.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-							<img src="images/port-5.jpg" alt="" class="img-responsive zoom-img"/>
-					</a>
-				</div>
-				<div class="col-md-3 port-left">
-					<a href="images/port-6.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-							<img src="images/port-6.jpg" alt="" class="img-responsive zoom-img"/>
-					</a>
-				</div>
-				<div class="col-md-3 port-left">
-					<a href="images/port-7.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-							<img src="images/port-7.jpg" alt="" class="img-responsive zoom-img"/>
-					</a>
-				</div>
-				<div class="col-md-3 port-left">
-					<a href="images/port-8.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-							<img src="images/port-8.jpg" alt="" class="img-responsive zoom-img"/>
-					</a>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="portfolio-one">
-				<div class="col-md-3 port-left">
-					<a href="images/port-9.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-							<img src="images/port-9.jpg" alt="" class="img-responsive zoom-img"/>
-					</a>
-				</div>
-				<div class="col-md-3 port-left">
-					<a href="images/port-10.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-							<img src="images/port-10.jpg" alt="" class="img-responsive zoom-img"/>
-					</a>
-				</div>
-				<div class="col-md-3 port-left">
-					<a href="images/port-11.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-							<img src="images/port-11.jpg" alt="" class="img-responsive zoom-img"/>
-					</a>
-				</div>
-				<div class="col-md-3 port-left">
-					<a href="images/port-12.jpg" class=" mask b-link-stripe b-animate-go   swipebox"  title="Image Title">
-							<img src="images/port-12.jpg" alt="" class="img-responsive zoom-img"/>
-					</a>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
+			<?php
+				if(($key%4 ==0 && $key>0)|| $key == count($latest)-1) echo '<div class="clearfix"> </div></div>';
+			 endforeach; ?>
+				
 		</div>
 	</div>
 </div>
@@ -232,9 +153,8 @@
       <div class="modal-body">
         <div class="container">
 			<div class="row">
-				<div class="col-sm-9 padding-right">
-					<?php //echo $this->element('product-detail'); ?>
-					
+				<div class="col-sm-9 padding-right content">
+					Loading...
 				</div>
 			</div>	
 		</div>
@@ -250,3 +170,18 @@
 
   </div>
 </div>
+<script>
+	$('.mask').click(function(){
+		id = $(this).attr('data-id');
+		name = $(this).attr('data-name');
+		$('.modal-title').html(name);
+		$('#latest').on('shown.bs.modal', function(){
+			url = "<?php echo $this->base.'/products/getajax/';?>" + id;
+			$.get( url, function(data){
+				$('.modal-dialog').removeClass('loading');
+				$('#latest .content').html(data);
+			});
+		});
+	});
+
+</script>

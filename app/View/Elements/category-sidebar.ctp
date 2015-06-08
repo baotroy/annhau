@@ -6,7 +6,7 @@
 		<?php if(isset($subcats[$value['Category']['id']])){ ?>
 			<div class="panel-heading">
 				<h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#accordian" href="#<?php echo $this->Text->clean($value['Category']['name']); ?>"  class="<?php if(!in_array(@$cat, array_keys($subcats[$value['Category']['id']]))) echo 'collapsed';?>">
+					<a  data-toggle="collapse" data-parent="#accordian" href="#<?php echo $this->Text->clean($value['Category']['name']); ?>"  class="<?php if(!in_array(@$cat, array_keys($subcats[$value['Category']['id']]))) echo 'collapsed';?> ">
 						<span class="badge pull-right"><i class="fa fa-plus"></i></span>
 						<?php echo $value['Category']['name'].' ('.$value['Category']['product_count'].')'; ?>
 					</a>

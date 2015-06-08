@@ -5,7 +5,7 @@
 	<title>
 		<?php echo $title_layout; ?> | Ryta Decor Accessories
 	</title>
-	
+	<link href="<?php echo $this->base ?>/css/enhance.css" type="text/css" rel="stylesheet">
 	<link href="<?php echo $this->base ?>/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/component.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/categ.css" />
@@ -26,11 +26,12 @@
 	<!-- //js -->	
 	<!-- start-smoth-scrolling-->
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/handle.js"></script>
-	<script type="text/javascript" src="<?php echo $this->base ?>/js/move-top.js"></script>
+	
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/easing.js"></script>	
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/js5star.min.js"></script>
 	<script type="text/javascript" src="<?php echo $this->base ?>/js/modernizr.custom.53451.js"></script>
+	<script type="text/javascript" src="<?php echo $this->base ?>/js/move-top.js"></script>
 	<script type="text/javascript">
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){		
@@ -58,20 +59,21 @@
 <body>
 	<!--header-->
 	<div class="banner">
-		<div class="social-icons">
-				<ul>
-					<li><?php echo $this->element('search'); ?></li>
-					<li><a href="#"><span class="twt"> </span></a></li>
-					<li><a href="#"><span class="fb"> </span></a></li>
-					<li><a href="#"><span class="in"> </span></a></li>
-					<li><a href="#"><span class="dot"> </span></a></li>
-				</ul>
-			</div>
-		<div class="container">
-			<div class="col-md-9 top-nav">
+		<!-- <div class="social-icons">
+			 <ul>
+				<li><?php echo $this->element('search'); ?></li>
+				<li><a href="#"><span class="twt"> </span></a></li>
+				<li><a href="#"><span class="fb"> </span></a></li>
+				<li><a href="#"><span class="in"> </span></a></li>
+				<li><a href="#"><span class="dot"> </span></a></li>
+			</ul>
+		</div> -->
+		<div class="container head-nav">
+			<div class="col-md-6 top-nav">
 				<div class="menu-bar jmitem">
-					<span class="menu jmitem open"><img class="jmitem" src="<?php echo $this->base ?>/images/menu.png" alt=""/></span>
-					<ul class="nav1 jmitem" style="overflow: hidden; display: block;">
+					
+					<i class="fa fa-bars fa-2x toggle-btn menu jmitem open" data-toggle="collapse" data-target="#menu-content"></i>
+					<ul class="nav1 jmitem">
 						<li><a  class="jmitem" href="<?php echo $this->base; ?>" class="active">HOME</a></li>
 						<li><a  class="jmitem" href="<?php echo $this->base; ?>/products">PRODUCTS</a></li>
 						<li><a  class="jmitem" href="<?php echo $this->base.'/site/contact'; ?>" >CONTACT</a></li>
@@ -80,54 +82,77 @@
 				</div>
 				<!-- script-for-menu -->
 				 <script>
-					   	$( ".menu" ).hover(function() {
-					   		if(isMobile() == false) {
-					   			if($(this).hasClass('open')) return false;
-						   		if($(this).hasClass('closed')){
-						   			$( "ul.nav1" ).attr('style', 'top: -100%; overflow: hidden; display: block;');
-									$( "ul.nav1" ).animate({
-										    top: 0,
+					 //   	$( ".menu" ).hover(function() {
+					 //   		if(isMobile() == false) {
+					 //   			if($(this).hasClass('open')) return false;
+						//    		if($(this).hasClass('closed')){
+						//    			$( "ul.nav1" ).attr('style', 'top: -100%; overflow: hidden; display: block;');
+						// 			$( "ul.nav1" ).animate({
+						// 				    top: 0,
 
-									  	}, 400, function() {
-									   $(".menu").removeClass('closed').addClass('open');
-									   $( "ul.nav1" ).attr('style', 'overflow: hidden; display: block;');
-									});
-								}
-							}
-						});
-					   	$('.menu, a.jmitem, ul.nav1 li').mouseleave(function(e){
-					   		if(isMobile() == false) {
-					   			if($(this).hasClass('closed')) return false;
-						   		var related= false;
-						   		if(e.toElement != null){
-						   			related = e.relatedTarget.className;
-						   			target = e.relatedTarget.nodeName;
-						   		}
+						// 			  	}, 400, function() {
+						// 			   $(".menu").removeClass('closed').addClass('open');
+						// 			   $( "ul.nav1" ).attr('style', 'overflow: hidden; display: block;');
+						// 			});
+						// 		}
+						// 	}
+						// });
+					 //   	$('.menu, a.jmitem, ul.nav1 li').mouseleave(function(e){
+					 //   		if(isMobile() == false) {
+					 //   			if($(this).hasClass('closed')) return false;
+						//    		var related= false;
+						//    		if(e.toElement != null){
+						//    			related = e.relatedTarget.className;
+						//    			target = e.relatedTarget.nodeName;
+						//    		}
 
-						   		if(related != 'jmitem' && target != 'LI' && target != 'UL'){
-						   			$( "ul.nav1" ).animate({
-										    top: '-100%',
+						//    		if(related != 'jmitem' && target != 'LI' && target != 'UL'){
+						//    			$( "ul.nav1" ).animate({
+						// 				    top: '-100%',
 
-										  }, 300, function() {
-										   $(".menu").removeClass('open').addClass('closed');
-										   $( "ul.nav1" ).attr('style', 'overflow: hidden; display: none;');
-									});
-						   		}
-						   	}
-					   	});
+						// 				  }, 300, function() {
+						// 				   $(".menu").removeClass('open').addClass('closed');
+						// 				   $( "ul.nav1" ).attr('style', 'overflow: hidden; display: none;');
+						// 			});
+						//    		}
+						//    	}
+					 //   	});
 					   
-						$( "span.menu" ).click(function() {
-							if(isMobile()) {
-								$( "ul.nav1" ).slideToggle( 300, function() {
+						$( ".menu" ).click(function() {
+							//if(isMobile()) {
+								$( ".nav1" ).slideToggle( 300, function() {
 								 
 								  });
-							}
+							//}
 						 });
 				</script>
 				<!-- /script-for-menu -->
 			</div>
-			<div class="col-md-3 header-logo">
-				<a href="<?php echo $this->base; ?>"><img src="<?php echo $this->base ?>/images/logo_test.png" alt="logo"/></a>
+			<div class="col-md-6 social-icons">
+				<!-- <a href="<?php echo $this->base; ?>"><img src="<?php echo $this->base ?>/images/logo_test.png" alt="logo"/></a> -->
+				<div class="social-box">
+					<div class="langs">
+					<?php
+					$lang = DEFAULT_LANG;
+
+					if(CakeSession::check('lang')) $lang = CakeSession::read('lang');
+
+					 foreach(Constants::$langs as $key => $value): 
+						if($key == $lang) 
+							echo '<span>'.$value.'</span>';
+						else 
+							echo '<a href='.$this->here.'?lang='.$key.'>'. $value.'</a>';
+					
+					endforeach; ?>
+					</div>
+					<ul>	
+						<li><a href="#"><span class="twt"> </span></a></li>
+						<li><a href="#"><span class="fb"> </span></a></li>
+						<!-- <li><a href="#"><span class="in"> </span></a></li>
+						<li><a href="#"><span class="dot"> </span></a></li> -->
+					</ul>
+					<?php echo $this->element('search'); ?>
+				</div>
 			</div>	
 		</div>
 	</div>
@@ -156,11 +181,11 @@
 			*/
 			
 			$().UItoTop({ easingType: 'easeOutQuart' });
-			setTimeout(function(){
-				$( "ul.nav1" ).slideToggle( 300, function() {
-					$('span.menu').removeClass('open').addClass('closed');
-				});
-			},5000);
+			// setTimeout(function(){
+			// 	$( "ul.nav1" ).slideToggle( 300, function() {
+			// 		$('span.menu').removeClass('open').addClass('closed');
+			// 	});
+			// },5000);
 		});
 	</script>
 	 <script type="text/javascript" src="<?php echo $this->base; ?>/js/jssor.slider.mini.js"></script>
@@ -244,8 +269,8 @@
             //responsive code end
         });
     </script>
-	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-	<!--//smooth-scrolling-of-move-up-->			<?php echo $this->element('sql_dump'); ?>
+	<a href="#" id="toTop" > <span id="toTopHover" style=""></span></a>
+	<!--//smooth-scrolling-of-move-up-->			<?php //echo $this->element('sql_dump'); ?>
 	
 	
 	

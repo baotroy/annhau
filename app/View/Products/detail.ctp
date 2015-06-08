@@ -10,12 +10,12 @@
 				<div class="col-sm-12">
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#details" data-toggle="tab">Details</a></li>
-						<li><a href="#reviews" data-toggle="tab">Reviews</a></li>
+						<li><a href="#reviews" data-toggle="tab">Reviews (<?php echo count($comments); ?>)</a></li>
 					</ul>
 				</div>
 				<div class="tab-content">
 					<div class="tab-pane fade active in" id="details">
-						DETAIL
+						<?php echo $item['Product']['long_description']; ?>
 					</div>
 					
 					<div class="tab-pane fade " id="reviews">

@@ -1,10 +1,10 @@
 
 $(function(){
-$('.item img').click(function(){
+$(document).on('click', '.item img', function(){
 	select = $(this).attr('src');
 	$('.view-product img').attr('src', select);
 });
-$('.jszoom').click(function(){
+$(document).on('click', '.jszoom', function(){
 	sib = $(this).prev();
 	popitup(sib.attr('src'));
 });

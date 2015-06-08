@@ -31,4 +31,14 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+	function beforeRender(){
+		CakeSession::write('lang', DEFAULT_LANG);
+		if(@$this->request->query['lang']){
+			//echo '<pre>';print_r($@$this->request->query['lang']); exit;
+			if($this->request->query['lang'] == 'en' || $this->request->query['lang'] =='vi'){
+				CakeSession::write('lang', $this->request->query['lang']);
+			}
+		}
+
+	}
 }

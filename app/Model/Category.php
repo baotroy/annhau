@@ -6,6 +6,10 @@ class Category extends AppModel {
 	public $name = 'Category';
     public $useTable ='categories';
 
+    function getById($id = '', $fields = array()){
+        return $this->find('first', array('fields'=> $fields, 'conditions' => array('id'=>$id,'deleted'=>0)));
+    }
+
     function getForMenu(){
     	$joins = array(
             array(
@@ -53,5 +57,33 @@ class Category extends AppModel {
             $ret[$value['SubCat']['category']][$value['SubCat']['id']] = $value['SubCat']['name'];
         }
         return $ret;
+    }
+
+    function getAll($fields = array()){
+        $joins = array(
+            array(
+                'table' => 'subcategories',
+                'alias' => 'SubCat',
+                'type' => 'LEFT',
+                'conditions' => array(
+                    'SubCat.category = Category.id',
+                    'SubCat.deleted' => 0,
+                )
+            ),
+            array(
+                'table' => 'products',
+                'alias' => 'Product',
+                'type' => 'LEFT',
+                'conditions' => array(
+                    'Product.category = SubCat.id',
+                    'Product.deleted' => 0,
+                ),
+            ),
+        );
+
+        $res = $this->find('all', array('fields' => 'Category.*, Product.*', 'conditions' => array('`Category`.`deleted`' => 0), 
+            'joins' => $joins, 'group' => 'Category.id'));
+        return $res; 
+
     }
 }

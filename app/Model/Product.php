@@ -25,7 +25,7 @@ class Product extends AppModel {
         if($cat && !$id){
             $conditions[] = 'Product.category = '. $cat;
         }
-    	$res = $this->find($get_type, array('fields' => '*', 'conditions' => $conditions, 'joins' => $joins, 'order'=> array($options['order'] => $options['by']), 'limit' => $options));
+    	$res = $this->find($get_type, array('fields' => '*', 'conditions' => $conditions, 'joins' => $joins, 'order'=> array($options['order'] => $options['by']), 'limit' => $options['limit']));
 	    return $res;
     }
 }

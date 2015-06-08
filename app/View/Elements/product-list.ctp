@@ -69,7 +69,7 @@
 						<div class="single-products">
 							<a href="<?php echo $this->base.'/products/detail/'.$this->Text->clean($value['Product']['name']). '-' . $value['Product']['id'];?>">
 								<div class="productinfo text-center">
-									<img src="<?php echo $this->Text->image($value['Product']['image_1'], DIR_PRODUCT);?>" alt="<?php echo $value['Product']['name'] ?>" />
+									<img src="<?php echo $this->Text->image($value['Product']['image_1'], DIR_PRODUCT);?>" alt="<?php echo $value['Product']['name'] ?>"/>
 									<h2></h2>
 									<p><?php echo $value['Product']['name']; ?></p>
 									<!-- <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a> -->

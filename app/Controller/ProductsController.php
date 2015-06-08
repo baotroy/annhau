@@ -22,8 +22,22 @@ class ProductsController extends AppController {
 			$this->set('cat', $cat);
 			
 			$cat_title = $this->SubCat->getById($cat, array('name'));
-			$this->set('cat_title', $cat_title['SubCat']['name']);
+            if($cat_title)
+			     $this->set('cat_title', $cat_title['SubCat']['name']);
+             else
+                $this->set('cat_title','');
 		}
+        else if(isset($this->request->query['m'])){
+            $cat =$this->request->query['m'];
+            $cat =substr($cat,strrpos($cat, '-')+1);
+            $this->set('mcat', $cat);
+
+            $cat_title = $this->Category->getById($cat, array('name'));
+            if($cat_title)
+                $this->set('cat_title', $cat_title['Category']['name']);
+            else
+                $this->set('cat_title','');
+        }
 		else
 			$this->set('cat_title', NEW_PRODUCT);
 	}
@@ -48,6 +62,20 @@ class ProductsController extends AppController {
         	$cat =$this->request->query['c'];
 			$cat =substr($cat,strrpos($cat, '-')+1);
             $conditions[] = array('Product.category' => $cat);
+        }
+        if(isset($this->request->query['m'])){
+            $cat =$this->request->query['m'];
+            $cat =substr($cat,strrpos($cat, '-')+1);
+            $conditions[] = array('SubCat.category' => $cat);
+
+            $joins[] = array(
+                'table' => 'categories',
+                'alias' => 'Category',
+                'type' => 'INNER',
+                'conditions' => array(
+                    'Category.id = SubCat.category',
+                    '`Category`.`deleted`' => 0,
+                ));
         }
         $order = array('Product.created' => 'desc');
 
@@ -107,5 +135,22 @@ class ProductsController extends AppController {
             exit;
         }
 	}
+
+    function getajax($id = '')
+    {
+        if($this->request->is('ajax')){
+            $this->set('title_layout', 'Products');
+            $this->set('id', $id);
+
+            $res = $this->Product->getBy('first', $id);
+            $this->set('item', $res);
+
+            $this->layout = false;
+
+          //  echo $this->render('getajax');
+            
+        }
+       // exit;
+    }
    
 }
