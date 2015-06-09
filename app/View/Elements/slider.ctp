@@ -1,3 +1,4 @@
+<?php $lang = CakeSession::read('lang'); ?>
 <style>
         /* jssor slider bullet navigator skin 21 css */
         /*
@@ -75,49 +76,15 @@
         <!-- Slides Container -->
         <div data-u="slides" style="position: absolute; left: 0px; top: 0px; width: 1300px;
             height: 350px; overflow: hidden;">
+        <?php
+            foreach ($banners as $key => $value):?>
             <div>
-                <a href="a">
-                    <img data-u="image" src="<?php echo $this->base; ?>/images/1920/red.jpg" alt="" />
-                    
-                    <div style="position: absolute; width: 480px; height: 120px; top: 2%; left: 30px; padding: 5px;
-                        text-align: left; line-height: 60px; text-transform: uppercase; font-size: 30px;
-                            color: #FFFFFF;">Product name 1
-                    </div>
-                    <div style="position: absolute; width: 480px; height: 120px; top: 60%; left: 30px; padding: 5px;
-                        text-align: left; line-height: 36px; font-size: 22px;
-                            color: #FFFFFF;">
-                            Build your slider with anything, includes image, content, text, html, photo, picture
-                    </div>
-                </a>
+                    <img data-u="image" src="<?php echo $this->Text->image($value, DIR_BANNER);?>"/>
             </div>
-            <div>
-                <a href="a">
-                    <img data-u="image" src="<?php echo $this->base; ?>/images/1920/purple.jpg" alt="" />
-                    <div style="position: absolute; width: 480px; height: 120px; top: 2%; left: 30px; padding: 5px;
-                        text-align: left; line-height: 60px; text-transform: uppercase; font-size: 30px;
-                            color: #FFFFFF;">Product name 2
-                    </div>
-                    <div style="position: absolute; width: 480px; height: 120px; top: 60%; left: 30px; padding: 5px;
-                        text-align: left; line-height: 36px; font-size: 22px;
-                            color: #FFFFFF;">
-                            Build your slider with anything, includes image, content, text, html, photo, picture
-                    </div>
-                </a>
-            </div>
-            <div>
-                <a href="a">
-                    <img data-u="image" src="<?php echo $this->base; ?>/images/see-banner.jpg" alt="" />
-                    <div style="position: absolute; width: 480px; height: 120px; top: 2%; left: 30px; padding: 5px;
-                        text-align: left; line-height: 60px; text-transform: uppercase; font-size: 30px;
-                            color: #FFFFFF;">Product name 3
-                    </div>
-                    <div style="position: absolute; width: 480px; height: 120px; top: 60%; left: 30px; padding: 5px;
-                        text-align: left; line-height: 36px; font-size: 22px;
-                            color: #FFFFFF;">
-                            Build your slider with anything, includes image, content, text, html, photo, picture
-                    </div>
-                </a>
-            </div>
+        <?php
+            endforeach;
+         ?>
+                       
         </div>
                 
         <!--#region Bullet Navigator Skin Begin -->

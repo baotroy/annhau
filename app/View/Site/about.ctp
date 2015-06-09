@@ -2,7 +2,7 @@
 	<div class="about">
 		<div class="container">
 			<div class="services">
-				<h3>ABOUT US</h3>
+				<h3><?php echo Message::label('mnu_about'); ?></h3>
 			</div>	
 			<div class="about-info">
 				<h4>Lorem Ipsum is not simply random text. It has roots in a piece of classical</h4>

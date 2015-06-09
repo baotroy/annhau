@@ -1,3 +1,4 @@
+<?php $lang = CakeSession::read('lang'); ?>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-3">
@@ -9,13 +10,13 @@
 			<div class="category-tab shop-details-tab"><!--category-tab-->
 				<div class="col-sm-12">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#details" data-toggle="tab">Details</a></li>
-						<li><a href="#reviews" data-toggle="tab">Reviews (<?php echo count($comments); ?>)</a></li>
+						<li class="active"><a href="#details" data-toggle="tab"><?php echo Message::label('tab_details'); ?></a></li>
+						<li><a href="#reviews" data-toggle="tab"><?php echo Message::label('tab_reviews'); ?> (<?php echo count($comments); ?>)</a></li>
 					</ul>
 				</div>
 				<div class="tab-content">
 					<div class="tab-pane fade active in" id="details">
-						<?php echo $item['Product']['long_description']; ?>
+						<?php echo $item['Product']['long_description_'.$lang]; ?>
 					</div>
 					
 					<div class="tab-pane fade " id="reviews">
@@ -30,13 +31,13 @@
 						<?php } ?>
 							<div id="comment-box">
 							<?php if(!CakeSession::check('commented')){ ?>
-								<p><b>Write Your Review</b></p>
+								<p><b><?php echo Message::label('write_review'); ?></b></p>
 								
 								<form action="#" id="form-comment">
 									<span>
 										<input type="hidden" name="product" value="<?php echo $id; ?>">
-										<input type="text" placeholder="Your Name" name="commentator" class="jxcommentator" maxlength="30">
-										<input type="email" placeholder="Email Address" name="email" class="jxemail" maxlength="30">
+										<input type="text" placeholder="<?php echo Message::label('your_name'); ?>" name="commentator" class="jxcommentator" maxlength="30">
+										<input type="email" placeholder="Email" name="email" class="jxemail" maxlength="30">
 									</span>
 									<textarea name="content" class="jxcontent" maxlength="200"></textarea>
 									
@@ -44,7 +45,7 @@
 										Submit
 									</button>
 								</form>
-							<?php }else echo '<b>'.THANK_COMMENT.'</b>';?>
+							<?php }else echo '<b>'.Message::label('thank_comment').'</b>';?>
 								
 							
 							</div>
@@ -62,7 +63,7 @@
 <script type="text/javascript">
 	$('#comment').click(function(){
 		url = "<?php echo $this->base.'/comment/write' ?>";
-		postComment(url, '<?php echo THANK_COMMENT;?>');
+		postComment(url, '<?php echo Message::label("thank_comment");?>');
 		return false;	
 	});
     $(':radio').change(

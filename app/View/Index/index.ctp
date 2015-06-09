@@ -1,83 +1,8 @@
-<!--blog-->
-	<div class="blog">
-		<div class="container">
-			<div class="blog-top">
-				<h3>CATEGORIES</h3>
-			</div>
-			<div class="blog-bottom">
-				<?php
-					$index = 0;
-				 foreach(@$cats as $key => $cat): 
-				 	if($index%2==0) echo '<div class="blog-one">';
-				 ?>
-
-					<div class="col-md-6 blog-left">
-						<div class="col-md-5 blog-left-one">
-							<a href="<?php echo $this->base.'/products?m='.$this->Text->clean($cat['Category']['name']).'-'.$cat['Category']['id']; ?>">
-								<img src="<?php echo $this->Text->images(array($cat['Product']['image_1'], $cat['Product']['image_2'], $cat['Product']['image_3'], $cat['Product']['image_4'], $cat['Product']['image_5']) , DIR_PRODUCT); ?>" alt="<?php echo $cat['Category']['name']; ?>"/>
-							</a>
-						</div>
-						<div class="col-md-7 blog-left-two">
-							<!-- <label>Monday, 30 March 2014 17:09</label> -->
-							<a href="<?php echo $this->base.'/products?m='.$cat['Category']['id']; ?>"><h4><?php echo $cat['Category']['name']; ?></h4></a>
-							<p><?php echo $cat['Category']['description']; ?></p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					
-				<?php if($index%2==0 || $index == count($cats)-1) echo '</div>';
-				$index++;
-				endforeach; ?>
-					<div class="clearfix"></div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-	<!--blog-->
-	<!--//portfolio-->
-<div class="portfolio">
-	<div class="container">
-		<div class="services">
-			<h3>NEW PRODUCTS</h3>
-		</div>
-		<div class="portfolio-bottom">
-			
-			<?php 
-			foreach ($latest as $key => $value) :
-				if($key%4 ==0) echo '<div class="portfolio-one">';
-			 ?>
-				<div class="col-md-3 port-left product">
-					<a href="#modal" data-toggle="modal" data-target="#latest" class=" mask b-link-stripe b-animate-go   swipebox"  title="<?php echo $value['Product']['name']; ?>" data-id="<?php echo $value['Product']['id']?>" data-name="<?php echo $value['Product']['name']?>">
-							<img src="<?php echo $this->Text->images(array($value['Product']['image_1'], $value['Product']['image_2'], $value['Product']['image_3'], $value['Product']['image_4'], $value['Product']['image_5']) , DIR_PRODUCT); ?>" alt="<?php echo $value['Product']['name']; ?>" class="img-responsive zoom-img"/>
-					</a>
-				</div>
-			<?php
-				if(($key%4 ==0 && $key>0)|| $key == count($latest)-1) echo '<div class="clearfix"> </div></div>';
-			 endforeach; ?>
-				
-		</div>
-	</div>
-</div>
-<!--portfolio-->
-
-	<!--seemore-->
-	<div class="Rate services">
-		<div class="container">
-			<h3>BEST PRODUCTS</h3>
-		</div>
-		<div class="blog-bottom">
-			<?php echo $this->element('slider'); ?>
-		</div>
-	</div>
-	
-	<!--seemore-->
-
-	
+<?php $lang = CakeSession::read('lang'); ?>
 <!--services-->
 	<div class="services">
 		<div class="container">
-			<h3>OUR SERVICES</h3>
+			<h3><?php echo Message::label('services'); ?></h3>
 			<div class="services-grids">
 				<div class="col-md-4 services-grids-info">
 					<span class="service-one"> </span>
@@ -103,11 +28,86 @@
 		</div>
 	</div>
 	<!--//services-->
+	<!--seemore-->
+	<div class="Rate services">
+		<!-- <div class="container">
+			<h3><?php echo Message::label('best_products'); ?></h3>
+		</div> -->
+		<div>
+			<?php echo $this->element('slider'); ?>
+		</div>
+	</div>
+	
+	<!--seemore-->
+	<!--blog-->
+	<div class="blog">
+		<div class="container">
+			<div class="blog-top">
+				<h3><?php echo Message::label('categories'); ?></h3>
+			</div>
+			<div class="blog-bottom">
+				<?php
+					$index = 0;
+				 foreach(@$cats as $key => $cat): 
+				 	if($index%2==0) echo '<div class="blog-one">';
+				 ?>
+
+					<div class="col-md-6 blog-left">
+						<div class="col-md-5 blog-left-one">
+							<a href="<?php echo $this->base.'/products?m='.$this->Text->clean($cat['Category']['name_'.$lang]).'-'.$cat['Category']['id']; ?>">
+								<img <?php echo $this->Text->images(array($cat['Product']['image_1'], $cat['Product']['image_2'], $cat['Product']['image_3'], $cat['Product']['image_4'], $cat['Product']['image_5']) , DIR_PRODUCT.DIR_SMALL); ?> alt="<?php echo $cat['Category']['name_'.$lang]; ?>"/>
+							</a>
+						</div>
+						<div class="col-md-7 blog-left-two">
+							<!-- <label>Monday, 30 March 2014 17:09</label> -->
+							<a href="<?php echo $this->base.'/products?m='.$cat['Category']['id']; ?>"><h4><?php echo $cat['Category']['name_'.$lang]; ?></h4></a>
+							<p><?php echo $cat['Category']['description_'.$lang]; ?></p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					
+				<?php if($index%2==0 || $index == count($cats)-1) echo '</div>';
+				$index++;
+				endforeach; ?>
+					<div class="clearfix"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!--blog-->
+	<!--//portfolio-->
+	<div class="portfolio">
+		<div class="container">
+			<div class="services">
+				<h3><?php echo Message::label('new_products'); ?></h3>
+			</div>
+			<div class="portfolio-bottom">
+				
+				<?php 
+				foreach ($latest as $key => $value) :
+					if($key%4 ==0) echo '<div class="portfolio-one">';
+				 ?>
+					<div class="col-md-3 port-left product">
+						<a href="#modal" data-toggle="modal" data-target="#latest" class=" mask b-link-stripe b-animate-go   swipebox"  title="<?php echo $value['Product']['name_'.$lang]; ?>" data-id="<?php echo $value['Product']['id']?>" data-name="<?php echo $value['Product']['name_'.$lang]?>">
+								<img <?php echo $this->Text->images(array($value['Product']['image_1'], $value['Product']['image_2'], $value['Product']['image_3'], $value['Product']['image_4'], $value['Product']['image_5']) , DIR_PRODUCT.DIR_SMALL); ?> alt="<?php echo $value['Product']['name_'.$lang]; ?>" class="img-responsive zoom-img"/>
+						</a>
+					</div>
+				<?php
+					if(($key%4 ==0 && $key>0)|| $key == count($latest)-1) echo '<div class="clearfix"> </div></div>';
+				 endforeach; ?>
+					
+			</div>
+		</div>
+	</div>
+	<!--portfolio-->
+
 
 	<!--testimonials-->
 	<div class="testimonials services">
 		<div class="container">
-			<h3>TESTIMONIALS</h3>
+			<h3><?php echo Message::label('testimonial'); ?></h3>
+		</div>
 			<div class="sap_tabs">	
 				<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 					<ul class="resp-tabs-list">
@@ -138,7 +138,7 @@
 					</div>	
 				</div>	
 			</div>		  
-		</div>
+		
 	</div>	
 <!-- Modal -->
 <div id="latest" class="modal fade" role="dialog">
@@ -179,7 +179,10 @@
 			url = "<?php echo $this->base.'/products/getajax/';?>" + id;
 			$.get( url, function(data){
 				$('.modal-dialog').removeClass('loading');
-				$('#latest .content').html(data);
+				setTimeout(function(){
+					$('#latest .content').html(data);
+				},500);
+				
 			});
 		});
 	});

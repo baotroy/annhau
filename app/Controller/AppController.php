@@ -20,7 +20,7 @@
  */
 
 App::uses('Controller', 'Controller');
-
+App::uses('Message', 'Lib');
 /**
  * Application Controller
  *
@@ -32,13 +32,24 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	function beforeRender(){
-		CakeSession::write('lang', DEFAULT_LANG);
-		if(@$this->request->query['lang']){
-			//echo '<pre>';print_r($@$this->request->query['lang']); exit;
-			if($this->request->query['lang'] == 'en' || $this->request->query['lang'] =='vi'){
-				CakeSession::write('lang', $this->request->query['lang']);
+		if(isset($this->request->query['lang'])){
+			if($this->request->query['lang'] == 'en'){
+				CakeSession::write('lang', 'en');
+			}
+			if($this->request->query['lang'] == 'vi'){
+				CakeSession::write('lang', 'vi');
 			}
 		}
 
+		if(!CakeSession::check('lang')){
+			CakeSession::write('lang', DEFAULT_LANG);
+		}
+
+        if (isset($this->params['controller']) && $this->params['controller'] == 'admin') {
+            $this->layout = 'admin';
+        } 
 	}
+	function beforeFilter() {
+
+    }
 }

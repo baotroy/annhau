@@ -461,7 +461,7 @@ ul.sub-menu {
   font-size: 14px;
   font-weight: 300;
   left: 25px;
-  position: absolute;
+/*  position: absolute;*/
   top: 50px;
 }
 
@@ -884,7 +884,7 @@ h2.title {
 
 .productinfo img{
   max-width: 100%;
-  max-height: 165px
+  height: 165px
 }
 
 .productinfo{
@@ -1169,10 +1169,10 @@ h2.title {
   margin-top: 10px;
 }
 
-
-
 .view-product {
   position: relative;
+  height: 240px;
+  text-align: center
 }
 
 .view-product img {
@@ -1182,16 +1182,21 @@ h2.title {
 }
 
 .view-product h3 {
-  background: #e0c06a;
+  /*background: #e0c06a;*/
   bottom: 0;
-  color: #FFFFFF;
+  color: #000;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: normal;
   margin-bottom: 0;
-  padding: 8px 20px;
+  padding: 8px 10px;
   position: absolute;
   right: 0;
+}
+.view-product img{
+  max-height: 240px;
+  width: auto;
+  max-width: 100%
 }
 
 #similar-product .carousel-inner .item{
@@ -1223,12 +1228,18 @@ h2.title {
 .product-information {
   border: 1px solid #F7F7F0;
   overflow: hidden;
-  padding-bottom: 60px;
-  padding-left: 60px;
-  padding-top: 60px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-top: 30px;
   position: relative;
 }
-
+.product-information a.details, .product-information span{
+  font-size: 13px;
+  font-weight: 400
+}
+.product-information span{
+  margin: 0px 6px;
+}
 .newarrival{
 	position:absolute;
 	top:0;
@@ -2648,7 +2659,7 @@ h2.title {
 .category-products a.submenu:hover,
 .category-products .active{
   background: url('../images/bgmnu2.png') #221b13;
-  color: #f2dec3
+  color: #9d8649
   
 }
 .title{

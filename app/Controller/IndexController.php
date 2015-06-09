@@ -3,7 +3,7 @@
 App::uses('AppController', 'Controller');
 
 class IndexController extends AppController {
-	public $uses = array('Category', 'Product');
+	public $uses = array('Category', 'Product', 'Banner');
 
 	public function index() {
 		$this->set('title_layout', 'Home');
@@ -13,9 +13,13 @@ class IndexController extends AppController {
 		$products = $this->Product->getBy('all', false, false, array('order' => 'Product.created', 'by' => 'desc', 'limit' => 12));
 		
 		$this->set('latest', $products);
+		$best = $this->Product->getBy('all', false, false, array('order' => 'rate', 'by'=>'desc', 'limit' => LIMIT_BEST));
 
+		$this->set('best', $best);
 		$cats = $this->Category->getAll();
 		$this->set('cats', $cats);
-		//echo '<pre>';print_r($cats); exit;
+		
+		$banners = $this->Banner->getAll();
+		$this->set('banners', $banners);
 	}
 }

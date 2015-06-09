@@ -6,11 +6,18 @@ class ProductsController extends AppController {
 	public $uses = array('Category', 'Product', 'SubCat', 'Comment');
 	public $components = array('Paginator');
 
-	function beforeFilter(){
+    // function beforeRender(){
 
-		$subcats = $this->Category->getSubMenu();
+    // }
+	function beforeRender(){
+        parent::beforeRender();
+        $lang = CakeSession::read('lang');
+        
+		$subcats = $this->Category->getSubMenu($lang);
+
 		$cats = $this->Category ->getForMenu();
 		
+        $lang = CakeSession::read('lang');
 
 		$this->set('subcats', $subcats);
 		$this->set('cats', $cats);
@@ -21,9 +28,9 @@ class ProductsController extends AppController {
 			$cat =substr($cat,strrpos($cat, '-')+1);
 			$this->set('cat', $cat);
 			
-			$cat_title = $this->SubCat->getById($cat, array('name'));
+			$cat_title = $this->SubCat->getById($cat, array('name_'.$lang));
             if($cat_title)
-			     $this->set('cat_title', $cat_title['SubCat']['name']);
+			     $this->set('cat_title', $cat_title['SubCat']['name_'.$lang]);
              else
                 $this->set('cat_title','');
 		}
@@ -32,14 +39,14 @@ class ProductsController extends AppController {
             $cat =substr($cat,strrpos($cat, '-')+1);
             $this->set('mcat', $cat);
 
-            $cat_title = $this->Category->getById($cat, array('name'));
+            $cat_title = $this->Category->getById($cat, array('name_'.$lang));
             if($cat_title)
-                $this->set('cat_title', $cat_title['Category']['name']);
+                $this->set('cat_title', $cat_title['Category']['name_'.$lang]);
             else
                 $this->set('cat_title','');
         }
 		else
-			$this->set('cat_title', NEW_PRODUCT);
+			$this->set('cat_title', Message::label('new_products'));
 	}
 	public function index($cat = false) {
 		$this->set('title_layout', 'Products');
@@ -91,6 +98,7 @@ class ProductsController extends AppController {
         	$order = array($sort => $by);
         }
         //end order
+        //echo '<pre>';print_r($order); exit;
 
         $page = 1;
         if (isset($this->params['named']['page'])) {
@@ -109,11 +117,18 @@ class ProductsController extends AppController {
         );
         $count = $this->Product->find('count',array('joins' => $joins, 'conditions' => $conditions,));
         $data = $this->paginate('Product');
-        $this->set('count', ' ('. $count . ' ' .ITEM.')');
+
+        $this->set('count', $count);
        	$this->set('items', $data);		
 	}
 
-	function detail($id = ''){
+	function detail(){
+        if(isset($this->request->query['product']))
+            $id = $this->request->query['product'];
+        else{
+            throw new BadRequestException('Could not find that post');
+            exit;
+        }
 		$this->set('title_layout', 'Products');
 		$id =substr($id,strrpos($id, '-')+1);
         $this->set('id', $id);
@@ -145,12 +160,23 @@ class ProductsController extends AppController {
             $res = $this->Product->getBy('first', $id);
             $this->set('item', $res);
 
-            $this->layout = false;
-
-          //  echo $this->render('getajax');
-            
+            $this->layout = false;   
         }
-       // exit;
+    }
+    function rateajax(){
+        if($this->request->is('ajax')){
+            $data = $this->data;
+            $res = $this->Product->getBy('first', $data['id']);
+
+            $res['Product']['rate_count'] = $res['Product']['rate_count'] + 1;
+            $div = 1;
+            if($res['Product']['rate']!=0) $div = 2;
+            $res['Product']['rate'] = ($res['Product']['rate'] + $data['rate']) / $div;
+            $this->Product->save($res);
+            CakeSession::write('rate_'.$data['id'], true);
+            echo round($res['Product']['rate'], 2).'/'.$res['Product']['rate_count'] ;
+            exit;
+        }
     }
    
 }

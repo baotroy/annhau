@@ -1,3 +1,4 @@
+<?php $lang = CakeSession::read('lang'); ?>
 <div class="left-sidebar">
 	<!-- <h2>Category</h2> -->
 	<form action="<?php echo $this->base.'/search' ?>" method="get" class="jsfilter">
@@ -7,13 +8,13 @@
 			<?php if(isset($subcats[$value['Category']['id']])){ ?>
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordian" href="#<?php echo $this->Text->clean($value['Category']['name']); ?>"  class="<?php if(!array_intersect(@$cat, array_keys($subcats[$value['Category']['id']]))) echo 'collapsed';?>">
+						<a data-toggle="collapse" data-parent="#accordian" href="#<?php echo $this->Text->clean($value['Category']['name_'.$lang]); ?>"  class="<?php if(!array_intersect(@$cat, array_keys($subcats[$value['Category']['id']]))) echo 'collapsed';?>">
 							<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-							<?php echo $value['Category']['name'].' ('.$value['Category']['product_count'].')'; ?>
+							<?php echo $value['Category']['name_'.$lang].' ('.$value['Category']['product_count'].')'; ?>
 						</a>
 					</h4>
 				</div>
-				<div id="<?php echo $this->Text->clean($value['Category']['name']); ?>" class="panel-collapse <?php if(!array_intersect(@$cat, array_keys($subcats[$value['Category']['id']]))) echo 'collapse'; else echo 'in';?>">
+				<div id="<?php echo $this->Text->clean($value['Category']['name_'.$lang]); ?>" class="panel-collapse <?php if(!array_intersect(@$cat, array_keys($subcats[$value['Category']['id']]))) echo 'collapse'; else echo 'in';?>">
 					<div class="panel-body">
 						<ul>
 						<?php foreach ($subcats[$value['Category']['id']] as $skey => $svalue) :?>
@@ -32,7 +33,7 @@
 					<h4 class="panel-title">
 						<a href="#">
 							<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-							<?php echo $value['Category']['name'].' ('.$value['Category']['product_count'].')'; ?>
+							<?php echo $value['Category']['name_'.$lang].' ('.$value['Category']['product_count'].')'; ?>
 						</a>
 					</h4>
 				</div>

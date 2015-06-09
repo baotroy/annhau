@@ -3,7 +3,7 @@
 <head>
 	<?php echo $this->Html->charset('utf-8'); ?>
 	<title>
-		<?php echo $title_layout; ?> | Ryta Decor Accessories
+		<?php echo $title_layout; ?> | <?php echo site_name; ?>
 	</title>
 	<link href="<?php echo $this->base ?>/css/enhance.css" type="text/css" rel="stylesheet">
 	<link href="<?php echo $this->base ?>/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
@@ -18,6 +18,7 @@
 	<!-- Custom Theme files -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<?php     echo $this->Html->meta('icon', 'favicon.ico'); ?>
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700' rel='stylesheet' type='text/css'>
 	<!-- //Custom Theme files -->
@@ -56,28 +57,18 @@
 	    });
 	</script>
 </head>
-<body>
+<body><?php $lang = CakeSession::read('lang');?>
 	<!--header-->
 	<div class="banner">
-		<!-- <div class="social-icons">
-			 <ul>
-				<li><?php echo $this->element('search'); ?></li>
-				<li><a href="#"><span class="twt"> </span></a></li>
-				<li><a href="#"><span class="fb"> </span></a></li>
-				<li><a href="#"><span class="in"> </span></a></li>
-				<li><a href="#"><span class="dot"> </span></a></li>
-			</ul>
-		</div> -->
 		<div class="container head-nav">
 			<div class="col-md-6 top-nav">
 				<div class="menu-bar jmitem">
-					
 					<i class="fa fa-bars fa-2x toggle-btn menu jmitem open" data-toggle="collapse" data-target="#menu-content"></i>
 					<ul class="nav1 jmitem">
-						<li><a  class="jmitem" href="<?php echo $this->base; ?>" class="active">HOME</a></li>
-						<li><a  class="jmitem" href="<?php echo $this->base; ?>/products">PRODUCTS</a></li>
-						<li><a  class="jmitem" href="<?php echo $this->base.'/site/contact'; ?>" >CONTACT</a></li>
-						<li><a  class="jmitem" href="<?php echo $this->base.'/site/about'; ?>">ABOUT</a></li>
+						<li><a  class="jmitem" href="<?php echo $this->base; ?>" class="active"><?php echo Message::label('mnu_home'); ?></a></li>
+						<li><a  class="jmitem" href="<?php echo $this->base; ?>/products"><?php echo Message::label('mnu_products'); ?></a></li>
+						<li><a  class="jmitem" href="<?php echo $this->base.'/site/contact'; ?>" ><?php echo Message::label('mnu_contact'); ?></a></li>
+						<li><a  class="jmitem" href="<?php echo $this->base.'/site/about'; ?>"><?php echo Message::label('mnu_about'); ?></a></li>
 					</ul>	
 				</div>
 				<!-- script-for-menu -->
@@ -121,16 +112,16 @@
 						$( ".menu" ).click(function() {
 							//if(isMobile()) {
 								$( ".nav1" ).slideToggle( 300, function() {
-								 
+								 	
 								  });
 							//}
 						 });
 				</script>
 				<!-- /script-for-menu -->
 			</div>
-			<div class="col-md-6 social-icons">
+			<div class="col-md-6">
 				<!-- <a href="<?php echo $this->base; ?>"><img src="<?php echo $this->base ?>/images/logo_test.png" alt="logo"/></a> -->
-				<div class="social-box">
+				
 					<div class="langs">
 					<?php
 					$lang = DEFAULT_LANG;
@@ -140,20 +131,51 @@
 					 foreach(Constants::$langs as $key => $value): 
 						if($key == $lang) 
 							echo '<span>'.$value.'</span>';
-						else 
-							echo '<a href='.$this->here.'?lang='.$key.'>'. $value.'</a>';
+						else {
+							$uri = $_SERVER['REQUEST_URI'];
+							if(isset($this->request->query)){
+								if(isset($this->request->query['lang'])){
+									if($this->request->query['lang'] == 'en')
+									{
+										$uri = str_replace('lang=en', 'lang=vi', $uri);
+									}
+									else{
+										$uri = str_replace('lang=vi', 'lang=en', $uri);	
+									}
+									$lang_text = '';
+								}
+								else{
+									$lang_text = '?lang='.$key;
+								}
+							}
+							else{
+								$lang_text = '?lang='. $key;	
+							}
+							echo '<a href='.$uri.$lang_text.'>'. $value.'</a>';
+						}
 					
 					endforeach; ?>
-					</div>
-					<ul>	
+					
+					<!-- <ul>	
 						<li><a href="#"><span class="twt"> </span></a></li>
 						<li><a href="#"><span class="fb"> </span></a></li>
-						<!-- <li><a href="#"><span class="in"> </span></a></li>
-						<li><a href="#"><span class="dot"> </span></a></li> -->
-					</ul>
-					<?php echo $this->element('search'); ?>
+						<li><a href="#"><span class="in"> </span></a></li>
+						<li><a href="#"><span class="dot"> </span></a></li>
+					</ul> -->
+					<?php // echo $this->element('search'); ?>
 				</div>
 			</div>	
+		</div>
+	</div>
+	<div class="container">
+		<div class="social-icons">
+			 <ul>
+				<li><?php echo $this->element('search'); ?></li>
+				<li><a href="#"><span class="twt"> </span></a></li>
+				<li><a href="#"><span class="fb"> </span></a></li>
+				<!-- <li><a href="#"><span class="in"> </span></a></li>
+				<li><a href="#"><span class="dot"> </span></a></li> -->
+			</ul>
 		</div>
 	</div>
 	<?php echo $this->element('searchm'); ?>
@@ -164,7 +186,7 @@
 	<div class="footer">
 		<div class="container">
 			<div class="footer-right">
-				<p>© <?php echo date('Y'); ?> Ryta Decor' Accessories. All rights reserved.</a></p>
+				<p>© <?php echo date('Y').' '. site_name; ?> . All rights reserved.</a></p>
 			</div>
 		</div>	
 	</div>

@@ -38,7 +38,7 @@ class Category extends AppModel {
     	return $res;
     }
 
-    function getSubMenu(){
+    function getSubMenu($lang = DEFAULT_LANG){
         $joins = array(
             array(
                 'table' => 'subcategories',
@@ -49,15 +49,15 @@ class Category extends AppModel {
                     'SubCat.deleted' => 0,
                 )
             ),);
-
+        
         $res = $this->find('all', array('fields' => 'SubCat.*', 'conditions' => array('`Category`.`deleted`' => 0), 
             'joins' => $joins));
-        $ret = array();
+        
         foreach ($res as $key => $value) {
-            $ret[$value['SubCat']['category']][$value['SubCat']['id']] = $value['SubCat']['name'];
+            $ret[$value['SubCat']['category']][$value['SubCat']['id']] = $value['SubCat']['name_'.$lang];
         }
         return $ret;
-    }
+    }   
 
     function getAll($fields = array()){
         $joins = array(

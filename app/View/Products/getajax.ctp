@@ -1,8 +1,9 @@
+<?php $lang = CakeSession::read('lang'); ?>
 <div class="product-details"><!--product-details-->
 	<div class="col-sm-5">
 		<div class="view-product">
-			<img src="<?php echo $this->Text->images(array($item['Product']['image_1'], $item['Product']['image_2'], $item['Product']['image_3'], $item['Product']['image_4'], $item['Product']['image_5']) , DIR_PRODUCT); ?>" alt="">
-			<h3 class='jszoom'>ZOOM</h3>
+			<img <?php echo $this->Text->images(array($item['Product']['image_1'], $item['Product']['image_2'], $item['Product']['image_3'], $item['Product']['image_4'], $item['Product']['image_5']) , DIR_PRODUCT.DIR_SMALL); ?> alt="<?php echo $item['Product']['name_'.$lang] ?>">
+			<h3 class='jszoom'><span class="glyphicon glyphicon-zoom-in"></span></h3>
 		</div>
 		<div id="similar-product" class="carousel slide" data-ride="carousel">
 			
@@ -20,10 +21,10 @@
 			    				$div = '<div class="item active">';
 			    			}
 			    			if($index%2 == 0) echo $div;
-			    			if($this->Text->image_exist($value, DIR_PRODUCT)) {
+			    			if($this->Text->image_exist($value, DIR_PRODUCT.DIR_SMALL)) {
 			    				$close = true;
 			    		?>
-			    			<img src="<?php echo $this->Text->image($value, DIR_PRODUCT) ?>" alt="">
+			    			<img src="<?php echo $this->Text->image($value, DIR_PRODUCT.DIR_SMALL) ?>" alt="<?php echo $item['Product']['name_'.$lang]; ?>" ref="<?php echo $value;?>">
 			    		<?php
 			    				$index++;
 			    			}
@@ -48,12 +49,13 @@
 	<div class="col-sm-7">
 		<div class="product-information"><!--/product-information-->
 			<img src="<?php echo $this->base; ?>/images/new.jpg" class="newarrival" alt="">
-			<h2><?php echo $item['Product']['name']; ?></h2>
+			<h2><?php echo $item['Product']['name_'.$lang]; ?></h2>
 			<p>Web ID: <?php echo $item['Product']['id']; ?></p>
 			
 			<!-- <img src="<?php echo $this->Text->images(array($item['Product']['image_1'], $item['Product']['image_2'], $item['Product']['image_3'], $item['Product']['image_4'], $item['Product']['image_5']) , DIR_PRODUCT); ?>" alt=""> -->
 			<!-- <p><b>Availability:</b> In Stock</p> -->
-			<p>Category: <a href="<?php echo $this->base.'/products?c=' .$this->Text->clean($item['SubCat']['name']).'-' . $item['SubCat']['id']; ?>"><b><?php echo $item['SubCat']['name']; ?></b></a></p>
+			<p>Category: <a href="<?php echo $this->base.'/products?c=' .$this->Text->clean($item['SubCat']['name_'.$lang]).'-' . $item['SubCat']['id']; ?>"><b><?php echo $item['SubCat']['name_'.$lang]; ?></b></a></p>
+			<p><a href="<?php echo $this->base.'/products/detail?product='.$this->Text->clean($item['Product']['name_'.$lang]). '-' . $item['Product']['id'];?>" class="details">Details</a></p>
 			<!-- <span class="star-rating unrate">
 			  <input type="radio" name="rating" value="1"><i></i>
 			  <input type="radio" name="rating" value="2"><i></i>

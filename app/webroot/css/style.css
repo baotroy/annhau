@@ -29,30 +29,15 @@ body a{
 }
 .banner {
   	position: relative;
-  	margin-bottom: 20px;
-  	background: url(../images/glogo.png) no-repeat;
-  	height: 250px;
+  	background: url(../images/logog.png) no-repeat;
+  	height: 450px;
   	background-position: center;
-  	background-size: 200px 200px;
+  	background-size: contain;
   	/*background-size: 100% 100%;
   	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
 	-ms-background-size: 100% 100%;*/
-}
-.social-icons {
-  	/*position: absolute;
-  	right: 3%;
-  	bottom: 0;*/
-  	text-align: right
-}
-.social-box{
-	margin-top: 4px
-}
-.social-icons ul {
-  	padding: 0;
-  	margin: 0;
-  	float: right
 }
 .langs a, .langs span{
 	font-size: 10px;
@@ -62,19 +47,37 @@ body a{
 .langs a:hover, .langs span{
 	color: #c29c51;
 }
+.langs{
+	float: right;
+}
 .jssearch{
 	float: right;
 	margin-right: 4px;
 	margin-top: 1px;
+}
+.social-icons {
+  	position: relative;
+  	margin-left: auto;
+  	margin-right: auto;
+  	width: 1170px;
+  	top: 75%;
+  	
+}
+
+.social-icons ul {
+  	padding: 0 30px 0 0;
+  	margin: 0;
+  	float: right;
+}
+.social-box{
+	margin-top: 4px
 }
 .social-icons ul li{
 	list-style-type:none;
 	display:inline-block;
 }
 @media(max-width: 814px){
-	.social-icons ul li{
-		display: block;
-	}
+
 	.social-box{
 		margin-top: 0
 	}
@@ -135,23 +138,19 @@ ul.nav1 {
 	margin: 0px;
 	padding: 0;
 }
-.top-nav ul{
-	background: url('../images/bgmnu2.png') #221c1c;
-	border-radius: 8px;
-	-moz-border-radius: 8px;
-}
+
 .top-nav ul li {
   	list-style-type: none;
   	display: inline-block;
   	padding: 0;
   	float: left;
-  	/*margin-right: 2px;*/
+  	background-color: #353a3f;
+  	margin-right: 2px;
 }
 .top-nav ul li a{
-	
-	color: #f2dec3;
+	color: #fff;
 	text-decoration: none;
-	padding: 1em 1.6em;
+	padding: 2.5em 1.6em;
 	font-size: 14px;
 	font-weight: 400;
 	font-family: 'Raleway', sans-serif;
@@ -160,10 +159,10 @@ ul.nav1 {
 	margin: 0px;
 }
 .top-nav ul li a:hover{
-	color:#746C60;
+	color:#38bdf0;
 }
 .top-nav ul li a.active {
-  	color: #746C60;
+  	color: #38bdf0;
 }
 .col-md-9.top-nav {
   	padding: 0;
@@ -172,16 +171,16 @@ ul.nav1 {
 /*--services--*/
 .services {
   	text-align: center;
-  	padding-top: 3em;
+  	padding-top: 6em;
 }
 .services h3,.blog-top h3{
   	margin: 0;
-  	color: #c29c51;
-  	font-size: 21px;
-  	letter-spacing: 3px;
-  	font-weight: 700;
-  	border-bottom: 1px solid #c29c51;
-  	padding-bottom: 6px;
+	color: #363a3f;
+	font-size: 21px;
+	letter-spacing: 3px;
+	font-weight: 700;
+	border-bottom: 1px solid #363a3f;
+	padding-bottom: 6px;
 }
 .services-grids {
   margin-top: 6em;
@@ -235,7 +234,7 @@ ul.nav1 {
 /*--services--*/
 /*--blog--*/
 .blog{
-/*	padding-top:6em;*/
+	padding-top:6em;
 }
 .blog-top{
 	text-align:center;
@@ -257,7 +256,7 @@ ul.nav1 {
   	margin-bottom: 2px;
 }
 .blog-left-two a h4 {
-  	color: #c29c51;
+  	color: #c6b290;
   	font-size: 17px;
   	line-height: 1.4em;
   	font-weight: 700;
@@ -267,7 +266,7 @@ ul.nav1 {
 	text-decoration:none;
 }
 .blog-left-two a h4:hover{
-	color: #1B242F;
+	color: #e7d0a8;
 	transition: 0.5s all ease;
 	-webkit-transition: 0.5s all ease;
 	-moz-transition: 0.5s all ease;
@@ -338,7 +337,7 @@ ul.nav1 {
 /******** SAP ************/
 .sap_tabs{
 	clear:both;
-	padding: 4em 0;
+	padding: 4em 0 0 0;
 }
 .tab_box{
 	background:#fd926d;
@@ -392,9 +391,7 @@ h2.resp-accordion {
    display: block;
 }
 @media only screen and (max-width:480px) {
-	.resp-tabs-container{
-		padding:10px;
-	}
+	
 .resp-vtabs .resp-tabs-container {
 	border: none;
 	float: none;
@@ -407,8 +404,8 @@ h2.resp-accordion {
 }
 }
 .view.view-first {
-  	background: #353a3f;
-  	width: 71%;
+  	background: #c6b290;
+
   	margin: 0 auto;
   	padding: 2em;
 }
@@ -420,10 +417,14 @@ h2.resp-accordion {
   	margin: 0 0 1em 0;
 }
 .view.view-first p {
-  	color: #858d94;
+  	color: #fff;
   	font-size: 14px;
   	margin: 0;
   	line-height: 1.6em;
+  	text-overflow: ellipsis;
+	
+	white-space: nowrap;
+	overflow: hidden;
 }
 /*--footer--*/
 .footer {
@@ -459,7 +460,7 @@ h2.resp-accordion {
 	display: none;
 	text-decoration: none;
 	position: fixed;
-	bottom: 9%;
+	bottom: 24%;
 	right: 3%;
 	overflow: hidden;
 	width: 32px;
@@ -516,8 +517,8 @@ h2.resp-accordion {
   	font-weight: 500;
 }
 .about-text-info a h5{
-	background: url('../images/bgmnu2.png') #221c1c;
-	color: #f2dec3;
+	/*background: url('../images/bgmnu2.png') #221c1c;*/
+	color: #c6b290;
 	line-height: 1.6em ;
 	width: 80%;
 	font-size: 14px;
@@ -556,11 +557,12 @@ h2.resp-accordion {
   	font-size: 18px;
   	text-decoration:none;
   	transition:.5s all;
-  	background: url('../images/bgmnu2.png') #221c1c;
-  	color: #f2dec3;
+  	
+  	color: #c6b290;
 }
 .caption h4 a:hover{
   	color: #861a18;
+
   	text-decoration:none;
 }
 .caption p {
@@ -1027,11 +1029,14 @@ img.zoom-img:hover {
 }
 /*--contact--*/
 .contact h4 {
-	color: #BEBEBE;
+	color: #c6b290;
 	font-size: 22px;
 	font-weight: 500;
 	margin: 0 0 1em 0;
 	letter-spacing: 1px;
+}
+.contact h5{
+	color: #c6b290;
 }
 .map {
   	margin: 5em 0;
@@ -1056,14 +1061,14 @@ img.zoom-img:hover {
 	width:50%;
 }
 .address p {
-	color: #858d94;
+	color: #353a3f;
 	margin: 0 0 .5em 0;
 	text-align: left;
 	font-size: 14px;
 	letter-spacing: 1px;
 }
 .address a {
-	color: #00c9ff;
+	color: #353a3f;
 	margin: 0 0 .5em 0;
 	text-align: left;
 	font-size: 14px;
@@ -1177,6 +1182,12 @@ img.zoom-img:hover {
 }
 }
 @media(max-width:1280px){
+.social-icons{
+	width: 100%
+}
+.social-icons ul{
+	padding: 0px;
+}
 span.menu {
   	margin-left: 0em;
 }
@@ -1309,7 +1320,7 @@ span.menu {
   	padding: 7.3em 0em 7.5em 3em;
 }
 .view.view-first {
-  	width: 80%;
+/*  	width: 80%;*/
   	padding: 1.8em;
 }
 .seemore {
@@ -1318,7 +1329,7 @@ span.menu {
 .header {
   	min-height: 500px;
 }
-.services {
+.services {	
   	padding-top: 4em;
 }
 .blog {
@@ -1472,6 +1483,9 @@ ul.nav1 {
 }
 
 @media(max-width: 992px){
+.blog-left-one a img{
+	max-height: auto
+}
 .top-nav {
   	float: left;
  	
@@ -1653,7 +1667,7 @@ ul.nav1 {
   	margin-top: 3em;
 }
 .sap_tabs {
-  	padding: 3em 0px;
+  	padding-top: 2em;
 }
 .view.view-first h5 {
   	font-size: 14px;
@@ -1931,7 +1945,7 @@ ul.nav1 {
   	width: 21%;
 }
 .view.view-first {
-  	width: 87%;
+
 }
 .about-info h4 {
   	font-size: 16px;
@@ -2078,8 +2092,8 @@ ul.nav1 {
 	position: absolute;
 	top: 0;
 	padding: 6px 10px;
-	background: url('../images/bgmnu2.png') #221c1c;
-	color: #f2dec3;
+	background-color: #38bdf0;
+	color: #fff;
 
 }
 span.menu img {
@@ -2169,8 +2183,8 @@ ul.nav1 {
 }
 .top-nav ul li a {
 	padding: .8em 0;
-	background: url('../images/bgmnu2.png') #221c1c;
-	color: #f2dec3;
+	background-color: #353a3f;
+	color: #fff;
 	font-size: 13px;
 	width: 100%;
 	display: block;
@@ -2200,10 +2214,10 @@ ul.nav1 {
   	margin-bottom: 0em;
 }
 .sap_tabs {
-  	padding: 2em 0;
+/*  	padding:0;*/
 }
 .resp-tabs-list {
-  	margin: 0 auto 1.5em;
+  	margin: 1.5em auto;
 }
 .view.view-first {
   	width: 100%;
@@ -2214,7 +2228,12 @@ ul.nav1 {
   	margin: 0 0 0.5em 0;
 }
 .view.view-first p {
-  	font-size: 13px;
+  	/*font-size: 13px;
+  	text-overflow: ellipsis;
+	
+	white-space: nowrap;
+	overflow: hidden;*/
+	
 }
 .about-info h4 {
   	font-size: 15px;
@@ -2612,31 +2631,6 @@ ul.nav1 {
 }
 .social-icons {
   	top: 83%;
-}
-.social-icons ul li a span{
-/*	width:25px;
-	height:25px;*/
-}
-.social-icons ul li a span.fb{
-	background-position:-25px 0px;
-}
-.social-icons ul li a span.in{
-	background-position:-50px 0px;
-}
-.social-icons ul li a span.dot{
-	background-position:-75px 0px;
-}
-.social-icons ul li a span.twt:hover{
-	background-position:0px -25px;
-}
-.social-icons ul li a span.fb:hover{
-	background-position:-25px -25px;
-}
-.social-icons ul li a span.in:hover{
-	background-position:-50px -25px;
-}
-.social-icons ul li a span.dot:hover{
-	background-position:-75px -25px;
 }
 .services-grids-info span {
   	width: 50px;

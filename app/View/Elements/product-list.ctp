@@ -1,3 +1,4 @@
+<?php $lang = CakeSession::read('lang'); ?>
 <?php echo $this->element('cat-title'); ?>
 			<div class="features_items"><!--features_items-->
 				<!-- <h2 class="title text-center">Features Items</h2> -->
@@ -67,11 +68,12 @@
 				<div class="col-sm-4 product-item">
 					<div class="product-image-wrapper">
 						<div class="single-products">
-							<a href="<?php echo $this->base.'/products/detail/'.$this->Text->clean($value['Product']['name']). '-' . $value['Product']['id'];?>">
+							<a href="<?php echo $this->base.'/products/detail?product='.$this->Text->clean($value['Product']['name_'.$lang]). '-' . $value['Product']['id'];?>">
 								<div class="productinfo text-center">
-									<img src="<?php echo $this->Text->image($value['Product']['image_1'], DIR_PRODUCT);?>" alt="<?php echo $value['Product']['name'] ?>"/>
+									<img src="<?php echo $this->Text->image($value['Product']['image_1'], DIR_PRODUCT.DIR_SMALL);?>" alt="<?php echo $value['Product']['name_'.$lang] ?>"/>
 									<h2></h2>
-									<p><?php echo $value['Product']['name']; ?></p>
+									<p><?php echo $value['Product']['name_'.$lang]; ?></p>
+									<p><?php echo $this->Text->rating($value['Product']['rate']); ?></p>
 									<!-- <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a> -->
 								</div>
 							<!-- 	<div class="product-overlay">
@@ -94,7 +96,7 @@
 			<?php endforeach; 
 				}else{?>
 					<div class="col-sm-4 product-item">
-					<?php echo NO_ITEMS ?>
+					<?php echo Message::label('no_items') ?>
 					</div>
 					<?php
 				}
@@ -107,7 +109,7 @@
 					<li><a href="">»</a></li>
 				</ul> -->
 				<?php
-				if (count($items) > 0) :
+				if (count($items) > 0 && (@$this->request->query['c'] || @$this->request->query['m'])) :
 				    echo $this->Paginator->counter(array(
 				        'format' => __('')
 				    ));

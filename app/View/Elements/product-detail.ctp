@@ -1,8 +1,10 @@
+<?php $lang = CakeSession::read('lang'); ?>
 <div class="product-details"><!--product-details-->
+	<input type="hidden" id="rate" value="<?php if(CakeSession::check('rate_'.$item['Product']['id'])) echo 1; else echo 0; ?>">
 	<div class="col-sm-5">
 		<div class="view-product">
-			<img src="<?php echo $this->Text->images(array($item['Product']['image_1'], $item['Product']['image_2'], $item['Product']['image_3'], $item['Product']['image_4'], $item['Product']['image_5']) , DIR_PRODUCT); ?>" alt="">
-			<h3 class='jszoom'>ZOOM</h3>
+			<img <?php echo $this->Text->images(array($item['Product']['image_1'], $item['Product']['image_2'], $item['Product']['image_3'], $item['Product']['image_4'], $item['Product']['image_5']) , DIR_PRODUCT.DIR_SMALL); ?> alt="<?php echo $item['Product']['name_'.$lang]; ?>">
+			<h3 class='jszoom'><span class="glyphicon glyphicon-zoom-in"></span></h3>
 		</div>
 		<div id="similar-product" class="carousel slide" data-ride="carousel">
 			
@@ -20,10 +22,10 @@
 			    				$div = '<div class="item active">';
 			    			}
 			    			if($index%2 == 0) echo $div;
-			    			if($this->Text->image_exist($value, DIR_PRODUCT)) {
+			    			if($this->Text->image_exist($value, DIR_PRODUCT.DIR_SMALL)) {
 			    				$close = true;
 			    		?>
-			    			<img src="<?php echo $this->Text->image($value, DIR_PRODUCT) ?>" alt="">
+			    			<img src="<?php echo $this->Text->image($value, DIR_PRODUCT.DIR_SMALL) ?>" alt="<?php echo $item['Product']['name_'.$lang]; ?>" ref="<?php echo $this->Text->image($value, DIR_PRODUCT);?>">
 			    		<?php
 			    				$index++;
 			    			}
@@ -48,22 +50,43 @@
 	<div class="col-sm-7">
 		<div class="product-information"><!--/product-information-->
 			<img src="<?php echo $this->base; ?>/images/new.jpg" class="newarrival" alt="">
-			<h2><?php echo $item['Product']['name']; ?></h2>
+			<h2><?php echo $item['Product']['name_'.$lang]; ?></h2>
 			<p>Web ID: <?php echo $item['Product']['id']; ?></p>
 			
 			<!-- <img src="<?php echo $this->Text->images(array($item['Product']['image_1'], $item['Product']['image_2'], $item['Product']['image_3'], $item['Product']['image_4'], $item['Product']['image_5']) , DIR_PRODUCT); ?>" alt=""> -->
 			<!-- <p><b>Availability:</b> In Stock</p> -->
-			<p>Category: <a href="<?php echo $this->base.'/products?c=' .$this->Text->clean($item['SubCat']['name']).'-' . $item['SubCat']['id']; ?>"><b><?php echo $item['SubCat']['name']; ?></b></a></p>
-			<p><?php echo $item['Product']['short_description']; ?></p>
-			<!-- <span class="star-rating unrate">
-			  <input type="radio" name="rating" value="1"><i></i>
+			<p><?php echo Message::label('category'); ?>: <a href="<?php echo $this->base.'/products?c=' .$this->Text->clean($item['SubCat']['name_'.$lang]).'-' . $item['SubCat']['id']; ?>"><b><?php echo $item['SubCat']['name_'.$lang]; ?></b></a></p>
+			<?php $rated = round($item['Product']['rate']); ?>
+			<p class="rater clearfix">
+				<span class="star-rating <?php if(CakeSession::check('rate_'.$item['Product']['id'])) echo 'rated'; else echo 'unrate'; ?>">
+				<?php for($i=1; $i<=5; $i++){?>
+					<input type="radio" name="rating" <?php if(CakeSession::check('rate_'.$item['Product']['id'])) echo 'disabled'?> value="<?php echo $i; ?>"><i <?php if($i<=$rated) echo 'class="active"'; ?>></i>
+				<?php } ?>
+				</span>
+				
+				<span id="rate-text"><?php echo  round($item['Product']['rate'], 2).'/'.$item['Product']['rate_count'] ?></span>
+			</p>
+			  <!-- <input type="radio" name="rating" value="1"><i></i>
 			  <input type="radio" name="rating" value="2"><i></i>
 			  <input type="radio" name="rating" value="3"><i></i>
 			  <input type="radio" name="rating" value="4"><i></i>
-			  <input type="radio" name="rating" value="5"><i></i>
-			</span> -->
+			  <input type="radio" name="rating" value="5"><i></i> -->
+			
+			<p><?php echo $item['Product']['short_description_'.$lang]; ?></p>
 
 
 		</div><!--/product-information-->
 	</div>
 </div><!--/product-details-->
+
+<script>
+	$('.star-rating input').click(function(){
+		var product = "<?php echo $item['Product']['id']; ?>";
+		if($('#rate').val() == 1) return false;
+		val = $(this).val();
+		$('.star-rating input').attr('disabled','disabled');
+		$('.star-rating').removeClass('unrate').addClass('rated');
+		url = "<?php echo $this->base.'/products/rateajax' ?>";
+		rating(url, product, val);
+	});
+</script>

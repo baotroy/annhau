@@ -8,6 +8,7 @@
   position: relative;
   background: url('../images/unrate.svg');
   background-size: contain;
+  cursor: pointer;
 }
 .star-rating i {
   opacity: 0;
@@ -19,6 +20,9 @@
   z-index: 1;
   background: url('../images/rated.svg');
   background-size: contain;
+}
+.star-rating i.active{
+  opacity: 1
 }
 .star-rating input {
   -moz-appearance: none;
@@ -32,8 +36,8 @@
   z-index: 2;
   position: relative;
 }
-.star-rating input:hover + i,
-.star-rating input:checked + i {
+.star-rating.unrate input:hover + i,
+.star-rating.rated input:checked + i {
   opacity: 1;
 }
 .star-rating i ~ i {
@@ -56,4 +60,7 @@
   text-align: center;
   padding: 20px;
   display: block;
+}
+.rater span{
+  float: left
 }

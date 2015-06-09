@@ -2,20 +2,20 @@
 $(function(){
 $(document).on('click', '.item img', function(){
 	select = $(this).attr('src');
-	$('.view-product img').attr('src', select);
+	ref =  $(this).attr('ref');
+	$('.view-product img').attr('src', select).attr('ref', ref);
 });
 $(document).on('click', '.jszoom', function(){
 	sib = $(this).prev();
-	popitup(sib.attr('src'));
+	popitup(sib.attr('ref'));
 });
 
-$('.star-rating input').click(function(){
-	$('#rate').val('1');
-	alert($(this).val());
 });
-
-
-});
+function rating(url, product, mark){
+	$.post(url, {id: product, rate: mark}, function(data){
+		$('#rate-text').text(data);
+	});
+}
 function postComment(url, out){
 	$.post( url, $( "#form-comment" ).serialize(), function(data){
 		json =$.parseJSON(data);
