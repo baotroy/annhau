@@ -159,10 +159,11 @@ ul.nav1 {
 	margin: 0px;
 }
 .top-nav ul li a:hover{
-	color:#38bdf0;
+	color:#BAA378;
+	
 }
 .top-nav ul li a.active {
-  	color: #38bdf0;
+  	background-color: #BAA378;
 }
 .col-md-9.top-nav {
   	padding: 0;
@@ -358,7 +359,7 @@ ul.nav1 {
 	display: inline-block;
 	margin: 0 .5em;
 	list-style: none;
-	width: 22%;
+	/*width: 22%;*/
 	border: 1px solid rgb(32, 36, 41);
 	-webkit-transition: all 0.3s ease-out;
 	-moz-transition: all 0.3s ease-out;
@@ -1353,7 +1354,7 @@ ul.nav1 {
   	font-size: 14px;
 }
 .resp-tab-item {
-  	width: 27%;
+  	/*width: 27%;*/
 }
 .about-info-right p {
   	margin-bottom: 0;
@@ -1942,7 +1943,7 @@ ul.nav1 {
   	width: 72%;
 }
 .resp-tab-item {
-  	width: 21%;
+/*  	width: 21%;*/
 }
 .view.view-first {
 
@@ -2092,7 +2093,7 @@ ul.nav1 {
 	position: absolute;
 	top: 0;
 	padding: 6px 10px;
-	background-color: #38bdf0;
+	background-color: #BAA378;
 	color: #fff;
 
 }
