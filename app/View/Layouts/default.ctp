@@ -65,10 +65,45 @@
 				<div class="menu-bar jmitem">
 					<i class="fa fa-bars fa-2x toggle-btn menu jmitem open" data-toggle="collapse" data-target="#menu-content"></i>
 					<ul class="nav1 jmitem">
-						<li><a  class="jmitem" href="<?php echo $this->base; ?>" class="active"><?php echo Message::label('mnu_home'); ?></a></li>
-						<li><a  class="jmitem" href="<?php echo $this->base; ?>/products"><?php echo Message::label('mnu_products'); ?></a></li>
-						<li><a  class="jmitem" href="<?php echo $this->base.'/site/contact'; ?>" ><?php echo Message::label('mnu_contact'); ?></a></li>
-						<li><a  class="jmitem" href="<?php echo $this->base.'/site/about'; ?>"><?php echo Message::label('mnu_about'); ?></a></li>
+						<li><a  class="jmitem <?php if(@$menu == 'index') echo 'active'; ?>" href="<?php echo $this->base; ?>"><?php echo Message::label('mnu_home'); ?></a></li>
+						<li><a  class="jmitem <?php if(@$menu == 'product') echo 'active'; ?>" href="<?php echo $this->base; ?>/products"><?php echo Message::label('mnu_products'); ?></a></li>
+						<li><a  class="jmitem <?php if(@$menu == 'contact') echo 'active'; ?>" href="<?php echo $this->base.'/site/contact'; ?>"><?php echo Message::label('mnu_contact'); ?></a></li>
+						<li><a  class="jmitem <?php if(@$menu == 'about') echo 'active'; ?>" href="<?php echo $this->base.'/site/about'; ?>"><?php echo Message::label('mnu_about'); ?></a></li>
+						<?php
+						/*
+					$lang = DEFAULT_LANG;
+
+					if(CakeSession::check('lang')) $lang = CakeSession::read('lang');
+
+					 	foreach(Constants::$langs as $key => $value): 
+					 		$lang_text = '';
+							if($key == $lang) 
+								echo '<li class="active mim"><a href="#">'.$value.'</a></li>';
+							else {
+								$uri = $_SERVER['REQUEST_URI'];
+								if(isset($this->request->query)){
+									if(isset($this->request->query)){
+										if(@$this->request->query['lang'] == 'en')
+										{
+											$uri = str_replace('lang=en', 'lang=vi', $uri);
+										}
+										else if(@$this->request->query['lang'] == 'vi'){
+											$uri = str_replace('lang=vi', 'lang=en', $uri);	
+										}
+										else
+											$lang_text = '&lang='.$key;
+									}
+									else{
+										$lang_text = '?lang='.$key;
+									}
+								}
+								else{
+									$lang_text = '?lang='. $key;	
+								}
+								echo '<li class="mim"><a href='.$uri.$lang_text.'>'. $value.'</a></li>';
+							}
+						
+					endforeach;*/ ?>
 					</ul>	
 				</div>
 				<!-- script-for-menu -->
@@ -119,7 +154,7 @@
 				</script>
 				<!-- /script-for-menu -->
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-6 langs-nav">
 				<!-- <a href="<?php echo $this->base; ?>"><img src="<?php echo $this->base ?>/images/logo_test.png" alt="logo"/></a> -->
 				
 					<div class="langs">
@@ -129,20 +164,22 @@
 					if(CakeSession::check('lang')) $lang = CakeSession::read('lang');
 
 					 foreach(Constants::$langs as $key => $value): 
+					 	$lang_text ='';
 						if($key == $lang) 
 							echo '<span>'.$value.'</span>';
 						else {
 							$uri = $_SERVER['REQUEST_URI'];
 							if(isset($this->request->query)){
-								if(isset($this->request->query['lang'])){
-									if($this->request->query['lang'] == 'en')
+								if(isset($this->request->query)){
+									if(@$this->request->query['lang'] == 'en')
 									{
 										$uri = str_replace('lang=en', 'lang=vi', $uri);
 									}
-									else{
+									else if(@$this->request->query['lang'] == 'vi'){
 										$uri = str_replace('lang=vi', 'lang=en', $uri);	
 									}
-									$lang_text = '';
+									else
+										$lang_text = '&lang='.$key;
 								}
 								else{
 									$lang_text = '?lang='.$key;

@@ -26,14 +26,14 @@
 					<p><?php echo $set['address_1_'.$lang]; ?></p>
 					<p><?php echo Message::label('tel'); ?> : <?php echo $set['tel_1'] ?></p>
 					<p>FAX : <?php echo $set['fax_1'] ?></p>
-					<p>Email : <a href="mailto:<?php echo $set['email'] ?>"><?php echo $set['email'] ?></a></p>
+					<p>Email : <a href="mailto:<?php echo $set['email_1'] ?>"><?php echo $set['email_1'] ?></a></p>
 				</div>
 				<div class="address-left">
 					<h4><?php echo Message::label('address'); ?> 2 :</h4>
 					<p><?php echo $set['address_2_'.$lang]; ?></p>
 					<p><?php echo Message::label('tel'); ?> : <?php echo $set['tel_1'] ?></p>
 					<p>FAX : <?php echo $set['fax_2'] ?></p>
-					<p>Email : <a href="mailto<?php echo $set['email'] ?>"><?php echo $set['email'] ?></a></p>
+					<p>Email : <a href="mailto<?php echo $set['email_2'] ?>"><?php echo $set['email_2'] ?></a></p>
 				</div>	
 				<div class="clearfix"> </div>
 			</div>

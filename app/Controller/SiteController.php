@@ -12,7 +12,7 @@ class SiteController extends AppController {
 		$setting = $this->Setting->getAll();
 		$this->set('set', $setting);
 		$this->set('title_layout', Message::label('title_contact'));
-
+		$this->set('menu', 'contact');
 		if($this->request->is('post')){
 
 			$params = $this->data;
@@ -21,14 +21,13 @@ class SiteController extends AppController {
 				$this->set('params', $params);
 			}
 			else{
-				if(!CakeSession::check('success')){
 					$this->Contact->save();
 					$this->Session->setFlash(Message::label('thank_contact'));
-					CakeSession::write('success', true);
-				}else{
-					CakeSession::delete('success');
-					$this->redirect(array('controller'=>'site', 'action'=> 'contact'));
-				}
+				//	CakeSession::write('success', true);
+				// }else{
+				// 	CakeSession::delete('success');
+				// 	$this->redirect(array('controller'=>'site', 'action'=> 'contact'));
+				// }
 			}
 
 		}
@@ -36,5 +35,6 @@ class SiteController extends AppController {
 
 	public function about() {
 		$this->set('title_layout', Message::label('title_about'));
+		$this->set('menu', 'about');
 	}
 }

@@ -21,7 +21,7 @@ class ProductsController extends AppController {
 
 		$this->set('subcats', $subcats);
 		$this->set('cats', $cats);
-
+        $this->set('menu', 'product');
 		$cat = false;
 		if(isset($this->request->query['c'])){
 			$cat =$this->request->query['c'];

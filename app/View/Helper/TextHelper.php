@@ -11,6 +11,31 @@ App::uses('Helper', 'View');
  * @package       app.View.Helper
  */
 class TextHelper extends Helper {
+	function date_diff($text){
+		if(!$text) return '';
+		$text= date_create($text);
+		$datetime1 = date_format($text, 'Y-m-d H:i:s');
+		$datetime1 = new DateTime($datetime1);
+		$datetime2 = new DateTime(date('Y-m-d H:i:s'));
+		$interval = $datetime1->diff($datetime2);
+		//echo '<pre>';print_r($interval); exit;
+		if($interval->y == 0 && $interval->m > 0){
+			return $interval->m.' tháng trước';
+		}
+		else if($interval->y == 0 && $interval->m ==0 && $interval->d > 0){
+			if($interval->d ==1) return 'Hôm qua';
+			else return $interval->d .' ngày trước';
+		}
+		else if($interval->y == 0 && $interval->m ==0 && $interval->d == 0){
+			if($interval->h > 0) return $interval->h .' giờ trước';
+			else if($interval->h == 0 && $interval->i > 0) return $interval->i .' phút trước';
+			else if($interval->h == 0 && $interval->i == 0 && $interval->s > 0)  return ' mới đây';
+		}
+		else if($interval->y > 0){
+			return $interval->y .' năm trước';
+		}
+		//return $diff;
+	}
 	function clean($url) {
 	   	$url = strtolower($url);
 	    $url = strip_tags($url);

@@ -59,6 +59,13 @@ body {
 
 .navbar-top-links .dropdown-menu li a div {
     white-space: normal;
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 2; /* number of lines to show */
+   line-height: 1.3em;        /* fallback */
+   max-height: 2.6em;       /* fallback */
 }
 
 .navbar-top-links .dropdown-messages,

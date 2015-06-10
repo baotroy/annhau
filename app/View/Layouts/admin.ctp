@@ -15,7 +15,7 @@
     <?php
     // CSS Loading
     echo $this->fetch('css');                       // view append css
-    echo $this->Html->css(array('bootstrap.min', 'metisMenu.min', 'sb-admin-2', 'font-awesome.min'));   // override css
+    echo $this->Html->css(array('bootstrap.min', 'metisMenu.min', 'sb-admin-2', 'font-awesome.min', 'bae'));   // override css
     ?>
     
 </head>
@@ -32,7 +32,7 @@
     <?php
     // Script Loading
 
-    echo $this->Html->script(array('jquery.min','bootstrap.min', 'sb-admin-2', 'metisMenu.min'));   // jQuery & bootstrap genuine script
+    echo $this->Html->script(array('jquery.min','bootstrap.min', 'sb-admin-2', 'metisMenu.min', 'jquery.uploadfile.min', 'valid'));   // jQuery & bootstrap genuine script
     echo $this->fetch('script');                                            // View append scripts
     echo $this->fetch('script_content');                                    // Script content block loading
     ?>

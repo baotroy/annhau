@@ -7,7 +7,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 body{
 	margin:0;
 	font-family: 'Raleway', sans-serif;
-	background: #fcfbf4 !important;
+	background: url('../images/bg.png');
+	background-repeat: repeat;
 }
 body a{
 	transition: 0.5s all ease;
@@ -40,12 +41,12 @@ body a{
 	-ms-background-size: 100% 100%;*/
 }
 .langs a, .langs span{
-	font-size: 10px;
+	font-size: 13px;
 	color: #342b24;
 	margin-left: 4px;
 }
 .langs a:hover, .langs span{
-	color: #c29c51;
+	color: #C1A55B;
 }
 .langs{
 	float: right;
@@ -86,9 +87,9 @@ body a{
 	}
 }
 .social-icons ul li a span{
-	background:url(../images/social-icons.png) no-repeat;
-	width: 30px;
-	height: 30px;
+	background:url(../images/social-icons_94.png) no-repeat;
+	width: 46px;
+	height: 46px;
 
 	display:block;
 	transition: 0.5s all ease;
@@ -101,7 +102,7 @@ body a{
 	background-position:0px 0px;
 }
 .social-icons ul li a span.fb{
-	background-position:-31px 0px;
+	background-position:-48px 0px;
 }
 .social-icons ul li a span.in{
 	background-position:-96px 0px;
@@ -110,10 +111,10 @@ body a{
 	background-position:-144px 0px;
 }
 .social-icons ul li a span.twt:hover{
-	background-position:0px -31px;
+	background-position:0px -48px;
 }
 .social-icons ul li a span.fb:hover{
-	background-position:-31px -31px;
+	background-position:-48px -48px;
 }
 .social-icons ul li a span.in:hover{
 	background-position:-96px -48px;
@@ -150,7 +151,7 @@ ul.nav1 {
 .top-nav ul li a{
 	color: #fff;
 	text-decoration: none;
-	padding: 2.5em 1.6em;
+	padding: 2.5em 1.5em;
 	font-size: 14px;
 	font-weight: 400;
 	font-family: 'Raleway', sans-serif;
@@ -159,11 +160,11 @@ ul.nav1 {
 	margin: 0px;
 }
 .top-nav ul li a:hover{
-	color:#BAA378;
+	color:#C1A55B;
 	
 }
 .top-nav ul li a.active {
-  	background-color: #BAA378;
+  	background-color: #C1A55B;
 }
 .col-md-9.top-nav {
   	padding: 0;
@@ -172,7 +173,7 @@ ul.nav1 {
 /*--services--*/
 .services {
   	text-align: center;
-  	padding-top: 6em;
+  	padding-top: 4em;
 }
 .services h3,.blog-top h3{
   	margin: 0;
@@ -221,7 +222,7 @@ ul.nav1 {
 }
 .services-grids-info h4 {
   	margin: 27px 0 0 0;
-  	color: #BAA378;
+  	color: #C1A55B;
   	font-size: 15px;
   	font-weight: 600;
 }
@@ -251,13 +252,13 @@ ul.nav1 {
   	padding: 0;
 }
 .blog-left-two label {
-  	color: #BAA378;
+  	color: #C1A55B;
   	font-size: 13px;
   	font-weight: 600;
   	margin-bottom: 2px;
 }
 .blog-left-two a h4 {
-  	color: #c6b290;
+  	color: #C1A55B;
   	font-size: 17px;
   	line-height: 1.4em;
   	font-weight: 700;
@@ -267,7 +268,7 @@ ul.nav1 {
 	text-decoration:none;
 }
 .blog-left-two a h4:hover{
-	color: #e7d0a8;
+	color: #E0C06A;
 	transition: 0.5s all ease;
 	-webkit-transition: 0.5s all ease;
 	-moz-transition: 0.5s all ease;
@@ -405,8 +406,7 @@ h2.resp-accordion {
 }
 }
 .view.view-first {
-  	background: #c6b290;
-
+  	background: #e0c06a;
   	margin: 0 auto;
   	padding: 2em;
 }
@@ -418,7 +418,7 @@ h2.resp-accordion {
   	margin: 0 0 1em 0;
 }
 .view.view-first p {
-  	color: #fff;
+  	color: #221c1c;
   	font-size: 14px;
   	margin: 0;
   	line-height: 1.6em;
@@ -512,14 +512,14 @@ h2.resp-accordion {
   	text-align: left;
 }
 .about-text-info h4 {
-  	color: #c29c51;
+  	color: #C1A55B;
   	margin: 0;
   	font-size: 20px;
   	font-weight: 500;
 }
 .about-text-info a h5{
 	/*background: url('../images/bgmnu2.png') #221c1c;*/
-	color: #c6b290;
+	color: #C1A55B;
 	line-height: 1.6em ;
 	width: 80%;
 	font-size: 14px;
@@ -559,7 +559,7 @@ h2.resp-accordion {
   	text-decoration:none;
   	transition:.5s all;
   	
-  	color: #c6b290;
+  	color: #C1A55B;
 }
 .caption h4 a:hover{
   	color: #861a18;
@@ -1030,14 +1030,14 @@ img.zoom-img:hover {
 }
 /*--contact--*/
 .contact h4 {
-	color: #c6b290;
+	color: #C1A55B;
 	font-size: 22px;
 	font-weight: 500;
 	margin: 0 0 1em 0;
 	letter-spacing: 1px;
 }
 .contact h5{
-	color: #c6b290;
+	color: #C1A55B;
 }
 .map {
   	margin: 5em 0;
@@ -1608,7 +1608,7 @@ span.menu img {
 .header {
   	min-height: 390px;
 }
-.top-nav:nth-child(1) {
+.top-nav:nth-child(1), .langs-nav {
   	padding: 0;
 }
 .top-nav {
@@ -1900,37 +1900,10 @@ ul.nav1 {
 .services h3, .blog-top h3 {
   	font-size: 18px;
 }
-.social-icons ul li a span{
-	/*width:35px;
-	height:35px;*/
-}
 .header {
   	min-height: 300px;
 }
-.social-icons ul li a span.twt{
-	background-position:0px 0px;
-}
-.social-icons ul li a span.fb{
-	/*background-position:-31px 0px;*/
-}
-.social-icons ul li a span.in{
-	background-position:-70px 0px;
-}
-.social-icons ul li a span.dot{
-	background-position:-105px 0px;
-}
-.social-icons ul li a span.twt:hover{
-	/*background-position: 0px -31px;*/
-}
-.social-icons ul li a span.fb:hover{
-/*	background-position:-35px -35px;*/
-}
-.social-icons ul li a span.in:hover{
-	background-position:-70px -35px;
-}
-.social-icons ul li a span.dot:hover{
-	background-position:-105px -35px;
-}
+
 .top-nav ul li {
 /*	padding: 1.9em 0;*/
 	float: left;
@@ -2093,7 +2066,7 @@ ul.nav1 {
 	position: absolute;
 	top: 0;
 	padding: 6px 10px;
-	background-color: #BAA378;
+	background-color: #C1A55B;
 	color: #fff;
 
 }
@@ -2112,31 +2085,7 @@ span.menu img {
 .services {
   	padding-top: 2em;
 }
-.social-icons ul li a span{
-	width:30px;
-	height:30px;
-}
-.social-icons ul li a span.fb{
-	background-position:-31px 0px;
-}
-.social-icons ul li a span.in{
-	background-position:-60px 0px;
-}
-.social-icons ul li a span.dot{
-	background-position:-90px 0px;
-}
-.social-icons ul li a span.twt:hover{
-	background-position:0px -31px;
-}
-.social-icons ul li a span.fb:hover{
-	background-position:-31px -31px;
-}
-.social-icons ul li a span.in:hover{
-	background-position:-60px -30px;
-}
-.social-icons ul li a span.dot:hover{
-	background-position:-90px -30px;
-}
+
 .blog-left-one a img {
   	width: 100%;
 }

@@ -12,51 +12,39 @@
 <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i>  (4)<i class="fa fa-caret-down"></i>
+                        <i class="fa fa-envelope fa-fw"></i>  (<?php echo $num_inq ?>)<i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-messages">
+                    <?php if($num_inq){
+                        foreach ($latestInq as $key => $value) {
+                    ?>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo $this->base.'/admin/contact/'.$value['Inquiry']['id']; ?>">
                                 <div>
-                                    <strong>John Smith</strong>
+                                    <strong><?php echo $value['Inquiry']['name'] ?></strong>
                                     <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
+                                        <em><?php echo $this->Text->date_diff($value['Inquiry']['created']) ?></em>
                                     </span>
                                 </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                                <div><?php echo nl2br($value['Inquiry']['content']) ?></div>
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
+                        
+                    <?php
+                        }//end foreach
+                    if(count($latestInq) < $num_inq): ?>
+                        <!-- <li class="divider"></li> -->
                         <li>
                             <a class="text-center" href="<?php echo $this->base.'/admin/contact'; ?>">
                                 <strong>Xem tất cả</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
+                        <?php endif; 
+                    }else{?>
+                        <li><strong>Không có mục nào.</strong></li>
+                    <?php } ?>
                     </ul>
                     <!-- /.dropdown-messages -->
                 </li>

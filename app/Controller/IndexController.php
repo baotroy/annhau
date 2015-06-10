@@ -21,5 +21,6 @@ class IndexController extends AppController {
 		
 		$banners = $this->Banner->getAll();
 		$this->set('banners', $banners);
+		$this->set('menu', 'index');
 	}
 }

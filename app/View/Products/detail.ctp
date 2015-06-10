@@ -39,8 +39,8 @@
 										<input type="text" placeholder="<?php echo Message::label('your_name'); ?>" name="commentator" class="jxcommentator" maxlength="30">
 										<input type="email" placeholder="Email" name="email" class="jxemail" maxlength="30">
 									</span>
-									<textarea name="content" class="jxcontent" maxlength="200"></textarea>
-									
+									<textarea name="content" class="jxcontent" maxlength="200" style="margin-bottom: 0"></textarea>
+									<p><span style="display: inline-block"><?php echo Message::label('you_left'); ?></span><span style="display: inline-block; padding: 0px 2px" class="jxleft"> 200 </span><span style="display: inline-block"><?php echo Message::label('character'); ?></span></p>
 									<button type="button" class="btn btn-default pull-right" id="comment">
 										Submit
 									</button>
@@ -71,4 +71,8 @@
 	    $('.choice').text( this.value + ' stars' );
 	  } 
 	)
+	$('textarea').keyup(function(){
+  		length = $(this).val();
+  		$('.jxleft').text(200 - length.length);
+  	});
 </script>

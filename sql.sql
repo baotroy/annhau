@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `deleted` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table fur.admin: ~0 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
@@ -44,13 +44,16 @@ CREATE TABLE IF NOT EXISTS `banners` (
   `image` varchar(50) NOT NULL,
   `del_flg` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table fur.banners: ~2 rows (approximately)
+-- Dumping data for table fur.banners: ~5 rows (approximately)
 /*!40000 ALTER TABLE `banners` DISABLE KEYS */;
 INSERT INTO `banners` (`id`, `image`, `del_flg`) VALUES
 	(1, 'golden_banner.png', 0),
-	(2, 'blue.jpg', 0);
+	(2, 'blue.jpg', 0),
+	(3, 'banner150610173133.PNG', 1),
+	(4, 'banner150610173703.jpg', 0),
+	(5, 'banner150610174118.gif', 0);
 /*!40000 ALTER TABLE `banners` ENABLE KEYS */;
 
 
@@ -104,19 +107,23 @@ INSERT INTO `comments` (`id`, `commentator`, `email`, `product`, `content`, `cre
 -- Dumping structure for table fur.inqueries
 CREATE TABLE IF NOT EXISTS `inqueries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
   `email` varchar(30) NOT NULL,
   `content` varchar(200) NOT NULL,
   `tel` varchar(15) NOT NULL,
   `created` datetime NOT NULL,
   `del_flg` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table fur.inqueries: ~2 rows (approximately)
+-- Dumping data for table fur.inqueries: ~3 rows (approximately)
 /*!40000 ALTER TABLE `inqueries` DISABLE KEYS */;
-INSERT INTO `inqueries` (`id`, `email`, `content`, `tel`, `created`, `del_flg`) VALUES
-	(1, 'baotq@bit-vietnam.com', 'ljla\r\nad\r\n', '9808098', '2015-06-09 17:35:34', 0),
-	(2, 'jlj@klsj.com', 'jlsd\r\n\r\nsf', '0809089', '2015-06-09 17:40:34', 0);
+INSERT INTO `inqueries` (`id`, `name`, `email`, `content`, `tel`, `created`, `del_flg`) VALUES
+	(1, '0', 'baotq@bit-vietnam.com', 'ljla\r\nad\r\n', '9808098', '2015-06-09 17:35:34', 0),
+	(2, '0', 'jlj@klsj.com', 'jlsd\r\n\r\nsf', '0809089', '2015-04-09 17:40:34', 0),
+	(3, '0', 'baotq@bit-vietnam.com', 'sdfs\r\nsdfsd', '80808', '2015-06-10 20:16:38', 0),
+	(4, 'bao', 'baotq@bit-vietnam.com', 'sjdflsdf', '08089', '2015-06-10 20:19:10', 0),
+	(5, 'jl', 'jlj@klsj.com', 'lksfs\r\nsdfsf\r\nsdfsf\r\nsfsdf', '324234234', '2015-06-10 20:22:32', 0);
 /*!40000 ALTER TABLE `inqueries` ENABLE KEYS */;
 
 
@@ -130,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `long_description_en` text NOT NULL,
   `long_description_vi` text NOT NULL,
   `category` int(11) NOT NULL,
-  `creator` int(11) NOT NULL,
+  `creator` int(11) NOT NULL DEFAULT '1',
   `image_1` varchar(50) NOT NULL,
   `image_2` varchar(50) NOT NULL,
   `image_3` varchar(50) NOT NULL,
@@ -159,7 +166,6 @@ INSERT INTO `products` (`id`, `name_en`, `name_vi`, `short_description_en`, `sho
 -- Dumping structure for table fur.settings
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `banner` varchar(50) NOT NULL,
   `map_lat` varchar(20) DEFAULT NULL,
   `map_long` varchar(20) DEFAULT NULL,
   `site_name` varchar(100) DEFAULT '0',
@@ -173,14 +179,15 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `fax_2` varchar(20) DEFAULT NULL,
   `contact_info_en` text,
   `contact_info_vi` text,
-  `email` varchar(30) DEFAULT NULL,
+  `email_1` varchar(30) DEFAULT NULL,
+  `email_2` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table fur.settings: ~1 rows (approximately)
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` (`id`, `banner`, `map_lat`, `map_long`, `site_name`, `address_1_en`, `address_2_en`, `address_1_vi`, `address_2_vi`, `tel_1`, `tel_2`, `fax_1`, `fax_2`, `contact_info_en`, `contact_info_vi`, `email`) VALUES
-	(1, '', '10.765678', '106.706346', '0', 'Address 1', 'Address 2', 'Địa chỉ 1', 'Địa chỉ 2', '1234567890', '9876543210', '1234567890', '9876543210', 'Contact info Contact info Contact info Contact info Contact info Contact info Contact info Contact info Contact info ', 'Thông tin liên hệ Thông tin liên hệ Thông tin liên hệ', 'email@ex.com');
+INSERT INTO `settings` (`id`, `map_lat`, `map_long`, `site_name`, `address_1_en`, `address_2_en`, `address_1_vi`, `address_2_vi`, `tel_1`, `tel_2`, `fax_1`, `fax_2`, `contact_info_en`, `contact_info_vi`, `email_1`, `email_2`) VALUES
+	(1, '30.032948', '-89.861797', '0', 'District 4', 'HCMC', 'Địa chỉ 1 Ho chi Minh', 'Địa chỉ 2, Sài gòn', '1234567890', '9876543210', '1234567890', '9876543210', 'contact\r\ncontact\r\nsdfsdf\r\n', 'Thông tin liên hệ \r\nThông tin liên hệ \r\nThông tin liên hệ', 'admin@ryta.com', NULL);
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
 

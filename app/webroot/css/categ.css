@@ -1226,7 +1226,6 @@ h2.title {
 }
 
 .product-information {
-  border: 1px solid #F7F7F0;
   overflow: hidden;
   padding-bottom: 30px;
   padding-left: 30px;
@@ -1373,9 +1372,18 @@ h2.title {
   width: 48%;
 }
 #reviews form span input:last-child {
-  margin-left: 3%;
+  margin-left: 2%;
 }
-
+@media(max-width: 420px){
+  #reviews form span input{
+    width: 100%;
+    margin-left: 0 
+  }
+  #reviews form span input:last-child {
+    margin-left: 0;
+    margin-top: 5px
+  }
+}
 #reviews textarea {
   background: #F0F0E9;
   border: medium none;
@@ -2550,7 +2558,7 @@ h2.title {
   margin-right: 2px;
 */}
 .search_box input{
-  height: 30px;
+  height: 45px;
   width: 200px;
 }
 .button_search{
@@ -2561,8 +2569,8 @@ h2.title {
   border-top: 1px solid #c0c0c0;
   border-bottom: 1px solid #c0c0c0;
   border-right: 1px solid #c0c0c0;
-  height: 30px;
-  width: 30px;
+  height: 45px;
+  width: 45px;
   
   outline: medium none; 
   float: right
@@ -2659,14 +2667,14 @@ h2.title {
 .category-products a.submenu:hover,
 .category-products .active{
   background: url('../images/bgmnu2.png') #221b13;
-  color: #9d8649
+  color: #C1A55B
   
 }
 .title{
   padding: 0px 15px;
 }
 .title h4{
-  color: #9d8649;
+  color: #C1A55B;
 }
 .checkbox{
   font-weight: 400;

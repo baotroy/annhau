@@ -51,7 +51,9 @@ class Constants
 		'submit' => 'Submit',
 		'title_contact' => 'Contact us',
 		'title_about'=> 'About',
-		'thank_contact' => 'Your contact has been sent successfully!'
+		'thank_contact' => 'Your contact has been sent successfully!',
+		'you_left' => 'You left ',
+		'character' => ' character',
 		
 	);
 
@@ -87,7 +89,8 @@ class Constants
 		'submit' => 'Gửi',
 		'title_contact' => 'Liên Hệ',
 		'title_about'=> 'Về Chúng Tôi',
-		'thank_contact' => 'Liên hệ của bạn đã được gởi thành công!'
-		
+		'thank_contact' => 'Liên hệ của bạn đã được gởi thành công!',
+		'you_left' => 'Bạn còn ',
+		'character' => ' ký tự',
 	);
 }

@@ -5,7 +5,7 @@ class Message {
 	// ex: echo Message::get('MSG_CM_01', 'Text');
 	static public function get($id, $msg, $settings = array()){
 		$message = false;		
-		$message = Constants::$message_jp;
+		//$message = Constants::$message_jp;
 		
 		if (!isset($message[$id])) return '';		
 		
