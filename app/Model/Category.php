@@ -6,6 +6,21 @@ class Category extends AppModel {
 	public $name = 'Category';
     public $useTable ='categories';
 
+    public $validate = array(
+        'name_vi' => array(
+                'notEmpty' => array(
+                    'rule'=> 'notEmpty',
+                    'message' =>'not empty'
+                    ),
+            ),
+        'name_en' => array(
+                'notEmpty' => array(
+                    'rule'=> 'notEmpty',
+                    'message' =>'not empty'
+                    ),
+            ),
+    );
+
     function getById($id = '', $fields = array()){
         return $this->find('first', array('fields'=> $fields, 'conditions' => array('id'=>$id,'deleted'=>0)));
     }
@@ -85,5 +100,9 @@ class Category extends AppModel {
             'joins' => $joins, 'group' => 'Category.id'));
         return $res; 
 
+    }
+
+    function manageAll(){
+        return $this->find('all', array('fields' => '*', 'conditions' => array('`Category`.`deleted`' => 0)));
     }
 }

@@ -7,39 +7,26 @@ class AdminController extends AppController {
 
 	public $components = array(
 		'Session',
-        'Auth' => array(
-        	'loginAction' => array(
-	            'controller' => 'admin',
-	            'action' => 'login',
-	        ),
-            'loginRedirect' => array('controller' => 'admin', 'action' => 'index'),
-            'logoutRedirect' => array('controller' => 'admin', 'action' => 'login'),
-            'authenticate' => array(
-	            'Form' => array(
-	                'fields' => array(
-	                  'username' => 'email', //Default is 'username' in the userModel
-	                  'password' => 'password'  //Default is 'password' in the userModel
-	                )
-	            )
-	        ),
-			'authError' => 'You must be logged in to view this page.',
-			'loginError' => 'Invalid Username or Password entered, please try again.'
- 
-        ), 'Common');
+        'Common');
 	
 	// only allow the login controllers only
 	public function beforeFilter() {
-		$user = $this->Auth->user();
+		if($this->action != 'login'){
+			if(!CakeSession::check('User')) $this->redirect(array('action' => 'login'));
+		}
+
+		$user = CakeSession::read('User');
 		$this->set('admin', $user);
 		$this->set('title_layout', 'Admin');
-        $this->Auth->allow('login');
-
         //get number of inquery
         $countInq= $this->Inquiry->getCount();
-        $latestInq = $this->Inquiry->getAll(3);
+        $latestInq = $this->Inquiry->getUnread(3);
         
         $this->set('num_inq', $countInq);
         $this->set('latestInq', $latestInq);
+
+		$cats = $this->Category ->manageAll();
+		$this->set('cats', $cats);
     }
 
 	public function isAuthorized($user) {
@@ -54,6 +41,99 @@ class AdminController extends AppController {
 
 	function category(){
 		$this->set('tab', 'category');
+		$this->set('pt', 'Danh sách danh mục');
+
+		if(isset($this->request->query['action'])){
+			if($this->request->query['action'] == 'add'){
+				$this->set('pt', 'Thêm anh mục');
+				$this->set('mode', 'add');
+				if($this->request->is('post')){
+				
+					$data = $this->data;
+					$data['created'] = date('Y-m-d H:i:s');
+					$data['modified'] = date('Y-m-d H:i:s');
+
+					$fn = false;
+					$this->Category->set($data);
+					if($this->Category->validates()){
+						if($_FILES['image']){
+							$file = $_FILES['image'];
+							$file['new_name'] = 'c'.date('ymdHis');
+							$fn = $this->__saveImage($file, DIR_PRODUCT);
+							if($fn){
+								$data['image'] = $fn;
+							}
+						}
+						if($this->Category->save($data)){
+							$this->Session->setFlash('Đã thêm.', 'default', array('class' =>'alert alert-success'));
+						}
+					}else{
+						$this->set('item', array('Category'=>$data));
+						$this->render('cat-detail');
+					}
+				
+				}
+				$this->render('cat-detail');
+				return;
+			}
+			else if($this->request->query['action'] == 'edit'){
+				$this->set('pt', 'Cập nhật danh mục');
+				$this->set('mode', 'edit');
+				if($this->request->is('post')){
+					if(isset($this->request->query['id'])){
+						$data = $this->data;
+
+						$data['id'] = $this->request->query['id'];
+
+						$this->Category->set($data);
+						if($this->Category->validates()){
+							if($_FILES['image']){
+								$file = $_FILES['image'];
+								$file['new_name'] = 'c'.date('ymdHis');
+								$fn = $this->__saveImage($file, DIR_PRODUCT);
+								if($fn){
+									$data['image'] = $fn;
+								}
+							}
+							if($this->Category->save($data)){
+								$this->Session->setFlash('Đã cập nhật.', 'default', array('class' =>'alert alert-success'));
+								$this->redirect(array('action'=>'category'));
+							}
+						}else{
+							$this->set('item', array('Category'=>$data));
+							$this->render('cat-detail');
+						}
+					}else{
+						$this->redirect(array('action'=>'category'));
+					}
+				}else{
+					if(isset($this->request->query['id'])){
+						//load data len view
+						$item =  $this->Category->getById($this->request->query['id']);
+						
+						if($item){
+							$this->set('item', $item);
+							$this->render('cat-detail');
+						}
+						else{
+							throw new BadRequestException('not found');
+						}
+					}
+					else{
+						$this->redirect(array('action'=>'users'));
+					}
+				}
+				
+			}
+			else if($this->request->query['action'] == 'delete'){
+				if(isset($this->request->query['id'])){
+					if($this->Category->save(array('id'=>$this->request->query['id'], 'del_flg' => 1))){
+						$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
+						$this->redirect($_SERVER['REQUEST_URI']);
+					}
+				}
+			}
+		}
 	}
 
 	function setting(){
@@ -85,11 +165,150 @@ class AdminController extends AppController {
 	function contact(){
 		$this->set('tab', 'contact');
 		$this->set('pt', 'Liên hệ');
+		$page = 1;
+        if (isset($this->params['named']['page'])) {
+            $page = $this->params['named']['page'];
+        }
+		$this->paginate = array(
+            'Inquiry' => array(
+                'limit' => ADMIN_LIMIT,
+                'page' => $page,
+                'fields' => array('*'),
+                'conditions' => array('del_flg'=>0),
+                'order' => array('read' => 'asc','created' => 'desc'),
+            ),
+        );
+        $all = $this->paginate('Inquiry');
+		$this->set('items', $all);
 
+		if(isset($this->request->query['action'])){
+			if($this->request->query['action'] == 'view'){
+				if(isset($this->request->query['id'])){
+					$item = $this->Inquiry->getById($this->request->query['id']);
+					if(!$item){
+						throw new BadRequestException('not found');
+						
+					}
+					$this->set('item', $item);
+					if(!$item['Inquiry']['read'])
+						$this->Inquiry->save(array('id'=>$this->request->query['id'], 'read' => date('Y-m-d H:i:s')));
+					$countInq= $this->Inquiry->getCount();
+					$this->set('num_inq', $countInq);
+					$this->render('contact-detail');
+				}
+			}
+			else if($this->request->query['action'] == 'delete'){
+				if(isset($this->request->query['id'])){
+					if($this->Inquiry->save(array('id'=>$this->request->query['id'], 'del_flg' => 1))){
+						$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
+						$this->redirect($_SERVER['REQUEST_URI']);
+					}
+				}
+			}
+		}
 	}
 
 	function users(){
+		$this->set('tab', 'user');
+		$this->set('pt', 'Quản lý user');
 
+		$page = 1;
+        if (isset($this->params['named']['page'])) {
+            $page = $this->params['named']['page'];
+        }
+		$this->paginate = array(
+            'Admin' => array(
+                'limit' => ADMIN_LIMIT,
+                'page' => $page,
+                'fields' => array('*'),
+                'conditions' => array('deleted'=> 0),
+                'order' => array('active' => 'desc','created' => 'desc'),
+            ),
+        );
+        $all = $this->paginate('Admin');
+		$this->set('items', $all);
+
+		if(isset($this->request->query['action'])){
+			if($this->request->query['action'] == 'add'){
+				$this->set('pt', 'Thêm người quản lý');
+				$this->set('mode', 'add');
+				if($this->request->is('post')){
+					if(!CakeSession::check('adduser')){
+						$data = $this->data;
+						$data['created'] = date('Y-m-d H:i:s');
+						$data['modified'] = date('Y-m-d H:i:s');
+
+						if(!isset($data['active'])) $data['active'] = 0;
+
+						$this->Admin->set($data);
+						if($this->Admin->validates()){
+							if($this->Admin->save()){
+								$this->Session->setFlash('Đã thêm.', 'default', array('class' =>'alert alert-success'));
+							}
+						}else{
+							$this->set('item', array('Admin'=>$data));
+							$this->render('user-detail');
+						}
+					}
+					else{
+						CakeSession::delete('adduser', true);
+						$this->redirect($this->base.'/admin/users?action=add');
+					}
+				}
+				$this->render('user-detail');
+				return;
+			}
+			else if($this->request->query['action'] == 'edit'){
+				$this->set('pt', 'Cập nhật người quản lý');
+				$this->set('mode', 'edit');
+				if($this->request->is('post')){
+					if(isset($this->request->query['id'])){
+						$data = $this->data;
+						if($data['password']=='') unset($data['password']);
+
+						if(!isset($data['active'])) $data['active'] = 0;
+						$data['id'] = $this->request->query['id'];
+						$this->Admin->set($data);
+						if($this->Admin->validates()){
+							if($this->Admin->save()){
+								$this->Session->setFlash('Đã cập nhật.', 'default', array('class' =>'alert alert-success'));
+								$this->redirect(array('action'=>'users'));
+							}
+						}else{
+							$this->set('item', array('Admin'=>$data));
+							$this->render('user-detail');
+						}
+					}else{
+						$this->redirect(array('action'=>'users'));
+					}
+				}else{
+					if(isset($this->request->query['id'])){
+						//load data len view
+						$item =  $this->Admin->getById($this->request->query['id']);
+						
+						if($item){
+							$this->set('item', $item);
+							$this->render('user-detail');
+						}
+						else{
+							throw new BadRequestException('not found');
+						}
+					}
+					else{
+						$this->redirect(array('action'=>'users'));
+					}
+				}
+				
+			}
+			else if($this->request->query['action'] == 'delete'){
+				if(isset($this->request->query['id'])){
+					if($this->Admin->save(array('id'=>$this->request->query['id'], 'del_flg' => 1))){
+						$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
+						$this->redirect($_SERVER['REQUEST_URI']);
+					}
+				}
+			}
+		}
 	}
 	function banner(){
 		$this->set('tab', 'banner');
@@ -103,17 +322,13 @@ class AdminController extends AppController {
 					$new_name = 'banner'.date('yymmddHis');
 
 					$file['new_name'] = 'banner'.date('ymdHis');
-					if(!CakeSession::check('banner')){
-						if($fn = $this->__saveImage($file, DIR_BANNER)){
-							$this->Session->setFlash('Đã thêm.', 'default', array('class' =>'alert alert-success'));
-							$this->Banner->save(array('image' => $fn));
-							CakeSession::write('banner', true);
-						}
+					
+					if($fn = $this->__saveImage($file, DIR_BANNER)){
+						$this->Session->setFlash('Đã thêm.', 'default', array('class' =>'alert alert-success'));
+						$this->Banner->save(array('image' => $fn));
+						CakeSession::write('banner', true);
 					}
-					else{
-						CakeSession::delete('banner', true);
-						$this->redirect($this->base.'/admin/banner?action=add');
-					}
+					
 				}
 				$this->render('banner_edit');
 				return;
@@ -128,17 +343,23 @@ class AdminController extends AppController {
 			// }
 			else if($this->request->query['action'] == 'delete'){
 				if(isset($this->request->query['id'])){
+					$item = $this->Banner->getById($this->request->query['id']);
+							
 					if($this->Banner->save(array('id'=>$this->request->query['id'], 'del_flg' => 1))){
 						$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
+						$img = WWW_ROOT.DIR_IMAGE.DIR_BANNER.$item['Banner']['image'];
+						if(file_exists($img)){
+							unlink($img);
+						}
 						$this->redirect(array('action' => 'banner'));
 					}
 				}
 			}
 		}
-		else{
+		// else{
 			
-			$this->set('items', $ban);
-		}
+		// 	$this->set('items', $ban);
+		// }
 	}
 
 	private function __saveImage($params, $directory) {
@@ -159,15 +380,15 @@ class AdminController extends AppController {
     }
 	function login(){
 		//if already logged-in, redirect
-		if($this->Session->check('Auth.User')){
+		if($this->Session->check('User')){
 			$this->redirect(array('action' => 'index'));		
 		}
 		
 		// if we get the post information, try to authenticate
 		if ($this->request->is('post')) {
-			if ($this->Auth->login($this->request->data)) {
-				$this->Session->setFlash(__('Welcome, '. $this->Auth->user('username')));
-				$this->redirect($this->Auth->redirectUrl());
+			if ($user = $this->Admin->login($this->request->data)) {
+				CakeSession::write('User', $user);
+				$this->redirect(array('action'=>'index'));
 			} else {
 				$this->Session->setFlash('Invalid username or password', 'default', array('class' => 'alert alert-danger'));
 			}
@@ -175,7 +396,8 @@ class AdminController extends AppController {
 	}
 
 	function logout(){
-		$this->redirect($this->Auth->logout());
+		CakeSession::destroy();
+		$this->redirect(array('action' =>'login'));
 	}
 
 }

@@ -9,3 +9,21 @@ span.unotif{
 .btn-head{
 	float: right
 }
+.tbl-non{
+	width: 550px;
+}
+.tbl-non>tbody>tr>td{
+	border-top: 0px;
+}
+input.error, select.error, textarea.error{
+	border: 1px solid #cc0000 !important;
+}
+.required{
+  color: #cc0000;
+}
+.rmcat{
+	float: right
+}
+.rmcat:hover{
+	color: #cc0000;
+}

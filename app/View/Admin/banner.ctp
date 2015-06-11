@@ -46,8 +46,8 @@
                                         <td><?php echo $index ?></td>
                                         <td><img data-u="image" src="<?php echo $this->Text->image($value, DIR_BANNER);?>" width="100"/></td>
                                         <td align="right">
-                                            <a href="<?php echo $this->base.'/admin/banner?action=edit&id='.$key; ?>" class="btn btn-primary">Edit</a>
-                                            <a href="<?php echo $this->base.'/admin/banner?action=delete&id='.$key; ?>" onclick="return confirm('Bạn có chắc chắn xóa?');" class="btn btn-danger">Delete</a>
+                                            <a href="<?php echo $this->base.'/admin/banner?action=edit&id='.$key; ?>" class="btn btn-primary">Sửa</a>
+                                            <a href="<?php echo $this->base.'/admin/banner?action=delete&id='.$key; ?>" onclick="return confirm('Bạn có chắc chắn xóa?');" class="btn btn-danger">Xóa</a>
                                         </td>
                                     </tr>
                                 <?php 

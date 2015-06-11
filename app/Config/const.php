@@ -15,6 +15,8 @@ define('DIR_SMALL', 'small/');//width: 320
 define('DIR_CATEGORY', 'categories/');
 define('DIR_BANNER', 'banners/');
 
+
+define('ADMIN_LIMIT', 1);
 class Constants
 {
 	public static $langs = array('en'=> 'English', 'vi' => 'Tiếng Việt');

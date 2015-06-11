@@ -169,8 +169,8 @@
 							echo '<span>'.$value.'</span>';
 						else {
 							$uri = $_SERVER['REQUEST_URI'];
-							if(isset($this->request->query)){
-								if(isset($this->request->query)){
+							if($this->request->query){
+								if(isset($this->request->query['lang'])){
 									if(@$this->request->query['lang'] == 'en')
 									{
 										$uri = str_replace('lang=en', 'lang=vi', $uri);
@@ -182,9 +182,10 @@
 										$lang_text = '&lang='.$key;
 								}
 								else{
-									$lang_text = '?lang='.$key;
+									$lang_text = '&lang='.$key;
 								}
 							}
+
 							else{
 								$lang_text = '?lang='. $key;	
 							}

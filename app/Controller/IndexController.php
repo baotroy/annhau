@@ -6,7 +6,7 @@ class IndexController extends AppController {
 	public $uses = array('Category', 'Product', 'Banner');
 
 	public function index() {
-		$this->set('title_layout', 'Home');
+		$this->set('title_layout', Message::label('mnu_home'));
 		
 		//get new products
 

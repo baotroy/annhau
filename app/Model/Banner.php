@@ -14,4 +14,10 @@ class Banner extends Model {
 		}
 		return $ret;
 	}
+
+	function getById($id =''){
+		if($id=='') return false;
+
+		return $this->find('first', array('fields' => '*','conditions' => array('id' => $id,'del_flg'=> 0)));
+	}
 }

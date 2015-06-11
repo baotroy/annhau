@@ -5,15 +5,14 @@
                             <a href="<?php echo $this->base.'/admin/index'; ?>" <?php if($tab == 'index') echo 'class="active"'; ?> ><i class="fa fa-barcode fa-fw"></i> Sản phẩm</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-tags fa-fw"></i> Danh mục<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <a href="<?php echo $this->base.'/admin/category'; ?>"><i class="fa fa-tags fa-fw"></i> Danh mục<!-- <span class="fa arrow"></span> --></a>
+                            <!-- <ul class="nav nav-second-level">
+                            <?php foreach ($cats as $key => $value): ?>
                                 <li>
-                                    <a href="#">Bếp</a>
-                                </li>
-                                <li>
-                                    <a href="#">Phòng ngủ</a>
-                                </li>
-                            </ul>
+                                    <a href="#"><?php echo $value['Category']['name_vi']; ?></a>
+                                </li>    
+                            <?php endforeach ?>
+                            </ul> -->
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
