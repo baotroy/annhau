@@ -89,7 +89,6 @@
                         <?php endif; ?>   
                 </div><!-- /row -->
                     <?php if ($this->Paginator->hasNext() || $this->Paginator->hasPrev()) { ?>
-                    <hr class="thin" />
                 <?php } ?>
             </div><!--features_items-->
         </div>

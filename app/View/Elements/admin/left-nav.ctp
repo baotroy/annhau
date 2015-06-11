@@ -25,7 +25,7 @@
                             <a href="<?php echo $this->base.'/admin/users'; ?>" <?php if($tab == 'user') echo 'class="active"'; ?>><i class="fa fa-user fa-fw"></i> Quản lý user</a>
                         </li>
                         <li>
-                            <a href="<?php echo $this->base.'/admin/setting'; ?>" <?php if($tab == 'setting') echo 'class="active"'; ?>><i class="fa fa-gear fa-fw"></i> Thiết lập</a>
+                            <a href="<?php echo $this->base.'/admin/setting'; ?>" <?php if($tab == 'setting') echo 'class="active"'; ?>><i class="fa fa-gear fa-fw"></i> Cài đặt</a>
                         </li>
                     </ul>
     </div>

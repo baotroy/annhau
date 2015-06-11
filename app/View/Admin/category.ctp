@@ -48,6 +48,7 @@
                                         <td><?php echo $index ?></td>
                                         <td><?php echo $value['Category']['name_vi']; ?></td>
                                         <td align="right">
+                                            <a href="<?php echo $this->base.'/admin/subcat?id='.$value['Category']['id']; ?>" class="btn btn-success">Danh mục con</a>
                                             <a href="<?php echo $this->base.'/admin/category?action=edit&id='.$value['Category']['id']; ?>" class="btn btn-primary">Sửa</a>
                                             <a href="<?php echo $this->base.'/admin/category?action=delete&id='.$value['Category']['id']; ?>" onclick="return confirm('Bạn có chắc chắn xóa?');" class="btn btn-danger">Xóa</a>
                                         </td>

@@ -36,12 +36,14 @@ class AdminController extends AppController {
 	}
 	public function index() {
 		$this->set('tab', 'index');
-		$this->set('pt', 'Danh sách sản phẩm');
+		$this->set('pt', 'Sản phẩm');
+		$this->set('title_layout', 'Sản phẩm');
 	}
 
 	function category(){
 		$this->set('tab', 'category');
-		$this->set('pt', 'Danh sách danh mục');
+		$this->set('pt', 'Danh mục');
+		$this->set('title_layout', 'Danh mục');
 
 		if(isset($this->request->query['action'])){
 			if($this->request->query['action'] == 'add'){
@@ -136,10 +138,13 @@ class AdminController extends AppController {
 		}
 	}
 
+	function subcat(){
+
+	}
 	function setting(){
 		$this->set('tab', 'setting');
-		$this->set('pt', 'Thiết lập');
-		
+		$this->set('pt', 'Cài đặt');
+		$this->set('title_layout', 'Cài đặt');
 		if($this->request->is('post')){
 			$data = $this->data;
 			if(@$data['map']){
@@ -165,6 +170,8 @@ class AdminController extends AppController {
 	function contact(){
 		$this->set('tab', 'contact');
 		$this->set('pt', 'Liên hệ');
+		$this->set('title_layout', 'Liên hệ');
+
 		$page = 1;
         if (isset($this->params['named']['page'])) {
             $page = $this->params['named']['page'];
@@ -211,6 +218,7 @@ class AdminController extends AppController {
 	function users(){
 		$this->set('tab', 'user');
 		$this->set('pt', 'Quản lý user');
+		$this->set('title_layout', 'Quản lý user');
 
 		$page = 1;
         if (isset($this->params['named']['page'])) {
@@ -313,6 +321,8 @@ class AdminController extends AppController {
 	function banner(){
 		$this->set('tab', 'banner');
 		$this->set('pt', 'Thiết lập banner');
+		$this->set('title_layout', 'Thiết lập banner');
+
 		$ban = $this->Banner->getAll();
 		$this->set('items', $ban);
 		if(isset($this->request->query['action'])){
@@ -380,6 +390,7 @@ class AdminController extends AppController {
     }
 	function login(){
 		//if already logged-in, redirect
+		$this->set('pt', 'Đăng nhập');
 		if($this->Session->check('User')){
 			$this->redirect(array('action' => 'index'));		
 		}
