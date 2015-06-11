@@ -11,6 +11,17 @@ App::uses('Helper', 'View');
  * @package       app.View.Helper
  */
 class TextHelper extends Helper {
+	function isNew($text){
+		if(!$text) return false;
+		$text= date_create($text);
+		$datetime1 = date_format($text, 'Y-m-d H:i:s');
+		$datetime1 = new DateTime($datetime1);
+		$datetime2 = new DateTime(date('Y-m-d H:i:s'));
+		$interval = $datetime1->diff($datetime2);
+
+		if($interval->y == 0 && $interval->m ==0) return true;
+		return false;
+	}
 	function date_diff($text){
 		if(!$text) return '';
 		$text= date_create($text);

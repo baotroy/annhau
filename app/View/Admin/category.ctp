@@ -10,7 +10,7 @@
     </nav>
 
     <div id="page-wrapper">
-        
+        <?php echo $this->element('admin/breadcrumbs'); ?>
         <div class="row">
             <div class="col-lg-12">
                 <?php echo $this->element('admin/title-bar'); ?>
@@ -31,7 +31,8 @@
                                 <thead>
                                     <tr>
                                         <th width="85">#</th>
-                                        <th width="195">Tên danh mục</th>
+                                        <th width="195">Tên danh mục (Tiếng Việt)</th>
+                                        <th width="195">Tên danh mục (Tiếng Anh)</th>
                                         <th style="text-align: right">
 
                                         </th>
@@ -47,8 +48,9 @@
                                     <tr>
                                         <td><?php echo $index ?></td>
                                         <td><?php echo $value['Category']['name_vi']; ?></td>
+                                        <td><?php echo $value['Category']['name_en']; ?></td>
                                         <td align="right">
-                                            <a href="<?php echo $this->base.'/admin/subcat?id='.$value['Category']['id']; ?>" class="btn btn-success">Danh mục con</a>
+                                            <a href="<?php echo $this->base.'/admin/subcat?c='.$value['Category']['id']; ?>" class="btn btn-success">Danh mục con</a>
                                             <a href="<?php echo $this->base.'/admin/category?action=edit&id='.$value['Category']['id']; ?>" class="btn btn-primary">Sửa</a>
                                             <a href="<?php echo $this->base.'/admin/category?action=delete&id='.$value['Category']['id']; ?>" onclick="return confirm('Bạn có chắc chắn xóa?');" class="btn btn-danger">Xóa</a>
                                         </td>
@@ -77,3 +79,4 @@
 
 </div>
 <!-- /#wrapper -->
+

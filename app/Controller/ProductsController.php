@@ -129,6 +129,11 @@ class ProductsController extends AppController {
             throw new BadRequestException('Could not find that post');
             exit;
         }
+        $admin = false;
+        if(CakeSession::check('User')){
+            $admin = true;
+        }
+        $this->set('login', $admin);
 		$this->set('title_layout', 'Products');
 		$id =substr($id,strrpos($id, '-')+1);
         $this->set('id', $id);

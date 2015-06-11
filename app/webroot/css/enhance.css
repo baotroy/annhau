@@ -3,3 +3,12 @@
 		width: 100%;
 	}
 }
+.fr{
+	float: right;
+}
+.rvcomment{
+	cursor: pointer;
+}
+.rvcomment:hover{
+	color: #cc0000 !important;
+}

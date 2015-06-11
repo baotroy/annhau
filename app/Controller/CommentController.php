@@ -32,4 +32,20 @@ class CommentController extends AppController {
         }
         exit;
     }
+
+    function remove(){
+        if($this->request->is('ajax')){
+            $auth = CakeSession::check('User');
+            if($auth){
+                $data = $this->data;
+                $id = $data['id'];
+                if($this->Comment->save(array('id' => $id, 'deleted' => 1))){
+                    echo 0;
+                    exit;
+                }
+                echo 1; exit;
+            }
+        }
+        exit;
+    }
 }

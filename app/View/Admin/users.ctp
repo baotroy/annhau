@@ -10,7 +10,7 @@
     </nav>
 
     <div id="page-wrapper">
-        
+        <?php echo $this->element('admin/breadcrumbs'); ?>
         <div class="row">
             <div class="col-lg-12">
                 <?php echo $this->element('admin/title-bar'); ?>
@@ -31,7 +31,7 @@
                                 <thead>
                                     <tr>
                                         <th width="85">#</th>
-                                        <th width="195">ID</th>
+                                        <th width="145">ID</th>
                                         <th width="260">Họ tên</th>
                                         <th width="190">Email</th>
                                         <th width="200">Tình trạng</th>
@@ -54,7 +54,7 @@
                                         <td><?php if($value['Admin']['active']) echo 'đang hoạt động'; else echo 'không hoạt động' ?></td>
                                         <td align="right">
                                             <a href="<?php echo $this->base.'/admin/users?action=edit&id='.$value['Admin']['id']; ?>" class="btn btn-primary">Sửa</a>
-                                            <a href="<?php echo $this->base.'/admin/users?action=delete&id='.$value['Admin']['id']; ?>" onclick="return confirm('Bạn có chắc chắn xóa?');" class="btn btn-danger">Xóa</a>
+                                            <a href="<?php echo $this->base.'/admin/users?action=delete&id='.$value['Admin']['id']; ?>" onclick="return confirm('Bạn có chắc chắn xóa?');" class="btn btn-danger" <?php if($auth['id']==$value['Admin']['id']) echo 'disabled'; ?>>Xóa</a>
                                         </td>
                                     </tr>
                                 <?php 

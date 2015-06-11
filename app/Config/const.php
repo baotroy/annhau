@@ -56,6 +56,10 @@ class Constants
 		'thank_contact' => 'Your contact has been sent successfully!',
 		'you_left' => 'You left ',
 		'character' => ' character',
+		'oops' => 'Oops!',
+		'404' => '404 Not Found',
+		'404_message' => 'Sorry, an error has occured, Requested page not found!',
+		'take_home' => 'Take Me Home'
 		
 	);
 
@@ -94,5 +98,9 @@ class Constants
 		'thank_contact' => 'Liên hệ của bạn đã được gởi thành công!',
 		'you_left' => 'Bạn còn ',
 		'character' => ' ký tự',
+		'oops' => 'Rất tiếc!',
+		'404' => '404 Không tìm thấy trang',
+		'404_message' => 'Rất tiếc, trang bạn yêu cầu không tồn tại!',
+		'take_home' => 'Về Trang Chủ'
 	);
 }

@@ -6,7 +6,7 @@
 		<?php echo $title_layout; ?> | <?php echo site_name; ?>
 	</title>
 	<link href="<?php echo $this->base ?>/css/enhance.css" type="text/css" rel="stylesheet">
-	<link href="<?php echo $this->base ?>/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+	<link href="<?php echo $this->base ?>/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all">
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/component.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/categ.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->base ?>/css/font.css" />

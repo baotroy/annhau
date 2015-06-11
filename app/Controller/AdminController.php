@@ -3,11 +3,9 @@
 App::uses('AppController', 'Controller');
 
 class AdminController extends AppController {
-	public $uses = array('Category', 'Product', 'Banner', 'Admin', 'Setting', 'Inquiry');
-
-	public $components = array(
-		'Session',
-        'Common');
+	public $uses = array('Category', 'Product', 'Banner', 'Admin', 'Setting', 'Inquiry', 'SubCat');
+	private $breadcrumb;
+	public $components = array('Session', 'Common');
 	
 	// only allow the login controllers only
 	public function beforeFilter() {
@@ -27,6 +25,7 @@ class AdminController extends AppController {
 
 		$cats = $this->Category ->manageAll();
 		$this->set('cats', $cats);
+		$this->breadcrumb[] = array('TOP' => array('controller'=>'admin','action'=>'index'));
     }
 
 	public function isAuthorized($user) {
@@ -38,16 +37,100 @@ class AdminController extends AppController {
 		$this->set('tab', 'index');
 		$this->set('pt', 'Sản phẩm');
 		$this->set('title_layout', 'Sản phẩm');
+
+		$this->breadcrumb[] = array('Sản phẩm' => array('controller'=>'admin','action'=>'index'));
+		if(isset($this->request->query['action'])){
+			$this->breadcrumb[] = array('Thêm' => array('controller'=>'admin','action'=>'index?action=add'));
+			$this->set('breadcrumb', $this->breadcrumb);
+			if($this->request->query['action'] == 'add'){
+				$this->set('pt', 'Thêm sản phẩm');
+				$this->set('mode', 'add');
+				if($this->request->is('post')){
+				
+					$data = $this->data;
+					$data['created'] = date('Y-m-d H:i:s');
+					$data['modified'] = date('Y-m-d H:i:s');
+
+					$fn = false;
+					$this->Product->set($data);
+					if($this->Product->validates()){
+						if($this->Product->save($data)){
+							$this->Session->setFlash('Đã thêm.', 'default', array('class' =>'alert alert-success'));
+						}
+					}else{
+						$this->set('item', array('Product'=>$data));
+						$this->render('product-detail');
+					}
+				
+				}
+				$this->render('product-detail');
+				return;
+			}
+			else if($this->request->query['action'] == 'edit'){
+				$this->set('pt', 'Cập nhật danh mục');
+				$this->set('mode', 'edit');
+				$this->breadcrumb[] = array('Cập nhật' => array('controller'=>'admin','action'=>'index?action=edit'));
+				$this->set('breadcrumb', $this->breadcrumb);
+				if($this->request->is('post')){
+					if(isset($this->request->query['id'])){
+						$data = $this->data;
+
+						$data['id'] = $this->request->query['id'];
+
+						$this->Product->set($data);
+						if($this->Product->validates()){
+							if($this->Product->save($data)){
+								$this->Session->setFlash('Đã cập nhật.', 'default', array('class' =>'alert alert-success'));
+								$this->redirect(array('action'=>'index'));
+							}
+						}else{
+							$this->set('item', array('Product'=>$data));
+							$this->render('product-detail');
+						}
+					}else{
+						$this->redirect(array('action'=>'index'));
+					}
+				}else{
+					if(isset($this->request->query['id'])){
+						//load data len view
+						$item =  $this->Product->getById($this->request->query['id']);
+						
+						if($item){
+							$this->set('item', $item);
+							$this->render('product-detail');
+						}
+						else{
+							throw new BadRequestException('not found');
+						}
+					}
+					else{
+						$this->redirect(array('action'=>'index'));
+					}
+				}
+				
+			}
+			else if($this->request->query['action'] == 'delete'){
+				if(isset($this->request->query['id'])){
+					if($this->Product->save(array('id'=>$this->request->query['id'], 'del_flg' => 1))){
+						$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
+						$this->redirect($_SERVER['HTTP_REFERER']);
+					}
+				}
+			}
+		}
+		$this->set('breadcrumb', $this->breadcrumb);
 	}
 
 	function category(){
 		$this->set('tab', 'category');
 		$this->set('pt', 'Danh mục');
 		$this->set('title_layout', 'Danh mục');
-
+		$this->breadcrumb[] = array('Danh mục' => array('controller'=>'admin','action'=>'category'));
 		if(isset($this->request->query['action'])){
+			$this->breadcrumb[] = array('Thêm' => array('controller'=>'admin','action'=>'category?action=add'));
+			$this->set('breadcrumb', $this->breadcrumb);
 			if($this->request->query['action'] == 'add'){
-				$this->set('pt', 'Thêm anh mục');
+				$this->set('pt', 'Thêm danh mục');
 				$this->set('mode', 'add');
 				if($this->request->is('post')){
 				
@@ -81,6 +164,8 @@ class AdminController extends AppController {
 			else if($this->request->query['action'] == 'edit'){
 				$this->set('pt', 'Cập nhật danh mục');
 				$this->set('mode', 'edit');
+				$this->breadcrumb[] = array('Cập nhật' => array('controller'=>'admin','action'=>'category?action=edit'));
+				$this->set('breadcrumb', $this->breadcrumb);
 				if($this->request->is('post')){
 					if(isset($this->request->query['id'])){
 						$data = $this->data;
@@ -122,29 +207,129 @@ class AdminController extends AppController {
 						}
 					}
 					else{
-						$this->redirect(array('action'=>'users'));
+						$this->redirect(array('action'=>'category'));
 					}
 				}
 				
 			}
 			else if($this->request->query['action'] == 'delete'){
 				if(isset($this->request->query['id'])){
-					if($this->Category->save(array('id'=>$this->request->query['id'], 'del_flg' => 1))){
+					if($this->Category->save(array('id'=>$this->request->query['id'], 'deleted' => 1))){
 						$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
-						$this->redirect($_SERVER['REQUEST_URI']);
+						$this->redirect($_SERVER['HTTP_REFERER']);
 					}
 				}
 			}
 		}
+		$this->set('breadcrumb', $this->breadcrumb);
 	}
 
 	function subcat(){
+		$this->set('tab', 'category');
+		if(!isset($this->request->query['c'])){
+			$this->redirect(array('action' => 'category'));
+		}
 
+		$cat_id = $this->request->query['c'];
+		$cat = $this->Category->getById($cat_id);
+		if(!$cat){
+			throw new  BadRequestException("Error Processing Request");
+		}
+		$SubCat = $this->SubCat->getByCat($cat_id, array('*'));
+		$this->set('category', $cat_id);
+		$this->set('items', $SubCat);
+		$this->set('pt', $cat['Category']['name_vi'].' ('.$cat['Category']['name_en'].')');
+
+		$this->breadcrumb[] = array('Danh mục' => array('controller'=>'admin','action'=>'category'));
+		$this->breadcrumb[] = array($cat['Category']['name_vi'].' ('.$cat['Category']['name_en'].')' => array('controller'=>'admin','action'=>'subcat?c='.$cat_id));
+		if(isset($this->request->query['action'])){
+			if($this->request->query['action'] == 'add'){
+				$this->breadcrumb[] = array('Thêm' => array('controller'=>'admin','action'=>'category?c='.$cat_id.'&action=add'));
+				$this->set('breadcrumb', $this->breadcrumb);
+				$this->set('pt', 'Thêm danh mục');
+				$this->set('mode', 'add');
+				if($this->request->is('post')){
+				
+					$data = $this->data;
+					$data['created'] = date('Y-m-d H:i:s');
+					$data['modified'] = date('Y-m-d H:i:s');
+
+					$fn = false;
+					$this->SubCat->set($data);
+					if($this->SubCat->validates()){
+						$data['category'] = $cat_id;
+						if($this->SubCat->save($data)){
+							$this->Session->setFlash('Đã thêm.', 'default', array('class' =>'alert alert-success'));
+						}
+					}else{
+						$this->set('item', array('SubCat'=>$data));
+						$this->render('subcat-detail');
+					}
+				
+				}
+				$this->render('subcat-detail');
+				return;
+			}
+			else if($this->request->query['action'] == 'edit'){
+				$this->set('pt', 'Cập nhật danh mục');
+				$this->set('mode', 'edit');
+				$this->breadcrumb[] = array('Cập nhật' => array('controller'=>'admin','action'=>'category?c='.$cat_id.'&action=edit'));
+				$this->set('breadcrumb', $this->breadcrumb);
+				if($this->request->is('post')){
+					if(isset($this->request->query['id'])){
+						$data = $this->data;
+
+						$data['id'] = $this->request->query['id'];
+
+						$this->SubCat->set($data);
+						if($this->SubCat->validates()){
+							if($this->SubCat->save($data)){
+								$this->Session->setFlash('Đã cập nhật.', 'default', array('class' =>'alert alert-success'));
+								$this->redirect(array('action'=>'subcat?c='.$cat_id));
+							}
+						}else{
+							$this->set('item', array('SubCat'=>$data));
+							$this->render('subcat-detail');
+						}
+					}else{
+						$this->redirect(array('action'=>'subcat?c='.$cat_id));
+					}
+				}else{
+					if(isset($this->request->query['id'])){
+						//load data len view
+						$item =  $this->SubCat->getById($this->request->query['id']);
+						
+						if($item){
+							$this->set('item', $item);
+							$this->render('subcat-detail');
+						}
+						else{
+							throw new BadRequestException('not found');
+						}
+					}
+					else{
+						$this->redirect(array('action'=>'subcat?c='.$cat_id));
+					}
+				}
+				
+			}
+			else if($this->request->query['action'] == 'delete'){
+				if(isset($this->request->query['id'])){
+					if($this->SubCat->save(array('id'=>$this->request->query['id'], 'del_flg' => 1))){
+						$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
+						$this->redirect($_SERVER['HTTP_REFERER']);
+					}
+				}
+			}
+		}
+		$this->set('breadcrumb', $this->breadcrumb);
 	}
 	function setting(){
 		$this->set('tab', 'setting');
 		$this->set('pt', 'Cài đặt');
 		$this->set('title_layout', 'Cài đặt');
+		$this->breadcrumb[] = array('Cài đặt' => array('controller'=>'admin','action'=>'setting'));
+		$this->set('breadcrumb', $this->breadcrumb);
 		if($this->request->is('post')){
 			$data = $this->data;
 			if(@$data['map']){
@@ -169,9 +354,9 @@ class AdminController extends AppController {
 
 	function contact(){
 		$this->set('tab', 'contact');
-		$this->set('pt', 'Liên hệ');
-		$this->set('title_layout', 'Liên hệ');
-
+		$this->set('pt', 'Tin nhắn');
+		$this->set('title_layout', 'Tin nhắn');
+		$this->breadcrumb[] = array('Tin nhắn' => array('controller'=>'admin','action'=>'contact'));
 		$page = 1;
         if (isset($this->params['named']['page'])) {
             $page = $this->params['named']['page'];
@@ -189,13 +374,17 @@ class AdminController extends AppController {
 		$this->set('items', $all);
 
 		if(isset($this->request->query['action'])){
+
 			if($this->request->query['action'] == 'view'){
 				if(isset($this->request->query['id'])){
 					$item = $this->Inquiry->getById($this->request->query['id']);
+
 					if(!$item){
 						throw new BadRequestException('not found');
 						
 					}
+					$this->breadcrumb[] = array($item['Inquiry']['name'] => array('controller'=>'admin','action'=>'contact?action=view'));
+					$this->set('breadcrumb', $this->breadcrumb);
 					$this->set('item', $item);
 					if(!$item['Inquiry']['read'])
 						$this->Inquiry->save(array('id'=>$this->request->query['id'], 'read' => date('Y-m-d H:i:s')));
@@ -208,19 +397,22 @@ class AdminController extends AppController {
 				if(isset($this->request->query['id'])){
 					if($this->Inquiry->save(array('id'=>$this->request->query['id'], 'del_flg' => 1))){
 						$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
-						$this->redirect($_SERVER['REQUEST_URI']);
+						$this->redirect($_SERVER['HTTP_REFERER']);
 					}
 				}
 			}
 		}
+		$this->set('breadcrumb', $this->breadcrumb);
 	}
 
 	function users(){
 		$this->set('tab', 'user');
 		$this->set('pt', 'Quản lý user');
 		$this->set('title_layout', 'Quản lý user');
-
+		$this->breadcrumb[] = array('Admin' => array('controller'=>'admin','action'=>'users'));
 		$page = 1;
+		$auth = CakeSession::read('User');
+		$this->set('auth', $auth);
         if (isset($this->params['named']['page'])) {
             $page = $this->params['named']['page'];
         }
@@ -238,6 +430,8 @@ class AdminController extends AppController {
 
 		if(isset($this->request->query['action'])){
 			if($this->request->query['action'] == 'add'){
+				$this->breadcrumb[] = array('Thêm' => array('controller'=>'admin','action'=>'users?action=add'));
+				$this->set('breadcrumb', $this->breadcrumb);
 				$this->set('pt', 'Thêm người quản lý');
 				$this->set('mode', 'add');
 				if($this->request->is('post')){
@@ -268,6 +462,9 @@ class AdminController extends AppController {
 			}
 			else if($this->request->query['action'] == 'edit'){
 				$this->set('pt', 'Cập nhật người quản lý');
+				$this->breadcrumb[] = array('Cập nhật' => array('controller'=>'admin','action'=>'users?action=edit'));
+				$this->set('breadcrumb', $this->breadcrumb);
+
 				$this->set('mode', 'edit');
 				if($this->request->is('post')){
 					if(isset($this->request->query['id'])){
@@ -310,23 +507,30 @@ class AdminController extends AppController {
 			}
 			else if($this->request->query['action'] == 'delete'){
 				if(isset($this->request->query['id'])){
-					if($this->Admin->save(array('id'=>$this->request->query['id'], 'del_flg' => 1))){
+					if($auth['id']==$this->request->query['id']){
+						$this->Session->setFlash('Không thể xóa người dùng đang đăng nhập.', 'default', array('class' =>'alert alert-warning'));
+						$this->redirect(array('action' => 'users'));
+					}
+					if($this->Admin->save(array('id'=>$this->request->query['id'], 'deleted' => 1))){
 						$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
-						$this->redirect($_SERVER['REQUEST_URI']);
+						$this->redirect($_SERVER['HTTP_REFERER']);
 					}
 				}
 			}
 		}
+		$this->set('breadcrumb', $this->breadcrumb);
 	}
 	function banner(){
 		$this->set('tab', 'banner');
 		$this->set('pt', 'Thiết lập banner');
 		$this->set('title_layout', 'Thiết lập banner');
-
+		$this->breadcrumb[] = array('Banner' => array('controller'=>'admin','action'=>'banner'));
 		$ban = $this->Banner->getAll();
 		$this->set('items', $ban);
 		if(isset($this->request->query['action'])){
 			if($this->request->query['action'] == 'add'){
+				$this->breadcrumb[] = array('Thêm' => array('controller'=>'admin','action'=>'banner?action=add'));
+				$this->set('breadcrumb', $this->breadcrumb);
 				if($this->request->is('post')){
 					$file = $_FILES['image'];
 					$new_name = 'banner'.date('yymmddHis');
@@ -343,14 +547,6 @@ class AdminController extends AppController {
 				$this->render('banner_edit');
 				return;
 			}
-			// else if($this->request->query['action'] == 'edit'){
-			// 	if(isset($this->request->query['id'])){
-			// 		$this->render('banner_edit');
-			// 		return;
-			// 	}else{
-			// 		$this->redirect(array('action'=>'banner'));
-			// 	}
-			// }
 			else if($this->request->query['action'] == 'delete'){
 				if(isset($this->request->query['id'])){
 					$item = $this->Banner->getById($this->request->query['id']);
@@ -366,10 +562,7 @@ class AdminController extends AppController {
 				}
 			}
 		}
-		// else{
-			
-		// 	$this->set('items', $ban);
-		// }
+		$this->set('breadcrumb', $this->breadcrumb);
 	}
 
 	private function __saveImage($params, $directory) {

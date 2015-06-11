@@ -3,15 +3,15 @@
         <div class="col-md-12">
             <div class="error-template">
                 <h1>
-                    Oops!</h1>
+                    <?php echo Message::label('oops') ?></h1>
                 <h2>
-                    404 Not Found</h2>
+                    <?php echo Message::label('404') ?></h2>
                 <div class="error-details">
-                    Sorry, an error has occured, Requested page not found!
+                    <?php echo Message::label('404_message') ?>
                 </div>
                 <div class="error-actions">
                     <a href="<?php echo $this->base ?>" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
-                        Take Me Home </a>
+                        <?php echo Message::label('take_home') ?> </a>
                 </div>
             </div>
         </div>

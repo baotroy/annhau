@@ -11,7 +11,7 @@
 				<div class="col-sm-12">
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#details" data-toggle="tab"><?php echo Message::label('tab_details'); ?></a></li>
-						<li><a href="#reviews" data-toggle="tab"><?php echo Message::label('tab_reviews'); ?> (<?php echo count($comments); ?>)</a></li>
+						<li><a href="#reviews" data-toggle="tab"><?php echo Message::label('tab_reviews'); ?> (<span class="countcm"><?php echo count($comments); ?></span>)</a></li>
 					</ul>
 				</div>
 				<div class="tab-content">
@@ -26,6 +26,9 @@
 								<li><i class="fa fa-user"></i><?php echo $comment['Comment']['commentator']; ?></li>
 								<li><i class="fa fa-clock-o"></i><?php echo $this->Text->time($comment['Comment']['created']); ?></li>
 								<li><i class="fa fa-calendar-o"></i><?php echo $this->Text->date($comment['Comment']['created']); ?></li>
+							<?php if($login): ?>
+								<li class="fr"><i class="rvcomment glyphicon glyphicon-remove" rel="<?php echo $comment['Comment']['id']; ?>"></i></li>
+							<?php endif; ?>
 							</ul>
 							<p><?php echo  nl2br($comment['Comment']['content']); ?></p>
 						<?php } ?>
@@ -74,5 +77,12 @@
 	$('textarea').keyup(function(){
   		length = $(this).val();
   		$('.jxleft').text(200 - length.length);
+  	});
+
+  	$(document).on('click', '.rvcomment', function(){
+  		cur = $(this);
+  		url = "<?php echo $this->base.'/comment/remove' ?>";
+  		if(confirm('Có chắc chắn xóa?'))
+  			removeComment(url, cur);
   	});
 </script>

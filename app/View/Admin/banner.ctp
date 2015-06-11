@@ -10,7 +10,7 @@
     </nav>
 
     <div id="page-wrapper">
-        
+        <?php echo $this->element('admin/breadcrumbs'); ?>
         <div class="row">
             <div class="col-lg-12">
                 <?php echo $this->element('admin/title-bar'); ?>

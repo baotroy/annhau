@@ -49,7 +49,9 @@
 	</div>
 	<div class="col-sm-7">
 		<div class="product-information"><!--/product-information-->
+		<?php if($this->Text->isNew($item['Product']['created'])){?>
 			<img src="<?php echo $this->base; ?>/images/new.jpg" class="newarrival" alt="">
+		<?php } ?>
 			<h2><?php echo $item['Product']['name_'.$lang]; ?></h2>
 			<p>Web ID: <?php echo $item['Product']['id']; ?></p>
 			

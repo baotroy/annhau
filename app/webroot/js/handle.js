@@ -38,6 +38,26 @@ function postComment(url, out){
 			$('.newreview').animate({
 				opacity: 1
 			}, 400);
+			count = $('.countcm').text();
+			count++;
+			$('.countcm').text(count);
+		}
+	});
+}
+function removeComment(url, cur){
+	rel = cur.attr('rel');
+	$.post(url, {id: rel}, function(data){
+		if(data==0){
+			utag = cur.parent().parent();
+			ptag = utag.next();
+			utag.remove();
+			ptag.remove();
+			count = $('.countcm').text();
+			count--;
+			$('.countcm').text(count);
+		}
+		else{
+			alert('Có lỗi xảy ra trong quá trình xóa!');
 		}
 	});
 }
