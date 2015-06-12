@@ -6,10 +6,10 @@
 			<img <?php echo $this->Text->images(array($item['Product']['image_1'], $item['Product']['image_2'], $item['Product']['image_3'], $item['Product']['image_4'], $item['Product']['image_5']) , DIR_PRODUCT.DIR_SMALL); ?> alt="<?php echo $item['Product']['name_'.$lang]; ?>">
 			<h3 class='jszoom'><span class="glyphicon glyphicon-zoom-in"></span></h3>
 		</div>
-		<div id="similar-product" class="carousel slide" data-ride="carousel">
+		<!-- <div id="similar-product" class="carousel slide" data-ride="carousel">
 			
 			  <!-- Wrapper for slides -->
-			    <div class="carousel-inner">
+			    <!-- <div class="carousel-inner">
 			    	<?php $images =array($item['Product']['image_1'], $item['Product']['image_2'], $item['Product']['image_3'], $item['Product']['image_4'], $item['Product']['image_5']);
 			    	$index = 0;
 			    	$active = false;
@@ -33,18 +33,18 @@
 			    		}
 			    		if($close) echo '</div>';
 			    	?>
-				</div>
+				</div> -->
 
 			  <!-- Controls -->
-			  <?php if($close) : ?>
+			<!--   <?php if($close) : ?>
 			  <a class="left item-control" href="#similar-product" data-slide="prev">
 				<i class="fa fa-angle-left"></i>
 			  </a>
 			  <a class="right item-control" href="#similar-product" data-slide="next">
 				<i class="fa fa-angle-right"></i>
 			  </a>
-			<?php endif; ?>
-		</div>
+			<?php endif; ?> 
+		</div> -->
 
 	</div>
 	<div class="col-sm-7">
@@ -54,9 +54,7 @@
 		<?php } ?>
 			<h2><?php echo $item['Product']['name_'.$lang]; ?></h2>
 			<p>Web ID: <?php echo $item['Product']['id']; ?></p>
-			
-			<!-- <img src="<?php echo $this->Text->images(array($item['Product']['image_1'], $item['Product']['image_2'], $item['Product']['image_3'], $item['Product']['image_4'], $item['Product']['image_5']) , DIR_PRODUCT); ?>" alt=""> -->
-			<!-- <p><b>Availability:</b> In Stock</p> -->
+
 			<p><?php echo Message::label('category'); ?>: <a href="<?php echo $this->base.'/products?c=' .$this->Text->clean($item['SubCat']['name_'.$lang]).'-' . $item['SubCat']['id']; ?>"><b><?php echo $item['SubCat']['name_'.$lang]; ?></b></a></p>
 			<?php $rated = round($item['Product']['rate']); ?>
 			<p class="rater clearfix">
@@ -68,13 +66,7 @@
 				
 				<span id="rate-text"><?php echo  round($item['Product']['rate'], 2).'/'.$item['Product']['rate_count'] ?></span>
 			</p>
-			  <!-- <input type="radio" name="rating" value="1"><i></i>
-			  <input type="radio" name="rating" value="2"><i></i>
-			  <input type="radio" name="rating" value="3"><i></i>
-			  <input type="radio" name="rating" value="4"><i></i>
-			  <input type="radio" name="rating" value="5"><i></i> -->
-			
-			<p><?php echo $item['Product']['short_description_'.$lang]; ?></p>
+			<p><?php echo $item['Product']['long_description_'.$lang]; ?></p>
 
 
 		</div><!--/product-information-->

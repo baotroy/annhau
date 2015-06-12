@@ -59,7 +59,7 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="<?php echo $this->base.'/admin/users'; ?>"><i class="fa fa-user fa-fw"></i> Quản lý user</a>
                         </li>
-                        <li><a href="<?php echo $this->base.'/admin/setting'; ?>"><i class="fa fa-gear fa-fw"></i> Thiết lập</a>
+                        <li><a href="<?php echo $this->base.'/admin/setting'; ?>"><i class="fa fa-gear fa-fw"></i> Cài đặt</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="<?php echo $this->base.'/admin/logout'; ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 body{
 	margin:0;
 	font-family: 'Raleway', sans-serif;
-	background: url('../images/bg.png');
+	background: #f7f7f7;
 	background-repeat: repeat;
 }
 body a{
@@ -237,6 +237,12 @@ ul.nav1 {
 /*--blog--*/
 .blog{
 	padding-top:6em;
+}
+.top-cat{
+	margin-top: 1em
+}
+.blog-one{
+	display: inline-block;
 }
 .blog-top{
 	text-align:center;
@@ -1596,7 +1602,7 @@ span.menu img {
   	padding: 6.45em 0em 6em 3em;
 }
 .blog-left:nth-child(2){
-	margin-top:2em;
+	/*margin-top:2em;*/
 }
 .social-icons {
   	float: right;

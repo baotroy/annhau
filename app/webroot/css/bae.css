@@ -10,7 +10,7 @@ span.unotif{
 	float: right
 }
 .tbl-non{
-	width: 550px;
+	width: 700px;
 }
 .tbl-non>tbody>tr>td{
 	border-top: 0px;
@@ -25,5 +25,8 @@ input.error, select.error, textarea.error{
 	float: right
 }
 .rmcat:hover{
+	color: #cc0000;
+}
+.error{
 	color: #cc0000;
 }

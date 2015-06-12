@@ -70,3 +70,6 @@ function popitup(url) {
 function putError(cn){
 	$('.jx'+cn).addClass('error');
 }
+function setMask(url){
+	
+}

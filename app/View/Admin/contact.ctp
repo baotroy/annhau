@@ -64,33 +64,29 @@
                             </table>
                         </div>
                         <!-- /.table-responsive -->
+                         <?php
+                        if (count($items) > 0) :
+                            echo $this->Paginator->counter(array(
+                                'format' => __('')
+                            ));
+                            ?>    
+                                <div class="col-xs-12" align="center">
+                                    <ul class="pagination">
+                                        <?php if ($this->Paginator->hasPrev()) { ?>
+                                        <?php echo $this->Paginator->prev('«', array('escape' => false, 'tag' => 'li'), null, array('escape' => false, 'class' => 'previous disabled', 'disabledTag' => 'a')); ?>
+                                        <?php } ?>
+                                        <?php echo $this->Paginator->numbers(array('separator' => '', 'currentTag' => 'a', 'currentClass' => 'active', 'tag' => 'li', 'first' => 1, 'ellipsis' => '<li><a>...</a></li>')); ?>
+
+                                        <?php if ($this->Paginator->hasNext()) { ?>
+                                        <?php echo $this->Paginator->next('»', array('escape' => false,'tag'=>'li'), null, array('escape' => false, 'class' => 'disabled', 'disabledTag' => 'a', )); ?>
+                                        <?php } ?>
+                                    </ul>
+                                </div><!-- /col -->                     
+                        <?php endif; ?>   
                     </div>
                     <!-- /.panel-body -->
                 </div>
-            </div>
-            <?php
-                if (count($items) > 0) :
-                    echo $this->Paginator->counter(array(
-                        'format' => __('')
-                    ));
-                    ?>    
-                        <div class="col-xs-12" align="center">
-                            <ul class="pagination">
-                     <?php if ($this->Paginator->hasPrev()) { ?>
-                                <?php echo $this->Paginator->prev('«', array('escape' => false, 'tag' => 'li'), null, array('escape' => false, 'class' => 'previous disabled', 'disabledTag' => 'a')); ?>
-                            <?php } ?>
-                    <?php echo $this->Paginator->numbers(array('separator' => '', 'currentTag' => 'a', 'currentClass' => 'active', 'tag' => 'li', 'first' => 1, 'ellipsis' => '<li><a>...</a></li>')); ?>
-
-                     <?php if ($this->Paginator->hasNext()) { ?>
-                                <?php echo $this->Paginator->next('»', array('escape' => false,'tag'=>'li'), null, array('escape' => false, 'class' => 'disabled', 'disabledTag' => 'a', )); ?>
-                            <?php } ?>
-                            </ul>
-                        </div><!-- /col -->                     
-                        <?php endif; ?>   
-                </div><!-- /row -->
-                    <?php if ($this->Paginator->hasNext() || $this->Paginator->hasPrev()) { ?>
-                <?php } ?>
-            </div><!--features_items-->
+            </div>                
         </div>
         <!-- /.row -->
     </div>

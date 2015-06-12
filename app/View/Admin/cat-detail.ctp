@@ -29,14 +29,14 @@
                                 <tr>
                                     <td width="150">Tên danh mục (Tiếng Việt)<span class="required">*</span>:</td>
                                     <td>
-                                        <input size="50" class="form-control <?php if(@$this->validationErrors['Category']['name_vi']) echo 'error'?>" style="width: 400px" type="text" name="name_vi" maxlength="20" value="<?php echo @$item['Category']['name_vi'] ?>"/>
+                                        <input size="50" class="form-control <?php if(@$this->validationErrors['Category']['name_vi']) echo 'error'?>"  type="text" name="name_vi" maxlength="20" value="<?php echo @$item['Category']['name_vi'] ?>"/>
                                     </td>
                                 </tr>
                                 
                                 <tr>
                                     <td width="150">Tên danh mục (Tiếng Anh)<span class="required">*</span>:</td>
                                     <td>
-                                        <input size="50" class="form-control <?php if(@$this->validationErrors['Category']['name_en']) echo 'error'?>" style="width: 400px" type="text" name="name_en" maxlength="50" value="<?php echo @$item['Category']['name_en'] ?>"/>
+                                        <input size="50" class="form-control <?php if(@$this->validationErrors['Category']['name_en']) echo 'error'?>"  type="text" name="name_en" maxlength="50" value="<?php echo @$item['Category']['name_en'] ?>"/>
                                     </td>
                                 </tr>
                                 <tr>

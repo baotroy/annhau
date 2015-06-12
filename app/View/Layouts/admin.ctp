@@ -32,7 +32,7 @@
     <?php
     // Script Loading
 
-    echo $this->Html->script(array('jquery.min','bootstrap.min', 'sb-admin-2', 'metisMenu.min', 'jquery.uploadfile.min', 'valid'));   // jQuery & bootstrap genuine script
+    echo $this->Html->script(array('jquery.min','bootstrap.min', 'sb-admin-2', 'metisMenu.min', 'jquery.uploadfile.min', 'valid', 'ax'));   // jQuery & bootstrap genuine script
     echo $this->fetch('script');                                            // View append scripts
     echo $this->fetch('script_content');                                    // Script content block loading
     ?>

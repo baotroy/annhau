@@ -33,7 +33,7 @@
 		<!-- <div class="container">
 			<h3><?php echo Message::label('best_products'); ?></h3>
 		</div> -->
-		<div>
+		<div class="container">
 			<?php echo $this->element('slider'); ?>
 		</div>
 	</div>
@@ -46,19 +46,19 @@
 				<h3><?php echo Message::label('categories'); ?></h3>
 			</div>
 			<div class="blog-bottom">
-				<?php
-					$index = 0;
-				 foreach(@$cats as $key => $cat): 
-				 	if($index%2==0) echo '<div class="blog-one">';
-				 ?>
+			<?php
+				$index = 0;
+			 foreach(@$cats as $key => $cat): 
+			 	if($index%2==0){ echo '<div class="blog-one">';}
+			 ?>
 
-					<div class="col-md-6 blog-left">
-						<div class="col-md-5 blog-left-one">
+					<div class="col-xs-6 blog-left top-cat">
+						<div class="col-xs-5 blog-left-one">
 							<a href="<?php echo $this->base.'/products?m='.$this->Text->clean($cat['Category']['name_'.$lang]).'-'.$cat['Category']['id']; ?>">
-								<img <?php echo $this->Text->images(array($cat['Product']['image_1'], $cat['Product']['image_2'], $cat['Product']['image_3'], $cat['Product']['image_4'], $cat['Product']['image_5']) , DIR_PRODUCT.DIR_SMALL); ?> alt="<?php echo $cat['Category']['name_'.$lang]; ?>"/>
+								<img src="<?php echo $this->Text->image($cat['Category']['image'] , DIR_PRODUCT); ?>" alt="<?php echo $cat['Category']['name_'.$lang]; ?>"/>
 							</a>
 						</div>
-						<div class="col-md-7 blog-left-two">
+						<div class="col-xs-7 blog-left-two">
 							<!-- <label>Monday, 30 March 2014 17:09</label> -->
 							<a href="<?php echo $this->base.'/products?m='.$cat['Category']['id']; ?>"><h4><?php echo $cat['Category']['name_'.$lang]; ?></h4></a>
 							<p><?php echo $cat['Category']['description_'.$lang]; ?></p>
@@ -66,11 +66,11 @@
 						<div class="clearfix"></div>
 					</div>
 					
-				<?php if($index%2==0 || $index == count($cats)-1) echo '</div>';
+				<?php 
+				if((($index+1)%2==0 && $index>0)|| $index == count($cats)-1) echo '</div>';
 				$index++;
 				endforeach; ?>
-					<div class="clearfix"></div>
-				</div>
+				<div class="clearfix"></div>
 
 			</div>
 		</div>
@@ -94,7 +94,7 @@
 						</a>
 					</div>
 				<?php
-					if(($key%4 ==0 && $key>0)|| $key == count($latest)-1) echo '<div class="clearfix"> </div></div>';
+					if((($key+1)%4 ==0 && $key>0)|| $key == count($latest)-1) echo '<div class="clearfix"> </div></div>';
 				 endforeach; ?>
 					
 			</div>
@@ -141,49 +141,47 @@
 		
 	</div>	
 <!-- Modal -->
-<div id="latest" class="modal fade" role="dialog">
+<div id="latest" class="modal fade" role="dialog" style="display: none">
   <div class="modal-dialog loading">
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
       <div class="modal-body">
-        <div class="container">
-			<div class="row">
-				<div class="col-sm-9 padding-right content">
-					Loading...
-				</div>
-			</div>	
+    	<div class="col-sm-9 padding-right content">
+			
 		</div>
-
-
-
-				
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-close glyphicon glyphicon-remove" data-dismiss="modal"></button>
       </div>
-     <!--  <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div> -->
     </div>
 
   </div>
 </div>
 <script>
 	$('.mask').click(function(){
-		id = $(this).attr('data-id');
-		name = $(this).attr('data-name');
-		$('.modal-title').html(name);
-		$('#latest').on('shown.bs.modal', function(){
-			url = "<?php echo $this->base.'/products/getajax/';?>" + id;
-			$.get( url, function(data){
-				$('.modal-dialog').removeClass('loading');
-				setTimeout(function(){
-					$('#latest .content').html(data);
-				},500);
-				
+		$('.modal-dialog').addClass('loading');
+		loader = '<img class="loader" src="<?php echo $this->base; ?>/images/loading.gif">';
+		$('#latest .content').html(loader);
+		$('.modal-content').removeAttr('style');
+
+		ref = $(this).find('img').attr('ref');
+		alt =  $(this).find('img').attr('alt');
+
+		$('#latest').on('shown.bs.modal', function(){			
+			newimage = '<img id="streamer" class="streamer" src="'+ref+'" alt="'+alt+'" style="opacity: 0">';
+			$('#latest .content').html(newimage);
+			$('.streamer').load(function(){
+				$('.loading').removeClass('loading');
+				$('.loader').remove();
+				$(this).animate({
+					opacity: 1
+				},500, function(){
+					$('.modal-content').attr('style', 'background: transparent');
+				});
+
 			});
+				
 		});
 	});
 

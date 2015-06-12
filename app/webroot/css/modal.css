@@ -1,0 +1,37 @@
+.modal-backdrop.in{
+	opacity: 0.9
+}
+.modal-content {
+  position: relative;
+  border: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-clip: padding-box;
+  background: transparent;
+}
+.modal-footer{
+	border: 0px;
+	padding: 4px 10px;
+	margin: 0px;
+}
+.btn-close{
+	background: transparent;
+	color: #c0c0c0;
+	font-size: 1.8em;
+	border: none;
+	padding: 0px 24px;
+}
+.btn-close:hover{
+	color: #c0c0c0;
+}
+.modal-content img.streamer{
+	width: 100%
+}
+
+.loading .content{
+	text-align: center;
+}
+.loader{
+	width: 100px;
+}

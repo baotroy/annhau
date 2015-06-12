@@ -5,7 +5,7 @@ App::uses('AppController', 'Controller');
 class AdminController extends AppController {
 	public $uses = array('Category', 'Product', 'Banner', 'Admin', 'Setting', 'Inquiry', 'SubCat');
 	private $breadcrumb;
-	public $components = array('Session', 'Common');
+	public $components = array('Session', 'Common', 'ResizeImage');
 	
 	// only allow the login controllers only
 	public function beforeFilter() {
@@ -40,18 +40,22 @@ class AdminController extends AppController {
 
 		$this->breadcrumb[] = array('Sản phẩm' => array('controller'=>'admin','action'=>'index'));
 		if(isset($this->request->query['action'])){
-			$this->breadcrumb[] = array('Thêm' => array('controller'=>'admin','action'=>'index?action=add'));
-			$this->set('breadcrumb', $this->breadcrumb);
+			
 			if($this->request->query['action'] == 'add'){
+				$this->breadcrumb[] = array('Thêm' => array('controller'=>'admin','action'=>'index?action=add'));
+				$this->set('breadcrumb', $this->breadcrumb);
 				$this->set('pt', 'Thêm sản phẩm');
 				$this->set('mode', 'add');
 				if($this->request->is('post')){
 				
 					$data = $this->data;
+					$data['available'] = 1;
 					$data['created'] = date('Y-m-d H:i:s');
 					$data['modified'] = date('Y-m-d H:i:s');
+					$files = $_FILES;
 
-					$fn = false;
+					$this->__save_series_image($files, $data);
+			
 					$this->Product->set($data);
 					if($this->Product->validates()){
 						if($this->Product->save($data)){
@@ -67,21 +71,22 @@ class AdminController extends AppController {
 				return;
 			}
 			else if($this->request->query['action'] == 'edit'){
-				$this->set('pt', 'Cập nhật danh mục');
+				$this->set('pt', 'Cập nhật sản phẩm');
 				$this->set('mode', 'edit');
 				$this->breadcrumb[] = array('Cập nhật' => array('controller'=>'admin','action'=>'index?action=edit'));
 				$this->set('breadcrumb', $this->breadcrumb);
 				if($this->request->is('post')){
 					if(isset($this->request->query['id'])){
 						$data = $this->data;
-
 						$data['id'] = $this->request->query['id'];
-
+						$files = $_FILES;
+						$this->__save_series_image($files, $data);
 						$this->Product->set($data);
 						if($this->Product->validates()){
 							if($this->Product->save($data)){
 								$this->Session->setFlash('Đã cập nhật.', 'default', array('class' =>'alert alert-success'));
-								$this->redirect(array('action'=>'index'));
+								return $this->redirect(array('action'=>'index'));
+
 							}
 						}else{
 							$this->set('item', array('Product'=>$data));
@@ -93,8 +98,14 @@ class AdminController extends AppController {
 				}else{
 					if(isset($this->request->query['id'])){
 						//load data len view
-						$item =  $this->Product->getById($this->request->query['id']);
-						
+						$item =  $this->Product->getBy('first', $this->request->query['id'], false);
+
+						$subcat = $this->SubCat->getById($item['Product']['category'], array('SubCat.category'));
+						$this->set('current_cat', $subcat['SubCat']['category']);
+
+						$subcat_list = $this->SubCat->getByCat($subcat['SubCat']['category']);
+						$this->set('sub_cat_list', $subcat_list);
+
 						if($item){
 							$this->set('item', $item);
 							$this->render('product-detail');
@@ -118,6 +129,43 @@ class AdminController extends AppController {
 				}
 			}
 		}
+		//SHOW LIST
+		$joins = array(
+    		array(
+                'table' => 'subcategories',
+                'alias' => 'SubCat',
+                'type' => 'INNER',
+                'conditions' => array(
+                    'Product.category = SubCat.id',
+                    '`SubCat`.`deleted`' => 0,)
+                ),
+    		array(
+                'table' => 'categories',
+                'alias' => 'Category',
+                'type' => 'INNER',
+                'conditions' => array(
+                    'Category.id = SubCat.category',
+                    '`Category`.`deleted`' => 0,)
+                ),
+        );
+
+        $page = 1;
+        if (isset($this->params['named']['page'])) {
+            $page = $this->params['named']['page'];
+        }
+		$this->paginate = array(
+            'Product' => array(
+                'limit' => ADMIN_LIMIT,
+                'page' => $page,
+                'fields' => array('Product.id', 'Product.name_vi', 'Product.name_en', 'Product.available', 'Category.name_vi', 'SubCat.name_vi'),
+                'joins' => $joins,
+                'conditions' => array('Product.deleted'=>0),
+                'order' => array('created' => 'desc'),
+            ),
+        );
+        $all = $this->paginate('Product');
+		$this->set('items', $all);
+
 		$this->set('breadcrumb', $this->breadcrumb);
 	}
 
@@ -580,6 +628,49 @@ class AdminController extends AppController {
         if (move_uploaded_file($params['tmp_name'], $destination)) {
             return $params['new_name'].'.'.$ext;
         }return false;
+    }
+
+    private function __save_series_image($files, &$data){
+    	$index =0;
+    	foreach ($files as $key => $file) {
+    		if($file['name']){
+	    		$file_name = 'p'.$index.date('yymdhis');
+	    		$file['new_name'] = $file_name;
+	    		$fn = $this->__saveImage($file, DIR_PRODUCT);
+	    		copy(WWW_ROOT.DIR_IMAGE.DIR_PRODUCT.$fn, WWW_ROOT.DIR_IMAGE.DIR_PRODUCT.DIR_SMALL.$fn);
+	    		$data[$key] = $fn;
+	    		$this->__resizeSmall($fn);
+	    	}
+    		$index++;
+    	}
+    	//return $images;
+    }
+    private function __resizeSmall($img){
+    	$path = WWW_ROOT.DIR_IMAGE.DIR_PRODUCT.DIR_SMALL;
+    	
+    	$source = $path.$img;
+
+
+    	$this->ResizeImage->load($source);
+        $imageInfo = getimagesize($source);
+        if($imageInfo[0] > 256){//0 -> width, 1 -> height
+            $this->ResizeImage->resize(256, 256);
+            $this->ResizeImage->save($source);
+        }
+        return true;
+    }
+    function axcat(){
+    	if($this->request->is('ajax')){
+    		$category = $this->data['category'];
+    		$subcats = $this->SubCat->getByCat($category);
+    		$ret['code'] = 0;
+    		if(!$subcats) $ret['code'] = 1;
+    		foreach ($subcats as $key => $value) {
+    			$ret['result'][] = array('id' => $value['SubCat']['id'], 'name' => $value['SubCat']['name_vi']);
+    		}
+    		echo json_encode($ret);
+    	}
+    	exit;
     }
 	function login(){
 		//if already logged-in, redirect

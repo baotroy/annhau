@@ -6,20 +6,39 @@
 		</div>
 		<div class="col-sm-9 padding-right">
 			<?php echo $this->element('product-detail'); ?>
-			
+			<div>
+				<?php $images =array($item['Product']['image_1'], $item['Product']['image_2'], $item['Product']['image_3'], $item['Product']['image_4'], $item['Product']['image_5']);
+			    
+			    	foreach ($images as $key => $value) {
+
+			    		if($this->Text->image_exist($value, DIR_PRODUCT.DIR_SMALL)) {
+			    		?>
+			    		<p class="image-item">
+			    			<a href="#" onclick="popitup('<?php echo $this->Text->image($value, DIR_PRODUCT) ?>'); return false;">
+			    				<img src="<?php echo $this->Text->image($value, DIR_PRODUCT) ?>" alt="<?php echo $item['Product']['name_'.$lang]; ?>" ref="<?php echo $this->Text->image($value, DIR_PRODUCT);?>">
+			    			</a>
+			    		</p>
+			    		<?php
+			    			
+			    			}
+			    		
+			    		}
+			    	
+			    	?>
+			</div>
 			<div class="category-tab shop-details-tab"><!--category-tab-->
 				<div class="col-sm-12">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#details" data-toggle="tab"><?php echo Message::label('tab_details'); ?></a></li>
+						<!-- <li class="active"><a href="#details" data-toggle="tab"><?php echo Message::label('tab_details'); ?></a></li> -->
 						<li><a href="#reviews" data-toggle="tab"><?php echo Message::label('tab_reviews'); ?> (<span class="countcm"><?php echo count($comments); ?></span>)</a></li>
 					</ul>
 				</div>
 				<div class="tab-content">
-					<div class="tab-pane fade active in" id="details">
+					<!-- <div class="tab-pane fade active in" id="details">
 						<?php echo $item['Product']['long_description_'.$lang]; ?>
-					</div>
+					</div> -->
 					
-					<div class="tab-pane fade " id="reviews">
+					<div class="tab-pane fade active in" id="reviews">
 						<div class="col-sm-12">
 						<?php foreach ($comments as $key => $comment) {?>
 							<ul>

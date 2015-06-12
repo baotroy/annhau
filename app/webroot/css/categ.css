@@ -1009,18 +1009,20 @@ h2.title {
 .category-tab ul li a {
   border: 0 none;
   border-radius: 0;
-  color: #B3AFA8;
+  background:#c1a55b;
+  color:#fff;
   display: block;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   text-transform: uppercase;
 }
-
-.category-tab ul  li  a:hover{
-	background:#c1a55b;
-	color:#fff;
+.image-item{
+  padding: 10px;
+  text-align: center
 }
-
+.image-item img{
+  max-width: 100%;
+}
 .nav-tabs  li.active  a, .nav-tabs  li.active  a:hover, .nav-tabs  li.active  a:focus {
   -moz-border-bottom-colors: none;
   -moz-border-left-colors: none;
@@ -2720,7 +2722,12 @@ h2.title {
   overflow-x: hidden
 }
 .modal-dialog .content{
-  width: 100%
+  width: 100%;
+  padding: 0px;
+  border: 4px solid #fff;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
 }
 @media (min-width: 1200px){
   .modal-dialog .container{
@@ -2735,7 +2742,7 @@ h2.title {
 }
 @media (min-width: 768px){
   .modal-dialog{
-    width: 770px;
+    width: 70%
   }
 }
 @media (max-width: 676px){

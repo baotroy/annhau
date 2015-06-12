@@ -91,8 +91,7 @@ class SearchController extends AppController {
         );
         $data = $this->paginate('Product');
 
-        $count = $this->Product->find('count',array('joins' => $joins,
-    'conditions' => $conditions,));
+        $count = $this->Product->find('count',array('joins' => $joins,'conditions' => $conditions,));
 		$this->set('cat_title', Message::label('result_for').' "'.$q.'"');
         $this->set('count', $count);
        	$this->set('items', $data);		
