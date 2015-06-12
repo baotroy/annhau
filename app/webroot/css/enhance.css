@@ -12,3 +12,6 @@
 .rvcomment:hover{
 	color: #cc0000 !important;
 }
+.pluginButton{
+	background: red !important
+}

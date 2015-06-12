@@ -100,6 +100,7 @@ class TextHelper extends Helper {
 	}
 
 	function image($file = '', $dir =''){
+		if($file == '') return $this->base.FS.DIR_IMAGE.NO_IMAGE;
 		$file_path = WWW_ROOT.DIR_IMAGE.$dir.$file;
 
 		if(file_exists($file_path)){

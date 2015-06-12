@@ -33,6 +33,7 @@ class AdminController extends AppController {
 		
 		return true;
 	}
+
 	public function index() {
 		$this->set('tab', 'index');
 		$this->set('pt', 'Sản phẩm');
@@ -611,6 +612,22 @@ class AdminController extends AppController {
 			}
 		}
 		$this->set('breadcrumb', $this->breadcrumb);
+	}
+	function about(){
+		$this->set('tab', 'banner');
+		$this->set('pt', 'Thông tin');
+		$this->set('title_layout', 'Thông tin');
+		$this->breadcrumb[] = array('Thông tin' => array('controller'=>'admin','action'=>'about'));
+
+		if($this->request->is('post')){
+			$data = $this->data['form'];
+			$data['id'] = 1;
+			if($this->Setting->save($data)){
+				$this->Session->setFlash('Đã cập nhật.', 'default', array('class' =>'alert alert-success'));
+			}
+		}
+		$data = $this->Setting->getAll();
+		$this->set('item', $data);
 	}
 
 	private function __saveImage($params, $directory) {

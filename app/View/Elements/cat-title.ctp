@@ -7,4 +7,11 @@ if($lang == 'en'){
         $item_text .= 's';
     }
 }
- echo $cat_title.' ('.$count.' '.$item_text.')'; ?></h4></div>
+if(!isset($search_page)){
+ echo $cat_title.' ('.$count.' '.$item_text.')';
+}
+else{
+	echo Message::label('result_for').' "'.$cat_title.'" ('.$count.' '.$item_text.')';
+}
+  ?></h4></div>
+

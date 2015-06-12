@@ -19,6 +19,15 @@
 	<!-- Custom Theme files -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta property="fb:app_id" content="<?php echo fb_app; ?>" />
+    <meta property="og:title" content="<?php echo @$og_title; ?>">
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="<?php echo @$og_description; ?>">
+    <meta property="og:url" content="<?php echo @$og_url; ?>">
+    <meta property="og:image" content="<?php echo @$og_image; ?>">
+    <meta property="og:site_name" content="<?php echo site_name; ?>">
+
 	<?php     echo $this->Html->meta('icon', 'favicon.ico'); ?>
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<!--<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700' rel='stylesheet' type='text/css'>-->
@@ -59,6 +68,15 @@
 	</script>
 </head>
 <body><?php $lang = CakeSession::read('lang');?>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script> 	
+
 	<!--header-->
 	<div class="banner">
 		<div class="container head-nav">
@@ -211,7 +229,7 @@
 			 <ul>
 				<li><?php echo $this->element('search'); ?></li>
 				<li><a href="#"><span class="twt"> </span></a></li>
-				<li><a href="#"><span class="fb"> </span></a></li>
+				<li><a href=""><span class="fb"> </span></a></li>
 				<!-- <li><a href="#"><span class="in"> </span></a></li>
 				<li><a href="#"><span class="dot"> </span></a></li> -->
 			</ul>

@@ -12,18 +12,17 @@
 			    	foreach ($images as $key => $value) {
 
 			    		if($this->Text->image_exist($value, DIR_PRODUCT.DIR_SMALL)) {
+			    			$imageInfo = getimagesize(WWW_ROOT.DIR_IMAGE.DIR_PRODUCT.$value);
 			    		?>
 			    		<p class="image-item">
-			    			<a href="#" onclick="popitup('<?php echo $this->Text->image($value, DIR_PRODUCT) ?>'); return false;">
+			    			<a  href="#modal" data-toggle="modal" data-target="#popup" class="mask" meta="<?php echo $imageInfo[0]; ?>">
 			    				<img src="<?php echo $this->Text->image($value, DIR_PRODUCT) ?>" alt="<?php echo $item['Product']['name_'.$lang]; ?>" ref="<?php echo $this->Text->image($value, DIR_PRODUCT);?>">
 			    			</a>
 			    		</p>
 			    		<?php
 			    			
 			    			}
-			    		
 			    		}
-			    	
 			    	?>
 			</div>
 			<div class="category-tab shop-details-tab"><!--category-tab-->
@@ -81,7 +80,24 @@
 		</div>
 	</div>	
 </div>
+<!-- Modal -->
+<div id="popup" class="modal fade" role="dialog" style="display: none">
+  <div class="modal-dialog loading">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+    	<div class="col-sm-9 padding-right content">
+			
+		</div>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <script type="text/javascript">
 	$('#comment').click(function(){
 		url = "<?php echo $this->base.'/comment/write' ?>";
@@ -104,4 +120,42 @@
   		if(confirm('Có chắc chắn xóa?'))
   			removeComment(url, cur);
   	});
+
+  	$('.mask').click(function(){
+  		$('.modal-dialog').removeAttr('style');
+		$('.modal-dialog').addClass('loading');
+		loader = '<img class="loader" src="<?php echo $this->base; ?>/images/loading.gif">';
+		$('#popup .content').html(loader);
+		$('.modal-content').removeAttr('style');
+
+		ref = $(this).find('img').attr('ref');
+		alt =  $(this).find('img').attr('alt');
+		winWidth = $(window).width();
+		winWidth = winWidth * 0.7;
+		imageWidth = $(this).attr('meta');
+		imageWidth = parseInt(imageWidth);
+			console.log($('.modal-dialog'));
+		if(imageWidth < winWidth){
+			
+			imageWidth += 40;
+			
+			$('.modal-dialog').attr('style', 'max-width:'+imageWidth+'px');
+		}
+
+		$('#popup').on('shown.bs.modal', function(){			
+			newimage = '<img id="streamer" class="streamer" src="'+ref+'" alt="'+alt+'" style="opacity: 0">';
+			$('#popup .content').html(newimage);
+			$('.streamer').load(function(){
+				$('.loading').removeClass('loading');
+				$('.loader').remove();
+				$(this).animate({
+					opacity: 1
+				},500, function(){
+					$('.modal-content').attr('style', 'background: transparent');
+				});
+
+			});
+				
+		});
+	});
 </script>

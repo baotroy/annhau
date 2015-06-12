@@ -50,6 +50,12 @@ class AppController extends Controller {
         } 
 	}
 	function beforeFilter() {
-
+		$this->beforeRender();
+    }
+    function set_facebook($title, $description, $url, $image){
+    	$this->set('og_title', $title);
+		$this->set('og_description', $description);
+		$this->set('og_url', $url);
+		$this->set('og_image', $image);
     }
 }

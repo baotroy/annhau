@@ -1,5 +1,6 @@
 <?php
 define('site_name', "Ryta Decor' Accessories");
+define('fb_app', "");
 
 define('NO_ITEMS', 'No items');
 define('LIMIT', 3);
@@ -15,6 +16,7 @@ define('DIR_SMALL', 'small/');//width: 320
 define('DIR_CATEGORY', 'categories/');
 define('DIR_BANNER', 'banners/');
 
+define('LOGO', DIR_IMAGE.'logog.png');
 
 define('ADMIN_LIMIT', 5);
 class Constants

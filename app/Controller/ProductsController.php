@@ -23,14 +23,22 @@ class ProductsController extends AppController {
 		$this->set('cats', $cats);
         $this->set('menu', 'product');
 		$cat = false;
+        $og_title = site_name;
+        $og_description = site_name;
+        $og_image = $this->base.LOGO;
+
 		if(isset($this->request->query['c'])){
 			$cat =$this->request->query['c'];
 			$cat =substr($cat,strrpos($cat, '-')+1);
 			$this->set('cat', $cat);
 			
 			$cat_title = $this->SubCat->getById($cat, array('name_'.$lang));
-            if($cat_title)
+            if($cat_title){
 			     $this->set('cat_title', $cat_title['SubCat']['name_'.$lang]);
+                 $this->set('title_layout', $cat_title['SubCat']['name_'.$lang]);
+                 $og_title = $cat_title['SubCat']['name_'.$lang];
+                 $og_description = $og_title;
+             }
              else
                 $this->set('cat_title','');
 		}
@@ -39,18 +47,27 @@ class ProductsController extends AppController {
             $cat =substr($cat,strrpos($cat, '-')+1);
             $this->set('mcat', $cat);
 
-            $cat_title = $this->Category->getById($cat, array('name_'.$lang));
-            if($cat_title)
+            $cat_title = $this->Category->getById($cat, array('name_'.$lang, 'description_'.$lang, 'image'));
+            if($cat_title){
                 $this->set('cat_title', $cat_title['Category']['name_'.$lang]);
+                $this->set('title_layout',$cat_title['Category']['name_'.$lang]);
+                $og_title = $cat_title['Category']['name_'.$lang];
+                $og_description = $cat_title['Category']['description_'.$lang];
+                $og_image = $this->base.DIR_IMAGE.DIR_PRODUCT.$cat_title['Category']['image'];
+            }
             else
                 $this->set('cat_title','');
         }
-		else
+		else{
 			$this->set('cat_title', Message::label('new_products'));
+         //   $this->set('title_layout', Message::label('new_products'));
+        }
+
+        
+        $og_url = $_SERVER['REQUEST_URI'];
+        $this->set_facebook($og_title, $og_description, $og_url, $og_image);    
 	}
 	public function index($cat = false) {
-		$this->set('title_layout', 'Products');
-
 		
 		$joins = array(
     		array(
@@ -84,6 +101,9 @@ class ProductsController extends AppController {
                     '`Category`.`deleted`' => 0,
                 ));
         }
+        else{
+            $this->set('title_layout', Message::label('new_products'));
+        }
         $order = array('Product.created' => 'desc');
 
         //get order
@@ -97,9 +117,7 @@ class ProductsController extends AppController {
         	}
         	$order = array($sort => $by);
         }
-        //end order
-        //echo '<pre>';print_r($order); exit;
-
+       
         $page = 1;
         if (isset($this->params['named']['page'])) {
             $page = $this->params['named']['page'];
@@ -117,9 +135,9 @@ class ProductsController extends AppController {
         );
         $count = $this->Product->find('count',array('joins' => $joins, 'conditions' => $conditions,));
         $data = $this->paginate('Product');
-
+        
         $this->set('count', $count);
-       	$this->set('items', $data);		
+       	$this->set('items', $data);
 	}
 
 	function detail(){
@@ -134,7 +152,6 @@ class ProductsController extends AppController {
             $admin = true;
         }
         $this->set('login', $admin);
-		$this->set('title_layout', 'Products');
 		$id =substr($id,strrpos($id, '-')+1);
         $this->set('id', $id);
         if(!is_numeric($id)){
@@ -142,13 +159,14 @@ class ProductsController extends AppController {
             exit;
         }
         $res = $this->Product->getBy('first', $id);
-
+        $lang = CakeSession::read('lang');
         //get comments
         $comments = $this->Comment->getAll($id);
         $this->set('comments', $comments);
         if($res){
             $this->set('item', $res);
             $this->set('cat', $res['SubCat']['id']);
+            $this->set('title_layout', $res['Product']['name_'.$lang]);
         }
         else{
             throw new BadRequestException('Could not find that post');

@@ -17,7 +17,7 @@
     echo $this->fetch('css');                       // view append css
     echo $this->Html->css(array('bootstrap.min', 'metisMenu.min', 'sb-admin-2', 'font-awesome.min', 'bae'));   // override css
     ?>
-    
+    <?php echo $scripts_for_layout; ?>
 </head>
 <body>
     <?php

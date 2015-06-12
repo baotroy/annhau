@@ -79,16 +79,22 @@
                                   <input type="text" name="fax_2" class="form-control" maxlength="20" id="fax_2" placeholder="Fax" value="<?php echo @$params['fax_2']; ?>" >
                                 </div>
                               </div>
-                            <div class="form-group">
+                              <div class="form-group">
                                 <label class="control-label col-sm-2" for="contact">Thông tin:</label>
                                 <div class="col-sm-10"> 
                                   <textarea name="contact_info_vi" cols="30" rows="5" class="form-control" id="contact"><?php echo @$params['contact_info_vi']; ?></textarea>
                                 </div>
                               </div>
-                            <div class="form-group">
+                              <div class="form-group">
                                 <label class="control-label col-sm-2" for="map">Vị trí bản đồ:</label>
                                 <div class="col-sm-10"> 
                                   <input type="text" name="map" class="form-control" id="map" maxlength="30" placeholder="Tọa độ" value="<?php echo @$params['map_lat'].', '.@$params['map_long']; ?>">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label col-sm-2" for="description_vi">Mô tả website:</label>
+                                <div class="col-sm-10"> 
+                                  <textarea name="contact_info_vi" cols="30" rows="5" class="form-control" id="description_vi"><?php echo @$params['description_vi']; ?></textarea>
                                 </div>
                               </div>
                               <div class="form-group"> 
@@ -100,31 +106,36 @@
                     </div>
                     <div class="tab-pane fade" id="tab2default">
                         <form class="form-horizontal" role="form" method="post">
-                                  <div class="form-group">
-                                        <label class="control-label col-sm-2" for="address_1_en">Địa chỉ 1:</label>
-                                        <div class="col-sm-10">
-                                          <input type="text" name="address_1_en" class="form-control" maxlength="100" id="address_1_en" placeholder="Địa chỉ 1" value="<?php echo @$params['address_1_en']; ?>">
-                                        </div>
-                                  </div>
-                                  <div class="form-group">
-                                        <label class="control-label col-sm-2" for="address_2_en">Địa chỉ 2:</label>
-                                        <div class="col-sm-10">
-                                          <input type="text" name="address_2_en" class="form-control"  maxlength="100"id="address_2_en" placeholder="Địa chỉ 2" value="<?php echo @$params['address_2_en']; ?>">
-                                        </div>
-                                  </div>
-                                <div class="form-group">
-                                        <label class="control-label col-sm-2" for="contact_en">Thông tin:</label>
-                                        <div class="col-sm-10"> 
-                                          <textarea name="contact_info_en" cols="30" rows="5" class="form-control" id="contact_en"><?php echo @$params['contact_info_en']; ?></textarea>
-                                        </div>
-                                  </div>
-
-                                  <div class="form-group"> 
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                      <button type="submit" class="btn btn-primary">Cập nhật</button>
-                                    </div>
+                          <div class="form-group">
+                                <label class="control-label col-sm-2" for="address_1_en">Địa chỉ 1:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" name="address_1_en" class="form-control" maxlength="100" id="address_1_en" placeholder="Địa chỉ 1" value="<?php echo @$params['address_1_en']; ?>">
                                 </div>
-                            </form>
+                          </div>
+                          <div class="form-group">
+                                <label class="control-label col-sm-2" for="address_2_en">Địa chỉ 2:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" name="address_2_en" class="form-control"  maxlength="100"id="address_2_en" placeholder="Địa chỉ 2" value="<?php echo @$params['address_2_en']; ?>">
+                                </div>
+                          </div>
+                        <div class="form-group">
+                                <label class="control-label col-sm-2" for="contact_en">Thông tin:</label>
+                                <div class="col-sm-10"> 
+                                  <textarea name="contact_info_en" cols="30" rows="5" class="form-control" id="contact_en"><?php echo @$params['contact_info_en']; ?></textarea>
+                                </div>
+                          </div>
+                          <div class="form-group">
+                                <label class="control-label col-sm-2" for="description_en">Mô tả website:</label>
+                                <div class="col-sm-10"> 
+                                  <textarea name="contact_info_vi" cols="30" rows="5" class="form-control" id="description_vi"><?php echo @$params['description_en']; ?></textarea>
+                                </div>
+                              </div>
+                          <div class="form-group"> 
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-primary">Cập nhật</button>
+                            </div>
+                        </div>
+                      </form>
                     </div>                    
                 </div>
             </div>

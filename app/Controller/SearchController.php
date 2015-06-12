@@ -3,7 +3,7 @@
 App::uses('AppController', 'Controller');
 
 class SearchController extends AppController {
-	public $uses = array('Category', 'Product', 'SubCat');
+	public $uses = array('Category', 'Product', 'SubCat', 'Setting');
 	public $components = array('Paginator');
 
 	function beforeFilter(){
@@ -92,10 +92,18 @@ class SearchController extends AppController {
         $data = $this->paginate('Product');
 
         $count = $this->Product->find('count',array('joins' => $joins,'conditions' => $conditions,));
-		$this->set('cat_title', Message::label('result_for').' "'.$q.'"');
+		$this->set('cat_title',$q);
+        $this->set('search_page', true);
         $this->set('count', $count);
        	$this->set('items', $data);		
 		
+        $setting = $this->Setting->getAll();
+        $lang = CakeSession::read('lang');
+        $og_title = Message::label('result_for').'"'.$q.'"-'.site_name;
+        $og_description = $setting['description_'.$lang];
+        $og_url = $_SERVER['REQUEST_URI'];
+        $og_image = $this->base.LOGO;
+        $this->set_facebook($og_title, $og_description, $og_url, $og_image);
 	}
 
 

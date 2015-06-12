@@ -27,9 +27,9 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th width="50">#</th>
-                                        <th width="600">Tên sản phẩm</th>
-                                        <th width="600">Danh mục</th>
+                                        <th width="10%">#</th>
+                                        <th width="35%">Tên sản phẩm</th>
+                                        <th width="35%">Danh mục</th>
                                         <th></th>
                                     </tr>
                                 </thead>

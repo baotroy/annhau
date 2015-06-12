@@ -89,8 +89,25 @@
 					if($key%4 ==0) echo '<div class="portfolio-one">';
 				 ?>
 					<div class="col-md-3 port-left product">
-						<a href="#modal" data-toggle="modal" data-target="#latest" class=" mask b-link-stripe b-animate-go   swipebox"  title="<?php echo $value['Product']['name_'.$lang]; ?>" data-id="<?php echo $value['Product']['id']?>" data-name="<?php echo $value['Product']['name_'.$lang]?>">
-								<img <?php echo $this->Text->images(array($value['Product']['image_1'], $value['Product']['image_2'], $value['Product']['image_3'], $value['Product']['image_4'], $value['Product']['image_5']) , DIR_PRODUCT.DIR_SMALL); ?> alt="<?php echo $value['Product']['name_'.$lang]; ?>" class="img-responsive zoom-img"/>
+					<?php $image = $this->Text->images(array($value['Product']['image_1'], $value['Product']['image_2'], $value['Product']['image_3'], $value['Product']['image_4'], $value['Product']['image_5']) , DIR_PRODUCT.DIR_SMALL);
+								$fn = substr($image, strrpos($image, '/') +1);
+								$fn =rtrim($fn, '"');
+								// echo '<pre>';print_r($fn);
+								// var_dump(strpos($fn, NO_IMAGE)); exit;
+								if(strpos($fn, 'no_image') == false){
+									$imageInfo = getimagesize(WWW_ROOT.DIR_IMAGE.DIR_PRODUCT.$fn);
+									$fn=$this->base.FS.DIR_IMAGE.DIR_PRODUCT.$fn;
+								}
+								else{
+
+									$imageInfo =  getimagesize(WWW_ROOT.DIR_IMAGE.NO_IMAGE);
+									$fn = $this->base.FS.DIR_IMAGE.NO_IMAGE;
+								}
+								
+								
+							 ?>
+						<a href="#modal" data-toggle="modal" data-target="#latest" class="mask b-link-stripe b-animate-go  swipebox" meta="<?php echo $imageInfo[0]; ?>"  title="<?php echo $value['Product']['name_'.$lang]; ?>" data-id="<?php echo $value['Product']['id']?>" data-name="<?php echo $value['Product']['name_'.$lang]?>">
+								<img  <?php echo $image; ?> alt="<?php echo $value['Product']['name_'.$lang]; ?>" class="img-responsive zoom-img" ref="<?php echo $fn ?>"/>
 						</a>
 					</div>
 				<?php
@@ -160,6 +177,7 @@
 </div>
 <script>
 	$('.mask').click(function(){
+		$('.modal-dialog').removeAttr('style');
 		$('.modal-dialog').addClass('loading');
 		loader = '<img class="loader" src="<?php echo $this->base; ?>/images/loading.gif">';
 		$('#latest .content').html(loader);
@@ -167,6 +185,15 @@
 
 		ref = $(this).find('img').attr('ref');
 		alt =  $(this).find('img').attr('alt');
+
+		winWidth = $(window).width();
+		winWidth = winWidth * 0.7;
+		imageWidth = $(this).attr('meta');
+		if(imageWidth < winWidth){
+			imageWidth =  parseInt(imageWidth);
+			imageWidth+=40;
+			$('.modal-dialog').attr('style', 'max-width:'+imageWidth+'px');
+		}
 
 		$('#latest').on('shown.bs.modal', function(){			
 			newimage = '<img id="streamer" class="streamer" src="'+ref+'" alt="'+alt+'" style="opacity: 0">';
