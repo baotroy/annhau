@@ -18,6 +18,7 @@ class IndexController extends AppController {
 		$cats = $this->Category->getAll();
 		$this->set('cats', $cats);
 		
+
 		$banners = $this->Banner->getAll();
 
 		$this->set('banners', $banners);

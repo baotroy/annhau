@@ -3,7 +3,7 @@ define('site_name', "Ryta Decor' Accessories");
 
 define('fb_app', "937601566299471");
 define('NO_ITEMS', 'No items');
-define('LIMIT', 3);
+define('LIMIT', 12);
 define('LIMIT_BEST', 4);
 define('ITEM', 'Items');
 define('FS', '/');
@@ -19,7 +19,7 @@ define('DIR_UPLOAD', 'uploads/');
 
 define('LOGO', DIR_IMAGE.'logog.png');
 
-define('ADMIN_LIMIT', 5);
+define('ADMIN_LIMIT', 15);
 class Constants
 {
 	public static $langs = array('en'=> 'English', 'vi' => 'Tiếng Việt');

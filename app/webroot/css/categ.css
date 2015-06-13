@@ -2730,6 +2730,7 @@ h2.title {
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  background-color: #fff;
 }
 @media (min-width: 1200px){
   .modal-dialog .container{

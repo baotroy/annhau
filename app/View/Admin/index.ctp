@@ -46,7 +46,7 @@
                                         <td><?php echo $value['Category']['name_vi'].' - '.$value['SubCat']['name_vi'];  ?></td>
                                         <td align="right">
                                             <a href="<?php echo $this->base.'/admin?action=edit&id='.$value['Product']['id']; ?>" class="btn btn-primary">Sửa</a>
-                                            <a href="#" class="btn btn-danger">Xóa</a>
+                                            <a onclick="return confirm('Bạn có chắc chắn xóa?');" href="<?php echo $this->base.'/admin?action=delete&id='.$value['Product']['id']; ?>" class="btn btn-danger">Xóa</a>
                                         </td>
                                     </tr>
                             <?php

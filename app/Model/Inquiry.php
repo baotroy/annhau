@@ -14,14 +14,14 @@ class Inquiry extends Model {
 	}
 
 	function getUnread($limit = -1){
-		$res = $this->find('all', array('fields' => array('id', 'name','email', 'content', 'tel', 'read', 'created'), 'conditions' => array('read' => NULL, 'del_flg'=>0), 
+		$res = $this->find('all', array('fields' => array('id', 'name','email', 'content', 'tel', 'read', 'created'), 'conditions' => array('read' => 0, 'del_flg'=>0), 
 			'order' => array('read' => 'asc','created' => 'desc'),
 			'limit'=> $limit));
 		return $res;
 	}
 
 	function getCount(){
-		return $this->find('count', array('fields' => array('id'), 'conditions' => array('read'=> NULL,'del_flg'=>0)));
+		return $this->find('count', array('fields' => array('id'), 'conditions' => array('read'=> 0,'del_flg'=>0)));
 	}
 
 	function getById($id){

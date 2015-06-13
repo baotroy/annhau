@@ -83,7 +83,7 @@
 				<div class="menu-bar jmitem">
 					<i class="fa fa-bars fa-2x toggle-btn menu jmitem open" data-toggle="collapse" data-target="#menu-content"></i>
 					<ul class="nav1 jmitem">
-						<li><a  class="jmitem <?php if(@$menu == 'index') echo 'active'; ?>" href="<?php echo $this->base; ?>"><?php echo Message::label('mnu_home'); ?></a></li>
+						<li><a  class="jmitem <?php if(@$menu == 'index') echo 'active'; ?>" href="<?php echo $this->base; ?>/index"><?php echo Message::label('mnu_home'); ?></a></li>
 						<li><a  class="jmitem <?php if(@$menu == 'product') echo 'active'; ?>" href="<?php echo $this->base; ?>/products"><?php echo Message::label('mnu_products'); ?></a></li>
 						<li><a  class="jmitem <?php if(@$menu == 'contact') echo 'active'; ?>" href="<?php echo $this->base.'/site/contact'; ?>"><?php echo Message::label('mnu_contact'); ?></a></li>
 						<li><a  class="jmitem <?php if(@$menu == 'about') echo 'active'; ?>" href="<?php echo $this->base.'/site/about'; ?>"><?php echo Message::label('mnu_about'); ?></a></li>

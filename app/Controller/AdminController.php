@@ -123,7 +123,7 @@ class AdminController extends AppController {
 			}
 			else if($this->request->query['action'] == 'delete'){
 				if(isset($this->request->query['id'])){
-					if($this->Product->save(array('id'=>$this->request->query['id'], 'del_flg' => 1))){
+					if($this->Product->save(array('id'=>$this->request->query['id'], 'deleted' => 1))){
 						$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
 						$this->redirect($_SERVER['HTTP_REFERER']);
 					}
@@ -275,6 +275,7 @@ class AdminController extends AppController {
 
 	function subcat(){
 		$this->set('tab', 'category');
+		
 		if(!isset($this->request->query['c'])){
 			$this->redirect(array('action' => 'category'));
 		}
@@ -284,6 +285,9 @@ class AdminController extends AppController {
 		if(!$cat){
 			throw new  BadRequestException("Error Processing Request");
 		}
+		$this->set('pt', $cat['Category']['name_vi']);
+		$this->set('title_layout', $cat['Category']['name_vi']);
+		
 		$SubCat = $this->SubCat->getByCat($cat_id, array('*'));
 		$this->set('category', $cat_id);
 		$this->set('items', $SubCat);

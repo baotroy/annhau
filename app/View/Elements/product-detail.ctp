@@ -4,7 +4,6 @@
 	<div class="col-sm-5">
 		<div class="view-product">
 			<img <?php echo $this->Text->images(array($item['Product']['image_1'], $item['Product']['image_2'], $item['Product']['image_3'], $item['Product']['image_4'], $item['Product']['image_5']) , DIR_PRODUCT.DIR_SMALL); ?> alt="<?php echo $item['Product']['name_'.$lang]; ?>">
-			<h3 class='jszoom'><span class="glyphicon glyphicon-zoom-in"></span></h3>
 		</div>
 		<!-- <div id="similar-product" class="carousel slide" data-ride="carousel">
 			
