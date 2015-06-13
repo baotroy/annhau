@@ -51,7 +51,7 @@
                                         <td><?php echo $value['SubCat']['name_en']; ?></td>
                                         <td align="right">
                                             <a href="<?php echo $this->base.'/admin/subcat?action=edit&c='.$value['SubCat']['id'].'&id='.$value['SubCat']['id']; ?>" class="btn btn-primary">Sửa</a>
-                                            <a href="<?php echo $this->base.'/admin/subcat?action=delete&id='.$value['SubCat']['id']; ?>" onclick="return confirm('Bạn có chắc chắn xóa?');" class="btn btn-danger">Xóa</a>
+                                            <a href="<?php echo $this->base.'/admin/subcat?action=delete&id='.$value['SubCat']['id'].'&c='.$category; ?>" onclick="return confirm('Bạn có chắc chắn xóa?');" class="btn btn-danger">Xóa</a>
                                         </td>
                                     </tr>
                                 <?php 

@@ -3,7 +3,7 @@
 <head>
 	<?php echo $this->Html->charset('utf-8'); ?>
 	<title>
-		<?php echo $title_layout; ?> | <?php echo site_name; ?>
+		<?php echo ($title_layout); ?> | <?php echo site_name; ?>
 	</title>
 	<link href="<?php echo $this->base ?>/css/enhance.css" type="text/css" rel="stylesheet">
 	<link href="<?php echo $this->base ?>/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all">

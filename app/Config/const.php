@@ -15,6 +15,7 @@ define('DIR_PRODUCT', 'products/');
 define('DIR_SMALL', 'small/');//width: 320
 define('DIR_CATEGORY', 'categories/');
 define('DIR_BANNER', 'banners/');
+define('DIR_UPLOAD', 'uploads/');
 
 define('LOGO', DIR_IMAGE.'logog.png');
 

@@ -22,7 +22,7 @@
 <body>
     <?php
     echo $this->fetch('content');       // mein content loading
-    //echo $this->element('sql_dump');    // for debug use only / sql trace
+   // echo $this->element('sql_dump');    // for debug use only / sql trace
     ?>
 
   

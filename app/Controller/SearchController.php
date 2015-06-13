@@ -31,9 +31,6 @@ class SearchController extends AppController {
         $lang = CakeSession::read('lang');
 		$this->set('title_layout', 'Products');
 
-		$this->set('title_layout', 'Products');
-
-		
 		$joins = array(
     		array(
                 'table' => 'subcategories',
@@ -94,6 +91,7 @@ class SearchController extends AppController {
         $count = $this->Product->find('count',array('joins' => $joins,'conditions' => $conditions,));
 		$this->set('cat_title',$q);
         $this->set('search_page', true);
+        $this->set('title_layout', Message::label('result_for').' "'.$q.'"');
         $this->set('count', $count);
        	$this->set('items', $data);		
 		

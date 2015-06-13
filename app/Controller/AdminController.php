@@ -3,7 +3,7 @@
 App::uses('AppController', 'Controller');
 
 class AdminController extends AppController {
-	public $uses = array('Category', 'Product', 'Banner', 'Admin', 'Setting', 'Inquiry', 'SubCat');
+	public $uses = array('Category', 'Product', 'Banner', 'Admin', 'Setting', 'Inquiry', 'SubCat', 'Upload');
 	private $breadcrumb;
 	public $components = array('Session', 'Common', 'ResizeImage');
 	
@@ -364,7 +364,7 @@ class AdminController extends AppController {
 			}
 			else if($this->request->query['action'] == 'delete'){
 				if(isset($this->request->query['id'])){
-					if($this->SubCat->save(array('id'=>$this->request->query['id'], 'del_flg' => 1))){
+					if($this->SubCat->save(array('id'=>$this->request->query['id'], 'deleted' => 1))){
 						$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
 						$this->redirect($_SERVER['HTTP_REFERER']);
 					}
@@ -582,8 +582,7 @@ class AdminController extends AppController {
 				$this->set('breadcrumb', $this->breadcrumb);
 				if($this->request->is('post')){
 					$file = $_FILES['image'];
-					$new_name = 'banner'.date('yymmddHis');
-
+					
 					$file['new_name'] = 'banner'.date('ymdHis');
 					
 					if($fn = $this->__saveImage($file, DIR_BANNER)){
@@ -614,7 +613,7 @@ class AdminController extends AppController {
 		$this->set('breadcrumb', $this->breadcrumb);
 	}
 	function about(){
-		$this->set('tab', 'banner');
+		$this->set('tab', 'about');
 		$this->set('pt', 'Thông tin');
 		$this->set('title_layout', 'Thông tin');
 		$this->breadcrumb[] = array('Thông tin' => array('controller'=>'admin','action'=>'about'));
@@ -624,10 +623,27 @@ class AdminController extends AppController {
 			$data['id'] = 1;
 			if($this->Setting->save($data)){
 				$this->Session->setFlash('Đã cập nhật.', 'default', array('class' =>'alert alert-success'));
+				$this->redirect(array('action' => 'about?tab=1'));
 			}
+		}
+		if(isset($this->request->query['action']) && $this->request->query['action'] == 'delete'){
+			if(isset($this->request->query['id'])){
+				$id = $this->request->query['id'];
+				$item = $this->Upload->getById($id);
+				$img = WWW_ROOT.DIR_IMAGE.DIR_UPLOAD.$item['Upload']['image'];
+				if(file_exists($img)){
+					unlink($img);
+				}
+				$this->Upload->save(array('id'=>$id, 'deleted' => 1));
+				$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
+			}
+			$this->redirect(array('action' => 'about?tab=3'));
 		}
 		$data = $this->Setting->getAll();
 		$this->set('item', $data);
+
+		$uploads = $this->Upload->getAll();
+		$this->set('items', $uploads);
 	}
 
 	private function __saveImage($params, $directory) {
@@ -687,6 +703,25 @@ class AdminController extends AppController {
     		}
     		echo json_encode($ret);
     	}
+    	exit;
+    }
+    function axupload(){
+    	if($this->request->is('ajax')):
+	    	$file = $_FILES['image'];		
+	    	$data = $this->params;
+			$file['new_name'] = 'upl'.date('ymdHis');
+			
+			$ret['code'] = 0;
+			if($fn = $this->__saveImage($file, DIR_UPLOAD)){
+				$param['image'] = $fn;
+				$this->Upload->save($param);
+				$ret['val'] = $this->base.FS.DIR_IMAGE.DIR_UPLOAD.$fn;
+			}
+			else{
+				$ret['code'] =1;
+			}
+    		echo json_encode($ret);
+    	endif;
     	exit;
     }
 	function login(){
