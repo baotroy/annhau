@@ -63,7 +63,11 @@ class Constants
 		'oops' => 'Oops!',
 		'404' => '404 Not Found',
 		'404_message' => 'Sorry, an error has occured, Requested page not found!',
-		'take_home' => 'Take Me Home'
+		'take_home' => 'Take Me Home',
+
+		'show_more' => 'SHOW MORE',
+		'details' => 'Details',
+		'show_less'=> 'SHOW LESS'
 		
 	);
 
@@ -107,6 +111,9 @@ class Constants
 		'oops' => 'Rất tiếc!',
 		'404' => '404 Không tìm thấy trang',
 		'404_message' => 'Rất tiếc, trang bạn yêu cầu không tồn tại!',
-		'take_home' => 'Về Trang Chủ'
+		'take_home' => 'Về Trang Chủ',
+		'show_more' => 'XEM THÊM',
+		'details' => 'Chi tiết',
+		'show_less' => 'THU GỌN'
 	);
 }

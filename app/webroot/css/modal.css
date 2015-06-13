@@ -36,3 +36,32 @@
 .loader{
 	width: 100px;
 }
+.modal-details{
+	float: left;
+	margin-left: 10px;
+	color: #efefef;
+	font-size: 12px
+}
+
+div.description{
+	font-size: 13px;
+	color: #696763;
+	font-weight: normal;
+	clear: both;
+}
+div.description:hover{
+	color: #696763;
+}
+div.closed{
+	height: 30px;
+  line-height: 15px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+span.show-link{
+	display: block;
+	text-align: center;
+	color: #767676;
+	text-transform: uppercase;
+	cursor: pointer;
+}

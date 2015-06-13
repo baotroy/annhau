@@ -106,7 +106,7 @@
 								
 								
 							 ?>
-						<a href="#modal" data-toggle="modal" data-target="#latest" class="mask b-link-stripe b-animate-go  swipebox" meta="<?php echo $imageInfo[0]; ?>"  title="<?php echo $value['Product']['name_'.$lang]; ?>" data-id="<?php echo $value['Product']['id']?>" data-name="<?php echo $value['Product']['name_'.$lang]?>">
+						<a href="#modal" data-toggle="modal" data-target="#latest" class="mask b-link-stripe b-animate-go  swipebox" meta="<?php echo $imageInfo[0]; ?>"  title="<?php echo $value['Product']['name_'.$lang]; ?>" data-id="<?php echo $value['Product']['id']?>" data-name="<?php echo $this->Text->clean($value['Product']['name_'.$lang]);?>">
 								<img  <?php echo $image; ?> alt="<?php echo $value['Product']['name_'.$lang]; ?>" class="img-responsive zoom-img" ref="<?php echo $fn ?>"/>
 						</a>
 					</div>
@@ -169,6 +169,7 @@
 		</div>
 	  </div>
       <div class="modal-footer">
+      	<a class="modal-details" href=""><?php echo Message::label('details') ?>...</a>
         <button type="button" class="btn btn-close glyphicon glyphicon-remove" data-dismiss="modal"></button>
       </div>
     </div>
@@ -183,6 +184,9 @@
 		$('#latest .content').html(loader);
 		$('.modal-content').removeAttr('style');
 
+		id = $(this).attr('data-id');
+		dataname =$(this).attr('data-name');
+		$('.modal-details').attr('href', '<?php echo $this->base."/products/detail?product=" ?>'+dataname+'-'+id);
 		ref = $(this).find('img').attr('ref');
 		alt =  $(this).find('img').attr('alt');
 

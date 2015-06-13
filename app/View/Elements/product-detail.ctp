@@ -69,7 +69,11 @@
 			<p class="fb_like clearfix">
 				<div class="fb-like" data-href="<?php echo $this->here ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 			</p>
-			<p><?php echo $item['Product']['long_description_'.$lang]; ?></p>
+			<div>
+				<div class="description closed"><?php echo $item['Product']['long_description_'.$lang]; ?></div>
+				
+				<span class="show-link"><?php echo Message::label('show_more'); ?></span>
+			</div>
 
 
 		</div><!--/product-information-->
@@ -85,5 +89,18 @@
 		$('.star-rating').removeClass('unrate').addClass('rated');
 		url = "<?php echo $this->base.'/products/rateajax' ?>";
 		rating(url, product, val);
+	});
+	$('.show-link').click(function(){
+		less='<?php echo Message::label("show_less") ?>';
+		more='<?php echo Message::label("show_more") ?>';
+		prev = $(this).prev();
+		if(prev.hasClass('closed')){
+			prev.removeClass('closed');
+			$(this).text(less);
+		}
+		else{
+			prev.addClass('closed');
+			$(this).text(more);
+		}
 	});
 </script>
