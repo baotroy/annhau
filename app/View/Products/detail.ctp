@@ -79,10 +79,10 @@
 </div>
 <!-- Modal -->
 <div id="popup" class="modal fade" role="dialog" style="display: none">
-  <div class="modal-dialog imiz loading">
+  <div class="modal-dialog loading">
 
     <!-- Modal content-->
-    <div class="modal-content">
+    <div class="modal-content imiz">
       <div class="modal-body">
     	<div class="col-sm-9 padding-right content">
 			
