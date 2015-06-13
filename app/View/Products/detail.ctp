@@ -51,7 +51,7 @@
 							<p><?php echo  nl2br($comment['Comment']['content']); ?></p>
 						<?php } ?>
 							<div id="comment-box">
-							<?php if(!CakeSession::check('commented')){ ?>
+							
 								<p><b><?php echo Message::label('write_review'); ?></b></p>
 								
 								<form action="#" id="form-comment">
@@ -65,10 +65,7 @@
 									<button type="button" class="btn btn-default pull-right" id="comment">
 										Submit
 									</button>
-								</form>
-							<?php }else echo '<b>'.Message::label('thank_comment').'</b>';?>
-								
-							
+								</form>							
 							</div>
 						</div>
 					</div>
@@ -82,7 +79,7 @@
 </div>
 <!-- Modal -->
 <div id="popup" class="modal fade" role="dialog" style="display: none">
-  <div class="modal-dialog loading">
+  <div class="modal-dialog imiz loading">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -100,7 +97,7 @@
 </div>
 <script type="text/javascript">
 	$('#comment').click(function(){
-		url = "<?php echo $this->base.'/comment/write' ?>";
+		url = "<?php echo $this->base.'/comment/write/'.$id ?>";
 		postComment(url, '<?php echo Message::label("thank_comment");?>');
 		return false;	
 	});

@@ -67,13 +67,13 @@
                                 <tr>
                                     <td width="150">Mô tả (Tiếng Việt)</td>
                                     <td>
-                                        <textarea name="contact_info_vi" cols="30" rows="5" class="form-control" id="contact"><?php echo @$params['contact_info_vi']; ?><?php echo @$item['Product']['long_description_vi'] ?></textarea>
+                                        <textarea name="long_description_vi" cols="30" rows="5" class="form-control" id="contact"><?php echo @$params['long_description_vi']; ?><?php echo @$item['Product']['long_description_vi'] ?></textarea>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td width="150">Mô tả (Tiếng Anh)</td>
                                     <td>
-                                        <textarea name="contact_info_vi" cols="30" rows="5" class="form-control" id="contact"><?php echo @$params['contact_info_vi']; ?><?php echo @$item['Product']['long_description_en'] ?></textarea>
+                                        <textarea name="long_description_en" cols="30" rows="5" class="form-control" id="contact"><?php echo @$params['long_description_en']; ?><?php echo @$item['Product']['long_description_en'] ?></textarea>
                                     </td>
                                 </tr>
                                 <tr>

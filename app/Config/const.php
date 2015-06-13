@@ -68,7 +68,7 @@ class Constants
 
 		'show_more' => 'SHOW MORE',
 		'details' => 'Details',
-		'show_less'=> 'SHOW LESS'
+		'show_less'=> 'SHOW LESS',
 		
 	);
 

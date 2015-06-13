@@ -6,14 +6,14 @@
 
         background-color: #000; top: 0px; left: 0px;width: 100%; height:100%;">
         </div>
-        <div style="position: absolute; display: block; background: url(<?php echo $this->base; ?>/images/loading.gif) no-repeat center center;
+        <div style="position: absolute; display: block; background: url(<?php echo $this->base; ?>/images/loading.gif) no-repeat center center; background-size: 30px 30px; 
 
         top: 0px; left: 0px;width: 100%;height:100%;">
         </div>
     </div>
 
     <!-- Slides Container -->
-    <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1140px; height: 442px;
+    <div u="slides" style="cursor: pointer; position: absolute; left: 0px; top: 0px; width: 1140px; height: 442px;
     overflow: hidden;">
     <?php
         foreach ($banners as $key => $value):?>

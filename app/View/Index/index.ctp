@@ -55,7 +55,7 @@
 					<div class="col-xs-6 blog-left top-cat">
 						<div class="col-xs-5 blog-left-one">
 							<a href="<?php echo $this->base.'/products?m='.$this->Text->clean($cat['Category']['name_'.$lang]).'-'.$cat['Category']['id']; ?>">
-								<img src="<?php echo $this->Text->image($cat['Category']['image'] , DIR_PRODUCT); ?>" alt="<?php echo $cat['Category']['name_'.$lang]; ?>"/>
+								<img <?php echo $this->Text->images(array($cat['Product']['image_1'], $cat['Product']['image_2'], $cat['Product']['image_3'], $cat['Product']['image_4'], $cat['Product']['image_5']) , DIR_PRODUCT.DIR_SMALL); ?> alt="<?php echo $cat['Category']['name_'.$lang]; ?>"/>
 							</a>
 						</div>
 						<div class="col-xs-7 blog-left-two">
@@ -159,7 +159,7 @@
 	</div>	
 <!-- Modal -->
 <div id="latest" class="modal fade" role="dialog" style="display: none">
-  <div class="modal-dialog loading">
+  <div class="modal-dialog imiz loading">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -186,7 +186,7 @@
 
 		id = $(this).attr('data-id');
 		dataname =$(this).attr('data-name');
-		$('.modal-details').attr('href', '<?php echo $this->base."/products/detail?product=" ?>'+dataname+'-'+id);
+		$('.modal-details').attr('href', '<?php echo $this->base."/products/detail/" ?>'+dataname+'-'+id);
 		ref = $(this).find('img').attr('ref');
 		alt =  $(this).find('img').attr('alt');
 

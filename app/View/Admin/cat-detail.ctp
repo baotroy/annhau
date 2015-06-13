@@ -51,21 +51,7 @@
                                         <textarea name="description_en" cols="30" rows="5" class="form-control <?php if(@$this->validationErrors['Category']['description_en']) echo 'error'?>"><?php echo @$item['Category']['description_en'] ?></textarea>
                                     </td>
                                 </tr>
-                            <?php if(@$item['Category']['image']):  ?>
-                                <tr>
-                                    <td width="150">Hình ảnh hiện tại:</td>
-                                    <td>
-                                        <img src="<?php echo $this->Text->image($item['Category']['image'], DIR_PRODUCT) ?>" width="100">
-                                        <input type="hidden" name="image" value="<?php echo $item['Category']['image'] ?>" >
-                                    </td>
-                                </tr>
-                            <?php endif; ?>
-                                <tr>
-                                    <td width="150">Hình ảnh:</td>
-                                    <td>
-                                        <input type="file" name="image">
-                                    </td>
-                                </tr>
+                        
                                 <tr>
                                     <td><a href="<?php echo $this->base.'/admin/category' ?>" class="btn btn-primary">Quay lại</a></td>
                                     <td align="right"><button class="btn btn-primary"><?php if(@$mode=='add') echo 'Thêm'; else echo 'Cập nhật' ?></button></td>

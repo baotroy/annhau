@@ -1,7 +1,7 @@
 .modal-backdrop.in{
 	opacity: 0.9
 }
-.modal-content {
+.modal-content.imiz {
   position: relative;
   border: 0;
   border-radius: 0;

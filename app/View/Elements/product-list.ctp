@@ -68,9 +68,9 @@
 				<div class="col-sm-4 product-item">
 					<div class="product-image-wrapper">
 						<div class="single-products">
-							<a href="<?php echo $this->base.'/products/detail?product='.$this->Text->clean($value['Product']['name_'.$lang]). '-' . $value['Product']['id'];?>">
+							<a href="<?php echo $this->base.'/products/detail/'.$this->Text->clean($value['Product']['name_'.$lang]). '-' . $value['Product']['id'];?>">
 								<div class="productinfo text-center">
-									<img src="<?php echo $this->Text->image($value['Product']['image_1'], DIR_PRODUCT.DIR_SMALL);?>" alt="<?php echo $value['Product']['name_'.$lang] ?>"/>
+									<img <?php echo $this->Text->images(array($value['Product']['image_1'],$value['Product']['image_2'],$value['Product']['image_3'],$value['Product']['image_4'],$value['Product']['image_5'],), DIR_PRODUCT.DIR_SMALL);?> alt="<?php echo $value['Product']['name_'.$lang] ?>"/>
 									<h2></h2>
 									<p><?php echo $value['Product']['name_'.$lang]; ?></p>
 									<p><?php echo $this->Text->rating($value['Product']['rate']); ?></p>

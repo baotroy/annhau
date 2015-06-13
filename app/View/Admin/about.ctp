@@ -62,9 +62,10 @@
                         <?php //echo $this->Form->create('upload', array('type'=>'post', 'enctype' => 'multipart/form-data')); ?>
                         <div class="blockfake">
                             <input type="file" class="fake" name="image" style="display:inline">
-                            <span class="jserr"></span>
+                            
                         <?php //echo $this->form->end(); ?>
                             <button class="btn btn-primary jsupload" onclick="return false;">Upload</button>
+                            <span class="jserr"></span>
                         </div>  
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -134,12 +135,13 @@
         fakeFrom = $('#formAboutForm');
         var th = $(this);
         file = fakeFrom.find('input[type=file]');
-        form.html(file);
+        
         err_space = fakeFrom.find('span.jserr');
         err_space.text('').removeClass('error').removeClass('success');
         
         if (file.val() !== '') {
             if(checkFileExt(file)){
+                form.html(file);
                 loader = '<img src="<?php echo $this->base.FS.DIR_IMAGE."loading.gif" ?>" width="30"/>';
                 $(this).attr('style', 'background-color: transparent; border: none').html(loader).attr('disabled', 'disabled');
                 form.ajaxForm({         
@@ -173,7 +175,6 @@
                 th.removeAttr('style').html('Upload').removeAttr('disabled');
             }
         }else{
-            $('#list-upload').prepend(new_row);
             file.val('');
             $('.blockfake').prepend(file);
             err_space.addClass('error').text('Hãy chọn 1 file để tải lên!')

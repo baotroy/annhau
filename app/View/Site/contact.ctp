@@ -39,7 +39,6 @@
 			</div>
 			<div class="contact-form">
 				<h4><?php echo Message::label('contact_us'); ?></h4>
-				<h5><?php echo $this->Session->flash(); ?></h5>
 				<form method="post">
 					<input type="text" <?php if(@$this->validationErrors['Contact']['name']) echo 'class="error"'; ?> name="name" value="<?php echo @$params['name']; ?>" placeholder="<?php echo Message::label('name'); ?>" >
 					<input type="email" <?php if(@$this->validationErrors['Contact']['email']) echo 'class="error"'; ?> name="email" value="<?php echo @$params['email']; ?>" placeholder="Email" >
@@ -51,25 +50,53 @@
 			
 		</div>
 	</div>
+
+	<!-- thank modal -->
+<?php if(isset($contact)): ?>
+	<button type="button" class="btn btn-info btn-lg jsthank" data-toggle="modal" data-target="#thankmodal" style="display: block">go</button>
+<div class="modal fade" id="thankmodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title"><?php echo site_name ?></h4>
+      </div>
+      <div class="modal-body">
+        <p><?php echo Message::label('thank_contact'); ?></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<?php endif; ?>
+
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 	<script type="text/javascript">
-                    var latitude = "<?php echo $set['map_lat'] ?>";
-                    var longtitude = "<?php echo $set['map_long'] ?>";
-                    var map = null;
+        var latitude = "<?php echo $set['map_lat'] ?>";
+        var longtitude = "<?php echo $set['map_long'] ?>";
+        var map = null;
 
-                    function initialize() {
-                        var myLatlng = new google.maps.LatLng(latitude, longtitude);
-						  var mapOptions = {
-						    zoom: 16,
-						    center: myLatlng
-						  }
-						  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        function initialize() {
+            var myLatlng = new google.maps.LatLng(latitude, longtitude);
+			  var mapOptions = {
+			    zoom: 16,
+			    center: myLatlng
+			  }
+			  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-						  var marker = new google.maps.Marker({
-						      position: myLatlng,
-						      map: map,
-						      title: "<?php echo site_name ?>"
-						  });
-                    }
-                    google.maps.event.addDomListener(window, 'load', initialize);
+			  var marker = new google.maps.Marker({
+			      position: myLatlng,
+			      map: map,
+			      title: "<?php echo site_name ?>"
+			  });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+        $(function(){
+        	$('.jsthank').click();
+        });
+
 	</script>
+	

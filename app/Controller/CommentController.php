@@ -8,6 +8,7 @@ class CommentController extends AppController {
     function write(){
         if($this->request->is('ajax')){
             $data = $this->data;
+            
             $this->Comment->set($data);
             $val = $this->Comment->validates();
             $res = array('code' => 0);
@@ -26,7 +27,7 @@ class CommentController extends AppController {
                 $res['rec']['created_time'] = date('H:i');
                 $res['rec']['commentator'] = $data['commentator'];
                 $res['rec']['content'] = $data['content'];
-                CakeSession::write('commented', true);
+                CakeSession::write('commented_'.$data['product'], true);
             }
             echo json_encode($res);
         }

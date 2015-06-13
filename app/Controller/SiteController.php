@@ -32,7 +32,7 @@ class SiteController extends AppController {
 			}
 			else{
 					$this->Contact->save();
-					$this->Session->setFlash(Message::label('thank_contact'));
+					$this->set('contact', true);
 			}
 		}
 	}

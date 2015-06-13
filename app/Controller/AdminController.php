@@ -60,7 +60,7 @@ class AdminController extends AppController {
 					$this->Product->set($data);
 					if($this->Product->validates()){
 						if($this->Product->save($data)){
-							$this->Session->setFlash('Đã thêm.', 'default', array('class' =>'alert alert-success'));
+							$this->Session->setFlash('Đã thêm '.$data['name_vi'], 'default', array('class' =>'alert alert-success'));
 						}
 					}else{
 						$this->set('item', array('Product'=>$data));
@@ -85,7 +85,7 @@ class AdminController extends AppController {
 						$this->Product->set($data);
 						if($this->Product->validates()){
 							if($this->Product->save($data)){
-								$this->Session->setFlash('Đã cập nhật.', 'default', array('class' =>'alert alert-success'));
+								$this->Session->setFlash('Đã cập nhật '.$data['name_vi'], 'default', array('class' =>'alert alert-success'));
 								return $this->redirect(array('action'=>'index'));
 
 							}
@@ -190,16 +190,8 @@ class AdminController extends AppController {
 					$fn = false;
 					$this->Category->set($data);
 					if($this->Category->validates()){
-						if($_FILES['image']){
-							$file = $_FILES['image'];
-							$file['new_name'] = 'c'.date('ymdHis');
-							$fn = $this->__saveImage($file, DIR_PRODUCT);
-							if($fn){
-								$data['image'] = $fn;
-							}
-						}
 						if($this->Category->save($data)){
-							$this->Session->setFlash('Đã thêm.', 'default', array('class' =>'alert alert-success'));
+							$this->Session->setFlash('Đã thêm '.$data['name_vi'], 'default', array('class' =>'alert alert-success'));
 						}
 					}else{
 						$this->set('item', array('Category'=>$data));
@@ -223,16 +215,9 @@ class AdminController extends AppController {
 
 						$this->Category->set($data);
 						if($this->Category->validates()){
-							if($_FILES['image']){
-								$file = $_FILES['image'];
-								$file['new_name'] = 'c'.date('ymdHis');
-								$fn = $this->__saveImage($file, DIR_PRODUCT);
-								if($fn){
-									$data['image'] = $fn;
-								}
-							}
+							
 							if($this->Category->save($data)){
-								$this->Session->setFlash('Đã cập nhật.', 'default', array('class' =>'alert alert-success'));
+								$this->Session->setFlash('Đã cập nhật '.$data['name_vi'], 'default', array('class' =>'alert alert-success'));
 								$this->redirect(array('action'=>'category'));
 							}
 						}else{
@@ -312,7 +297,7 @@ class AdminController extends AppController {
 					if($this->SubCat->validates()){
 						$data['category'] = $cat_id;
 						if($this->SubCat->save($data)){
-							$this->Session->setFlash('Đã thêm.', 'default', array('class' =>'alert alert-success'));
+							$this->Session->setFlash('Đã thêm '.$data['name_vi'], 'default', array('class' =>'alert alert-success'));
 						}
 					}else{
 						$this->set('item', array('SubCat'=>$data));
@@ -337,7 +322,7 @@ class AdminController extends AppController {
 						$this->SubCat->set($data);
 						if($this->SubCat->validates()){
 							if($this->SubCat->save($data)){
-								$this->Session->setFlash('Đã cập nhật.', 'default', array('class' =>'alert alert-success'));
+								$this->Session->setFlash('Đã cập nhật '.$data['name_vi'], 'default', array('class' =>'alert alert-success'));
 								$this->redirect(array('action'=>'subcat?c='.$cat_id));
 							}
 						}else{
@@ -498,7 +483,7 @@ class AdminController extends AppController {
 						$this->Admin->set($data);
 						if($this->Admin->validates()){
 							if($this->Admin->save()){
-								$this->Session->setFlash('Đã thêm.', 'default', array('class' =>'alert alert-success'));
+								$this->Session->setFlash('Đã thêm '.$data['username'], 'default', array('class' =>'alert alert-success'));
 							}
 						}else{
 							$this->set('item', array('Admin'=>$data));
@@ -529,7 +514,7 @@ class AdminController extends AppController {
 						$this->Admin->set($data);
 						if($this->Admin->validates()){
 							if($this->Admin->save()){
-								$this->Session->setFlash('Đã cập nhật.', 'default', array('class' =>'alert alert-success'));
+								$this->Session->setFlash('Đã cập nhật '.$data['username'], 'default', array('class' =>'alert alert-success'));
 								$this->redirect(array('action'=>'users'));
 							}
 						}else{

@@ -79,7 +79,7 @@ class Category extends AppModel {
             array(
                 'table' => 'subcategories',
                 'alias' => 'SubCat',
-                'type' => 'LEFT',
+                'type' => 'INNER',
                 'conditions' => array(
                     'SubCat.category = Category.id',
                     'SubCat.deleted' => 0,
@@ -88,7 +88,7 @@ class Category extends AppModel {
             array(
                 'table' => 'products',
                 'alias' => 'Product',
-                'type' => 'LEFT',
+                'type' => 'INNER',
                 'conditions' => array(
                     'Product.category = SubCat.id',
                     'Product.deleted' => 0,

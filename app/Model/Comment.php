@@ -44,7 +44,7 @@ class Comment extends AppModel {
                     '`Product`.`deleted`' => 0,
                 )
             ),);
-    	$res = $this->find('all', array('fields' => 'Comment.*', 'conditions' => array('Comment.deleted' => 0), 'joins' => $joins, 'order'=> array('Comment.created' => 'desc')));
+    	$res = $this->find('all', array('fields' => 'Comment.*', 'conditions' => array('Comment.product' => $product, 'Comment.deleted' => 0), 'joins' => $joins, 'order'=> array('Comment.created' => 'desc')));
 	    return $res;
     }
 }

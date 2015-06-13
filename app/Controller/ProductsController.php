@@ -47,13 +47,13 @@ class ProductsController extends AppController {
             $cat =substr($cat,strrpos($cat, '-')+1);
             $this->set('mcat', $cat);
 
-            $cat_title = $this->Category->getById($cat, array('name_'.$lang, 'description_'.$lang, 'image'));
+            $cat_title = $this->Category->getById($cat, array('name_'.$lang, 'description_'.$lang));
             if($cat_title){
                 $this->set('cat_title', $cat_title['Category']['name_'.$lang]);
                 $this->set('title_layout',$cat_title['Category']['name_'.$lang]);
                 $og_title = $cat_title['Category']['name_'.$lang];
                 $og_description = $cat_title['Category']['description_'.$lang];
-                $og_image = $this->base.FS.DIR_IMAGE.DIR_PRODUCT.$cat_title['Category']['image'];
+                $og_image = $this->base.FS.DIR_IMAGE.LOGO;
             }
             else
                 $this->set('cat_title','');
@@ -141,9 +141,9 @@ class ProductsController extends AppController {
        	$this->set('items', $data);
 	}
 
-	function detail(){
-        if(isset($this->request->query['product']))
-            $id = $this->request->query['product'];
+	function detail($product= ''){
+        if($product)
+            $id = $product;
         else{
             throw new BadRequestException('Could not find that post');
             exit;
