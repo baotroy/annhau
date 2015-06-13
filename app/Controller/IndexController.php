@@ -28,7 +28,7 @@ class IndexController extends AppController {
 		$og_title = Message::label('mnu_home').'-'.site_name;
 		$og_description = $setting['description_'.$lang];
 		$og_url = $_SERVER['REQUEST_URI'];
-		$og_image = $this->base.LOGO;
+		$og_image = $this->base.FS.LOGO;
 		$this->set_facebook($og_title, $og_description, $og_url, $og_image);
 
 		$this->set('title_layout', Message::label('title_home'));

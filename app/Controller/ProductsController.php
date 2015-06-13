@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class ProductsController extends AppController {
 	public $uses = array('Category', 'Product', 'SubCat', 'Comment');
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Common');
 
     // function beforeRender(){
 
@@ -25,7 +25,7 @@ class ProductsController extends AppController {
 		$cat = false;
         $og_title = site_name;
         $og_description = site_name;
-        $og_image = $this->base.LOGO;
+        $og_image = $this->base.FS.LOGO;
 
 		if(isset($this->request->query['c'])){
 			$cat =$this->request->query['c'];
@@ -53,7 +53,7 @@ class ProductsController extends AppController {
                 $this->set('title_layout',$cat_title['Category']['name_'.$lang]);
                 $og_title = $cat_title['Category']['name_'.$lang];
                 $og_description = $cat_title['Category']['description_'.$lang];
-                $og_image = $this->base.DIR_IMAGE.DIR_PRODUCT.$cat_title['Category']['image'];
+                $og_image = $this->base.FS.DIR_IMAGE.DIR_PRODUCT.$cat_title['Category']['image'];
             }
             else
                 $this->set('cat_title','');
@@ -65,7 +65,8 @@ class ProductsController extends AppController {
 
         
         $og_url = $_SERVER['REQUEST_URI'];
-        $this->set_facebook($og_title, $og_description, $og_url, $og_image);    
+        if($this->action!='detail')
+            $this->set_facebook($og_title, $og_description, $og_url, $og_image);    
 	}
 	public function index($cat = false) {
 		
@@ -167,6 +168,15 @@ class ProductsController extends AppController {
             $this->set('item', $res);
             $this->set('cat', $res['SubCat']['id']);
             $this->set('title_layout', $res['Product']['name_'.$lang]);
+
+            $og_title = $res['Product']['name_'.$lang];
+            $og_description = $res['Product']['long_description_'.$lang];
+            $imgs = array($res['Product']['image_1'],$res['Product']['image_2'],$res['Product']['image_3'],$res['Product']['image_4'],$res['Product']['image_5']);
+            $og_image = $this->Common->images($imgs, DIR_PRODUCT);
+           
+            $og_url = $_SERVER['REQUEST_URI'];
+            $this->set_facebook($og_title, $og_description, $og_url, $og_image);    
+
         }
         else{
             throw new BadRequestException('Could not find that post');

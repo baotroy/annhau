@@ -1,6 +1,7 @@
 <?php
 define('site_name', "Ryta Decor' Accessories");
 
+define('fb_app', "937601566299471");
 define('NO_ITEMS', 'No items');
 define('LIMIT', 3);
 define('LIMIT_BEST', 4);

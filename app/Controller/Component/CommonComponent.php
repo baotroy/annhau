@@ -10,6 +10,20 @@ class CommonComponent extends Component {
         }
         return false;
     }
+
+    function images($files = array(), $dir =''){
+		$file = '';
+		$file_path ='';
+		foreach ($files as $key => $file) {
+			if($file){
+				$file_path = WWW_ROOT.DIR_IMAGE.$dir.$file;
+				if(file_exists($file_path)){
+					return $this->base.FS.DIR_IMAGE.$dir.$file.'" ref="'.$this->base.FS.DIR_IMAGE.DIR_PRODUCT.$file;
+				}
+			}
+		}			
+		return $this->base.FS.DIR_IMAGE.NO_IMAGE;
+	}
 }
  ?>
 

@@ -19,7 +19,7 @@
 	<!-- Custom Theme files -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+	<meta property="fb:app_id" content="<?php echo fb_app; ?>" />
     <meta property="og:title" content="<?php echo @$og_title; ?>">
     <meta property="og:type" content="article">
     <meta property="og:description" content="<?php echo @$og_description; ?>">
