@@ -1,6 +1,5 @@
 <?php
 define('site_name', "Ryta Decor' Accessories");
-define('fb_app', "");
 
 define('NO_ITEMS', 'No items');
 define('LIMIT', 3);
@@ -30,6 +29,8 @@ class Constants
 		'mnu_contact' => 'CONTACT',
 		'mnu_about' => 'ABOUT',
 
+		'title_home' => 'Home',
+		'title_new_products' => 'New Products',
 		'categories' => 'CATEGORIES',
 		'best_products' => 'BEST PRODUCTS',
 		'new_products' => 'NEW PRODUCTS',
@@ -71,6 +72,8 @@ class Constants
 		'mnu_products' => 'SẢN PHẨM',
 		'mnu_contact' => 'LIÊN HỆ',
 		'mnu_about' => 'CHÚNG TÔI',
+		'title_home' => 'Trang Chủ',
+		'title_new_products' => 'Sản Phẩm Mới',
 
 		'categories' => 'DANH MỤC',
 		'best_products' => 'SẢN PHẨM YÊU THÍCH',

@@ -6,6 +6,7 @@ class SiteController extends AppController {
 
 	public $uses = array('Setting', 'Contact');
 	function beforeFilter(){
+		parent::beforeFilter();
 		$setting = $this->Setting->getAll();
 		$lang = CakeSession::read('lang');
 		$og_title = Message::label('mnu_home').'-'.site_name;
@@ -19,7 +20,8 @@ class SiteController extends AppController {
 	public function contact() {
 		$setting = $this->Setting->getAll();
 		$this->set('set', $setting);
-		$this->set('title_layout', Message::label('title_contact'));
+		$lang = CakeSession::read('lang');
+		$this->set('title_layout', Message::label('title_contact', $lang));
 		$this->set('menu', 'contact');
 		if($this->request->is('post')){
 
@@ -36,7 +38,8 @@ class SiteController extends AppController {
 	}
 
 	public function about() {
-		$this->set('title_layout', Message::label('title_about'));
+		$lang = CakeSession::read('lang');
+		$this->set('title_layout', Message::label('title_about', $lang));
 		$this->set('menu', 'about');
 		$setting = $this->Setting->getAll();
 		$this->set('item', $setting);

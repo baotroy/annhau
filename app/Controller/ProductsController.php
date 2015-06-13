@@ -59,7 +59,7 @@ class ProductsController extends AppController {
                 $this->set('cat_title','');
         }
 		else{
-			$this->set('cat_title', Message::label('new_products'));
+			$this->set('cat_title', Message::label('title_new_products'));
          //   $this->set('title_layout', Message::label('new_products'));
         }
 
@@ -102,7 +102,7 @@ class ProductsController extends AppController {
                 ));
         }
         else{
-            $this->set('title_layout', Message::label('new_products'));
+            $this->set('title_layout', Message::label('title_new_products'));
         }
         $order = array('Product.created' => 'desc');
 

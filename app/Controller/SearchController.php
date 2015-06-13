@@ -7,7 +7,7 @@ class SearchController extends AppController {
 	public $components = array('Paginator');
 
 	function beforeFilter(){
-
+        parent::beforeFilter();
 		$subcats = $this->Category->getSubMenu();
 		$cats = $this->Category ->getForMenu();
 		
@@ -97,7 +97,7 @@ class SearchController extends AppController {
 		
         $setting = $this->Setting->getAll();
         $lang = CakeSession::read('lang');
-        $og_title = Message::label('result_for').'"'.$q.'"-'.site_name;
+        $og_title = Message::label('result_for', $lang).'"'.$q.'"-'.site_name;
         $og_description = $setting['description_'.$lang];
         $og_url = $_SERVER['REQUEST_URI'];
         $og_image = $this->base.LOGO;

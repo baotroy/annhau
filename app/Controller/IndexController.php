@@ -31,6 +31,6 @@ class IndexController extends AppController {
 		$og_image = $this->base.LOGO;
 		$this->set_facebook($og_title, $og_description, $og_url, $og_image);
 
-		$this->set('title_layout', Message::label('mnu_home'));
+		$this->set('title_layout', Message::label('title_home'));
 	}
 }

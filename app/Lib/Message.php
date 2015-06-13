@@ -55,9 +55,10 @@ class Message {
 		return $str;
 	}
 
-	static public function label($id, $settings = array()){
+	static public function label($id, $lang = false){
 		$message = false;		
-		$lang = CakeSession::read('lang');
+		if(!$lang)
+			$lang = CakeSession::read('lang');
 		if($lang == 'vi')
 			$message = Constants::$dic_vi;
 		else 

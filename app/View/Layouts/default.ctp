@@ -3,7 +3,7 @@
 <head>
 	<?php echo $this->Html->charset('utf-8'); ?>
 	<title>
-		<?php echo ($title_layout); ?> | <?php echo site_name; ?>
+		<?php echo $title_layout; ?> | <?php echo site_name; ?>
 	</title>
 	<link href="<?php echo $this->base ?>/css/enhance.css" type="text/css" rel="stylesheet">
 	<link href="<?php echo $this->base ?>/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all">
@@ -20,7 +20,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <meta property="fb:app_id" content="<?php echo fb_app; ?>" />
     <meta property="og:title" content="<?php echo @$og_title; ?>">
     <meta property="og:type" content="article">
     <meta property="og:description" content="<?php echo @$og_description; ?>">
