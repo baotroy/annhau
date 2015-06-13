@@ -1,4 +1,7 @@
 <div class="navbar-header">
+    <a style="float: left" href="<?php echo $this->base.FS.'index' ?>">
+        <img src="<?php echo $this->base.FS.DIR_IMAGE.'slogo.png'; ?>" alt="" width="45">
+    </a>
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>

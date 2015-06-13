@@ -66,7 +66,7 @@
 				<span id="rate-text"><?php echo  round($item['Product']['rate'], 2).'/'.$item['Product']['rate_count'] ?></span>
 			</p>
 			<p class="fb_like clearfix">
-				<div class="fb-like" data-href="<?php echo $this->here; ?>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+				<div class="fb-like" data-href="<?php echo $this->here ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 			</p>
 			<div>
 				<div class="description closed"><?php echo $item['Product']['long_description_'.$lang]; ?></div>
