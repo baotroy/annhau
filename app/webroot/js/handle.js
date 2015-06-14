@@ -33,13 +33,14 @@ function postComment(url, out){
 			//     	opacity: 1
 			//     }, 400);
 			//   });
-
-			$('#comment-box').prepend('<b>'+out+'</b>');
-			html = '<ul class="newreview" style="opacity: 0"><li><i class="fa fa-user"></i>'+json.rec.commentator+'</li><li><i class="fa fa-clock-o"></i>'+json.rec.created_time+'</li><li><i class="fa fa-calendar-o"></i>'+json.rec.created_date+'</li></ul><p  class="newreview" style="opacity: 0">'+json.rec.content+'</p>';
-			$('#reviews div').prepend(html);
-			$('.newreview').animate({
-				opacity: 1
-			}, 400);
+			$('#jsmess').text(out);
+			
+			html = '<ul class="newreview" style=""><li><i class="fa fa-user"></i>'+json.rec.commentator+'</li><li><i class="fa fa-clock-o"></i>'+json.rec.created_time+'</li><li><i class="fa fa-calendar-o"></i>'+json.rec.created_date+'</li></ul><p  class="newreview">'+json.rec.content+'</p>';
+			comments = $('#reviews div').html();
+			$('#reviews div').html(html+comments);
+			// $('.newreview').animate({
+			// 	opacity: 1
+			// }, 400);
 			count = $('.countcm').text();
 			count++;
 			$('.countcm').text(count);

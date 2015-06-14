@@ -27,7 +27,6 @@ class CommentController extends AppController {
                 $res['rec']['created_time'] = date('H:i');
                 $res['rec']['commentator'] = $data['commentator'];
                 $res['rec']['content'] = $data['content'];
-                CakeSession::write('commented_'.$data['product'], true);
             }
             echo json_encode($res);
         }

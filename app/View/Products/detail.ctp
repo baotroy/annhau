@@ -55,6 +55,7 @@
 								<p><b><?php echo Message::label('write_review'); ?></b></p>
 								
 								<form action="#" id="form-comment">
+									<span id="jsmess"></span>
 									<span>
 										<input type="hidden" name="product" value="<?php echo $id; ?>">
 										<input type="text" placeholder="<?php echo Message::label('your_name'); ?>" name="commentator" class="jxcommentator" maxlength="30">
@@ -96,7 +97,10 @@
   </div>
 </div>
 <script type="text/javascript">
-	$('#comment').click(function(){
+	$(document).on('click', '#comment', function(){
+		$('.jxcommentator').text('');
+		$('.jxemail').text('');
+		$('.jxcontent').text('');
 		url = "<?php echo $this->base.'/comment/write/'.$id ?>";
 		postComment(url, '<?php echo Message::label("thank_comment");?>');
 		return false;	

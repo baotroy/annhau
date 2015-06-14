@@ -13,10 +13,10 @@ class Comment extends AppModel {
                     'rule'=> 'notEmpty',
                     'message' =>'not empty'
                     ),
-                'max' => array(
-                    'rule'=> array('maxLength', 10),
-                    //'message' =>'not empty'
-                    ),
+                // 'max' => array(
+                //     'rule'=> array('maxLength', 30),
+                //     'message' =>'not empty'
+                //     ),
             ),
         'email' => array(
                 'format' => array(
