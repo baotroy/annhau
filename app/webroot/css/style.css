@@ -360,7 +360,7 @@ ul.nav1 {
 	margin-top: 2%;
 }
 .resp-tabs-list {
-	width: 35%;
+
 	list-style: none;
 	padding: 0;
 	margin: 0 auto 3em;
@@ -611,7 +611,7 @@ h2.resp-accordion {
 }
 .product img{
 	width: auto;
-	max-height: 170px;	
+	height: 170px;	
 	display: inline-block;
 }
 .portfolio .label {

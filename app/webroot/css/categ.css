@@ -2667,13 +2667,7 @@ h2.title {
   width: 100%;
 }
 }
-}
-.category-products a.submenu:hover,
-.category-products .active{
-  background: url('../images/bgmnu2.png') #221b13;
-  color: #C1A55B
-  
-}
+
 .title{
   padding: 0px 15px;
 }
@@ -2769,4 +2763,25 @@ label span{
 }
 .view.view-first p a{
   color: #221c1c;
+}
+.svicon{
+  margin :0px;
+  padding: 0px;
+}
+.svicon div{
+  margin: 4px 0px;
+}
+a.svi{
+  color: #C1A55B;
+}
+a.svi.active, a.svi:hover{
+  background: #C1A55B;
+  color: #fff;
+}
+.category-products .panel-heading:hover,
+.category-products .active{
+  background-color: #C1A55B !important;
+  color: #fff !important;
+  border-radius: 0px;
+  
 }

@@ -1,3 +1,11 @@
+a{
+	color: #C1A55B
+}
+.nav>li>a:hover, .nav>li>a:focus, .nav>li>a:hover, .sidebar ul li a.active{
+	background-color: #C1A55B;
+	color: #fff;
+}
+
 .ban-upload{
 	display: none;
 	float: right;

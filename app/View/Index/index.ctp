@@ -9,7 +9,7 @@
 				<div class="col-md-4 services-grids-info">
 					<a href="<?php echo $this->base.'/site/services/'.$this->Text->clean($value['Service']['name_'.$lang]). '-' . $value['Service']['id'] ?>">
 					
-						<img src="<?php echo $this->Text->image($value['Service']['image'], DIR_UPLOAD) ?>" alt="<?php echo $value['Service']['name_'.$lang]; ?>" height="100"/>
+						<img src="<?php echo $this->Text->image($value['Service']['image'], DIR_UPLOAD) ?>" alt="<?php echo $value['Service']['name_'.$lang]; ?>" height="150"/>
 					
 						<h4><?php echo $value['Service']['name_'.$lang]; ?></h4>
 						<p>
@@ -161,7 +161,7 @@
 						 foreach ($testimonial as $key => $value): ?>			
 						<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-<?php echo $i; ?>">				
 							<div class="view view-first">
-								<a href="<?php echo $this->base .'/site/testimonial/'.$value['Testimonial']['id']; ?>">
+								<a href="<?php echo $this->base .'/site/testimonial/'.$this->Text->clean($value['Testimonial']['name_'.$lang]).'-'.$value['Testimonial']['id']; ?>">
 									<h5><?php echo $value['Testimonial']['name_'.$lang]; ?></h5>
 									<p>
 										<?php echo $value['Testimonial']['description_'.$lang]; ?>

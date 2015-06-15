@@ -58,6 +58,9 @@ class SiteController extends AppController {
             throw new BadRequestException('Could not find that post');
             exit;
         }
+        $services = $this->Service->getAll();
+        $this->set('id', $id);
+        $this->set('items', $services);
         $this->set('item', $item['Service']);
         $this->set('title_layout', $item['Service']['name_'.$lang]);
 	}
@@ -68,12 +71,16 @@ class SiteController extends AppController {
             throw new BadRequestException('Could not find that post');
             exit;
         }
+        $id =substr($id,strrpos($id, '-')+1);
 				
 		$item = $this->Testimonial->getById($id);
 		if(!$item){
             throw new BadRequestException('Could not find that post');
             exit;
         }
+        $testimonial = $this->Testimonial->getAll();
+        $this->set('id', $id);
+        $this->set('items', $testimonial);
         $this->set('item', $item['Testimonial']);
         $this->set('title_layout', $item['Testimonial']['name_'.$lang]);
 	}

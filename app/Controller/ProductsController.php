@@ -173,7 +173,7 @@ class ProductsController extends AppController {
         $this->set('comments', $comments);
         if($res){
             $this->set('item', $res);
-            $this->set('cat', $res['Cat']['id']);
+            $this->set('mcat', $res['Cat']['id']);
             $this->set('title_layout', $res['Product']['name_'.$lang]);
 
             $og_title = $res['Product']['name_'.$lang];

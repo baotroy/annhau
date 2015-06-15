@@ -4,6 +4,7 @@ define('site_name', "Ryta Decor' Accessories");
 define('fb_app', "937601566299471");
 define('NO_ITEMS', 'No items');
 define('LIMIT', 12);
+define('LIMIT_NEW_PRODUCT', 8);
 define('LIMIT_BEST', 4);
 define('ITEM', 'Items');
 define('FS', '/');

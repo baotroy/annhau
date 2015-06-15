@@ -9,7 +9,7 @@ class IndexController extends AppController {
 		
 		
 		//get new products
-		$products = $this->Product->getBy('all', false, false, array('order' => 'Product.created', 'by' => 'desc', 'limit' => 12));
+		$products = $this->Product->getBy('all', false, false, array('order' => 'Product.created', 'by' => 'desc', 'limit' => LIMIT_NEW_PRODUCT));
 		
 		$this->set('latest', $products);
 		$best = $this->Product->getBy('all', false, false, array('order' => 'rate', 'by'=>'desc', 'limit' => LIMIT_BEST));
