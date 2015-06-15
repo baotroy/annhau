@@ -8,7 +8,9 @@
 			?>
 				<div class="col-md-4 services-grids-info">
 					<a href="<?php echo $this->base.'/site/services/'.$this->Text->clean($value['Service']['name_'.$lang]). '-' . $value['Service']['id'] ?>">
-						<img src="<?php echo $this->Text->image($value['Service']['image'], DIR_UPLOAD) ?>" alt="<?php echo $value['Service']['name_'.$lang]; ?>" width="70"/>
+					
+						<img src="<?php echo $this->Text->image($value['Service']['image'], DIR_UPLOAD) ?>" alt="<?php echo $value['Service']['name_'.$lang]; ?>" height="100"/>
+					
 						<h4><?php echo $value['Service']['name_'.$lang]; ?></h4>
 						<p>
 							<?php echo $value['Service']['description_'.$lang]; ?>
@@ -147,7 +149,7 @@
 				foreach ($testimonial as $key => $value): ?>			
 						<li class="resp-tab-item" aria-controls="tab_item-<?php echo $i;?>" role="tab">
 							<span>
-								<img src="<?php echo $this->Text->image($value['Testimonial']['image'], DIR_UPLOAD) ?>" width="80"/>
+								<img src="<?php echo $this->Text->image($value['Testimonial']['image'], DIR_UPLOAD) ?>" height="100"/>
 							</span>
 						</li>
 				<?php $i++;endforeach; ?>
