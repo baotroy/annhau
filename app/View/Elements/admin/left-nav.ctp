@@ -28,6 +28,12 @@
                             <a href="<?php echo $this->base.'/admin/about'; ?>" <?php if($tab == 'about') echo 'class="active"'; ?>><i class="fa fa-info-circle"></i> Thông tin</a>
                         </li>
                         <li>
+                            <a href="<?php echo $this->base.'/admin/services'; ?>" <?php if($tab == 'services') echo 'class="active"'; ?>><i class="fa fa-info-circle"></i> Dịch vụ</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $this->base.'/admin/testimonial'; ?>" <?php if($tab == 'testimonial') echo 'class="active"'; ?>><i class="fa fa-info-circle"></i> Cảm nghĩ</a>
+                        </li>
+                        <li>
                             <a href="<?php echo $this->base.'/admin/setting'; ?>" <?php if($tab == 'setting') echo 'class="active"'; ?>><i class="fa fa-gear fa-fw"></i> Cài đặt</a>
                         </li>
                     </ul>

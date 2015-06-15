@@ -19,8 +19,8 @@ class SearchController extends AppController {
 		if(!isset($this->request->query['q']))
 			$this->redirect(array('controller' => 'products'));
 
-		if(isset($this->request->query['c'])){
-			$cat = explode(',', $this->request->query['c']);
+		if(isset($this->request->query['m'])){
+			$cat = explode(',', $this->request->query['m']);
 			$this->set('cat', $cat);
 		}
 		else{
@@ -30,45 +30,49 @@ class SearchController extends AppController {
 	public function index($cat = false) {
         $lang = CakeSession::read('lang');
 		$this->set('title_layout', 'Products');
-
-		$joins = array(
-    		array(
-                'table' => 'subcategories',
-                'alias' => 'SubCat',
-                'type' => 'INNER',
-                'conditions' => array(
-                    'Product.category = SubCat.id',
-                    '`SubCat`.`deleted`' => 0,
-                )
-            ),);
+        $joins = array();
+		// $joins = array(
+  //   		array(
+  //               'table' => 'subcategories',
+  //               'alias' => 'SubCat',
+  //               'type' => 'INNER',
+  //               'conditions' => array(
+  //                   'Product.category = SubCat.id',
+  //                   '`SubCat`.`deleted`' => 0,
+  //               )
+  //           ),);
 
         $conditions = array('Product.deleted' => 0, 'Product.available' => 1);
 
-        if(isset($this->request->query['c'])){
-        	$cat =$this->request->query['c'];
+        if(isset($this->request->query['m'])){
+        	$cat =$this->request->query['m'];
         	$cat = explode(',', $cat);
             $conditions[] = array('Product.category' => $cat);
         }
-
+        $lang = CakeSession::read('lang');
         if(isset($this->request->query['q'])){
         	$q =$this->request->query['q'];
 			
             $conditions[] = 'Product.name_'.$lang.' LIKE "%'. $q . '%"';
         }
         
-        $order = array('Product.created' => 'desc');
+        $order = array('Product.created desc');
 
         //get order
         if(isset($this->request->query['sort'])){
         	$by = 'asc';
         	$sort = $this->request->query['sort'];
+            if($sort == 'name'){
+                $sort = 'name_'.$lang;
+            }
         	if(isset($this->request->query['by'])){
         		if(in_array($this->request->query['by'], array('asc','desc'))){
         			$by = $this->request->query['by'];
         		}
         	}
-        	$order = array('Product.created' => 'desc', $sort => $by);
+        	$order = array($sort => $by, 'Product.created' => 'desc');
         }
+        //print_r($order);
         //end order
 
         $page = 1;

@@ -70,53 +70,60 @@ class ProductsController extends AppController {
 	}
 	public function index($cat = false) {
 		
-		$joins = array(
-    		array(
-                'table' => 'subcategories',
-                'alias' => 'SubCat',
-                'type' => 'INNER',
-                'conditions' => array(
-                    'Product.category = SubCat.id',
-                    '`SubCat`.`deleted`' => 0,
-                )
-            ),);
+		// $joins = array(
+  //   		array(
+  //               'table' => 'subcategories',
+  //               'alias' => 'SubCat',
+  //               'type' => 'INNER',
+  //               'conditions' => array(
+  //                   'Product.category = SubCat.id',
+  //                   '`SubCat`.`deleted`' => 0,
+  //               )
+  //           ),);
 
         $conditions = array('Product.deleted' => 0, 'Product.available' => 1);
-
-        if(isset($this->request->query['c'])){
-        	$cat =$this->request->query['c'];
-			$cat =substr($cat,strrpos($cat, '-')+1);
-            $conditions[] = array('Product.category' => $cat);
-        }
+        $joins = array();
+   //      if(isset($this->request->query['c'])){
+   //      	$cat =$this->request->query['c'];
+			// $cat =substr($cat,strrpos($cat, '-')+1);
+   //          $conditions[] = array('Product.category' => $cat);
+   //      }
         if(isset($this->request->query['m'])){
             $cat =$this->request->query['m'];
             $cat =substr($cat,strrpos($cat, '-')+1);
-            $conditions[] = array('SubCat.category' => $cat);
+    //        $conditions[] = array('SubCat.category' => $cat);
 
             $joins[] = array(
                 'table' => 'categories',
                 'alias' => 'Category',
                 'type' => 'INNER',
                 'conditions' => array(
-                    'Category.id = SubCat.category',
+                    'Category.id = Product.category',
                     '`Category`.`deleted`' => 0,
+                    'Product.category' => $cat
                 ));
         }
         else{
             $this->set('title_layout', Message::label('title_new_products'));
         }
         $order = array('Product.created' => 'desc');
-
+        $lang = CakeSession::read('lang');
         //get order
         if(isset($this->request->query['sort'])){
         	$by = 'asc';
         	$sort = $this->request->query['sort'];
+             if($sort == 'name'){
+                $sort = 'name_'.$lang;
+            }
+            else{
+                $sort = 'created';
+            }
         	if(isset($this->request->query['by'])){
         		if(in_array($this->request->query['by'], array('asc','desc'))){
         			$by = $this->request->query['by'];
         		}
         	}
-        	$order = array($sort => $by);
+        	$order = array($sort => $by, 'Product.created' => 'desc');
         }
        
         $page = 1;
@@ -166,7 +173,7 @@ class ProductsController extends AppController {
         $this->set('comments', $comments);
         if($res){
             $this->set('item', $res);
-            $this->set('cat', $res['SubCat']['id']);
+            $this->set('cat', $res['Cat']['id']);
             $this->set('title_layout', $res['Product']['name_'.$lang]);
 
             $og_title = $res['Product']['name_'.$lang];

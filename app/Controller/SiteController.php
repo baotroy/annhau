@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class SiteController extends AppController {
 
-	public $uses = array('Setting', 'Contact');
+	public $uses = array('Setting', 'Contact', 'Service', 'Testimonial');
 	function beforeFilter(){
 		parent::beforeFilter();
 		$setting = $this->Setting->getAll();
@@ -43,5 +43,38 @@ class SiteController extends AppController {
 		$this->set('menu', 'about');
 		$setting = $this->Setting->getAll();
 		$this->set('item', $setting);
+	}
+
+	function services($id=''){
+		$lang = CakeSession::read('lang');
+		if(!$id){
+            throw new BadRequestException('Could not find that post');
+            exit;
+        }
+		$id =substr($id,strrpos($id, '-')+1);
+		
+		$item = $this->Service->getById($id);
+		if(!$item){
+            throw new BadRequestException('Could not find that post');
+            exit;
+        }
+        $this->set('item', $item['Service']);
+        $this->set('title_layout', $item['Service']['name_'.$lang]);
+	}
+
+	function testimonial($id=''){
+		$lang = CakeSession::read('lang');
+		if(!$id){
+            throw new BadRequestException('Could not find that post');
+            exit;
+        }
+				
+		$item = $this->Testimonial->getById($id);
+		if(!$item){
+            throw new BadRequestException('Could not find that post');
+            exit;
+        }
+        $this->set('item', $item['Testimonial']);
+        $this->set('title_layout', $item['Testimonial']['name_'.$lang]);
 	}
 }

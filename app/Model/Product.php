@@ -25,12 +25,12 @@ class Product extends AppModel {
     {
     	$joins = array(
     		array(
-                'table' => 'subcategories',
-                'alias' => 'SubCat',
+                'table' => 'categories',
+                'alias' => 'Cat',
                 'type' => 'INNER',
                 'conditions' => array(
-                    'Product.category = SubCat.id',
-                    '`SubCat`.`deleted`' => 0,)
+                    'Product.category = Cat.id',
+                    '`Cat`.`deleted`' => 0,)
                 )
         );
         $conditions = array('Product.deleted' => 0, 'Product.available' => 1);

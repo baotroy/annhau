@@ -23,7 +23,7 @@
 		if(celem.length>0)
 			celem.val(c);
 		else{
-			$('.jsfilter').append('<input type="hidden" value='+c+' name="c">');
+			$('.jsfilter').append('<input type="hidden" value='+c+' name="m">');
 		}
 		$('.jsfilter').submit();
 	});

@@ -26,22 +26,22 @@ class Category extends AppModel {
     }
 
     function getForMenu(){
-    	$joins = array(
-            array(
-                'table' => 'subcategories',
-                'alias' => 'SubCat',
-                'type' => 'INNER',
-                'conditions' => array(
-                    'SubCat.category = Category.id',
-                    'SubCat.deleted' => 0,
-                )
-            ),
+    	 $joins = array(
+     //        array(
+     //            'table' => 'subcategories',
+     //            'alias' => 'SubCat',
+     //            'type' => 'INNER',
+     //            'conditions' => array(
+     //                'SubCat.category = Category.id',
+     //                'SubCat.deleted' => 0,
+     //            )
+     //        ),
     		array(
                 'table' => 'products',
                 'alias' => 'Product',
-                'type' => 'INNER',
+                'type' => 'LEFT',
                 'conditions' => array(
-                    'Product.category = SubCat.id',
+                    'Product.category = Category.id',
                     'Product.deleted' => 0,
                     'Product.available' => 1,
                 )
@@ -76,21 +76,21 @@ class Category extends AppModel {
 
     function getAll($fields = array()){
         $joins = array(
-            array(
-                'table' => 'subcategories',
-                'alias' => 'SubCat',
-                'type' => 'INNER',
-                'conditions' => array(
-                    'SubCat.category = Category.id',
-                    'SubCat.deleted' => 0,
-                )
-            ),
+            // array(
+            //     'table' => 'subcategories',
+            //     'alias' => 'SubCat',
+            //     'type' => 'LEFT',
+            //     'conditions' => array(
+            //         'SubCat.category = Category.id',
+            //         'SubCat.deleted' => 0,
+            //     )
+            // ),
             array(
                 'table' => 'products',
                 'alias' => 'Product',
-                'type' => 'INNER',
+                'type' => 'LEFT',
                 'conditions' => array(
-                    'Product.category = SubCat.id',
+                    'Product.category = Category.id',
                     'Product.deleted' => 0,
                 ),
             ),

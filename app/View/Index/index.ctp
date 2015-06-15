@@ -4,7 +4,20 @@
 		<div class="container">
 			<h3><?php echo Message::label('services'); ?></h3>
 			<div class="services-grids">
+			<?php foreach ($services as $key => $value) {
+			?>
 				<div class="col-md-4 services-grids-info">
+					<a href="<?php echo $this->base.'/site/services/'.$this->Text->clean($value['Service']['name_'.$lang]). '-' . $value['Service']['id'] ?>">
+						<img src="<?php echo $this->Text->image($value['Service']['image'], DIR_UPLOAD) ?>" alt="<?php echo $value['Service']['name_'.$lang]; ?>" width="70"/>
+						<h4><?php echo $value['Service']['name_'.$lang]; ?></h4>
+						<p>
+							<?php echo $value['Service']['description_'.$lang]; ?>
+						</p>
+					</a>
+				</div>
+			<?php
+			} ?>
+				<!-- <div class="col-md-4 services-grids-info">
 					<span class="service-one"> </span>
 					<h4>WEB DEVELOPMENT</h4>
 					<p>Donec libero dui, scelerisque ac augue id, tristique ullamcorper elit. Nam ultrices, lacus vitae adipiscing aliquet, 
@@ -22,7 +35,7 @@
 					<div class="clearfix"> </div>
 					<p>Donec libero dui, scelerisque ac augue id, tristique ullamcorper elit. Nam ultrices, lacus vitae adipiscing aliquet, 
 						metus ipsum imperdiet libero, vitae dignissim sapien diam ac nibh convallis.</p>
-				</div>
+				</div> -->
 				<div class="clearfix"> </div>
 			</div>
 		</div>
@@ -40,6 +53,7 @@
 	
 	<!--seemore-->
 	<!--blog-->
+<?php if($cats): ?>
 	<div class="blog">
 		<div class="container">
 			<div class="blog-top">
@@ -48,7 +62,7 @@
 			<div class="blog-bottom">
 			<?php
 				$index = 0;
-			 foreach(@$cats as $key => $cat): 
+			 foreach($cats as $key => $cat): 
 			 	if($index%2==0){ echo '<div class="blog-one">';}
 			 ?>
 
@@ -75,6 +89,7 @@
 			</div>
 		</div>
 	</div>
+<?php endif; ?>
 	<!--blog-->
 	<!--//portfolio-->
 	<div class="portfolio">
@@ -119,7 +134,7 @@
 	</div>
 	<!--portfolio-->
 
-
+<?php if($testimonial): ?>
 	<!--testimonials-->
 	<div class="testimonials services">
 		<div class="container">
@@ -128,13 +143,32 @@
 			<div class="sap_tabs">	
 				<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 					<ul class="resp-tabs-list">
-						<li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span><img src="images/img4.jpg" alt=""/></span></li>
-						<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span><img src="images/img5.jpg" alt=""/></span></li>
-						<li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span><img src="images/img6.jpg" alt=""/></span></li>
+				<?php $i =0;
+				foreach ($testimonial as $key => $value): ?>			
+						<li class="resp-tab-item" aria-controls="tab_item-<?php echo $i;?>" role="tab">
+							<span>
+								<img src="<?php echo $this->Text->image($value['Testimonial']['image'], DIR_UPLOAD) ?>" width="80"/>
+							</span>
+						</li>
+				<?php $i++;endforeach; ?>
 						<div class="clear"></div>
 					</ul>	
 					<div class="resp-tabs-container">
-						<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">				
+					<?php 
+						$i=0;
+						 foreach ($testimonial as $key => $value): ?>			
+						<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-<?php echo $i; ?>">				
+							<div class="view view-first">
+								<a href="<?php echo $this->base .'/site/testimonial/'.$value['Testimonial']['id']; ?>">
+									<h5><?php echo $value['Testimonial']['name_'.$lang]; ?></h5>
+									<p>
+										<?php echo $value['Testimonial']['description_'.$lang]; ?>
+									</p>
+								</a>
+							</div>
+						</div>
+					<?php $i++;endforeach; ?>
+						<!-- <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">				
 							<div class="view view-first">
 								<h5>FILAN FISTEKU</h5>
 								<p>Donec libero dui, scelerisque ac augue id, tristique ullamcorper elit. Nam ultrices, lacus vitae adipiscing aliquet, metus ipsum imperdiet libero, vitae dignissim sapien diam ac nibh convallis.</p>
@@ -151,12 +185,12 @@
 								<h5>SCELERISQUE AUGUE</h5>
 								<p>Nam ultrices lacus vitae adipiscing aliquet, metus ipsum imperdiet libero, vitae dignissim sapientristique Donec libero dui, scelerisque ac augue id,  ullamcorper elit,diam ac nibh convallis.</p>
 							</div>
-						</div>
+						</div> -->
 					</div>	
 				</div>	
 			</div>		  
-		
 	</div>	
+<?php endif; ?>
 <!-- Modal -->
 <div id="latest" class="modal fade" role="dialog" style="display: none">
   <div class="modal-dialog loading">

@@ -41,16 +41,16 @@
                                 <tr>
                                     <td width="150">Danh mục<span class="required">*</span></td>
                                     <td>
-                                        <select class="form-control jxCategory">
+                                        <select class="form-control" name="category">
                                         <?php foreach ($cats as $cat_key => $cat) {
                                         ?>
-                                        <option value="<?php echo $cat['Category']['id'] ?>" <?php if(@$current_cat == $cat['Category']['id']) echo 'selected'; ?>><?php echo $cat['Category']['name_vi'] ?></option>
+                                        <option value="<?php echo $cat['Category']['id'] ?>" <?php if($item['Product']['category'] == $cat['Category']['id']) echo 'selected'; ?>><?php echo $cat['Category']['name_vi'] ?></option>
                                         <?php
                                         } ?>
                                         </select>
                                     </td>
                                 </tr>
-                                <tr>
+                              <!--   <tr>
                                     <td width="150">Danh mục con<span class="required">*</span></td>
                                     <td>
                                         <select class="form-control jxsubcat" name="category">
@@ -63,7 +63,7 @@
                                         endif; ?>
                                         </select>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td width="150">Mô tả (Tiếng Việt)</td>
                                     <td>

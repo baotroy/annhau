@@ -3,7 +3,7 @@
 App::uses('AppController', 'Controller');
 
 class AdminController extends AppController {
-	public $uses = array('Category', 'Product', 'Banner', 'Admin', 'Setting', 'Inquiry', 'SubCat', 'Upload');
+	public $uses = array('Category', 'Product', 'Banner', 'Admin', 'Setting', 'Inquiry', 'SubCat', 'Upload', 'Service', 'Testimonial');
 	private $breadcrumb;
 	public $components = array('Session', 'Common', 'ResizeImage');
 	
@@ -132,20 +132,20 @@ class AdminController extends AppController {
 		}
 		//SHOW LIST
 		$joins = array(
-    		array(
-                'table' => 'subcategories',
-                'alias' => 'SubCat',
-                'type' => 'INNER',
-                'conditions' => array(
-                    'Product.category = SubCat.id',
-                    '`SubCat`.`deleted`' => 0,)
-                ),
+    		// array(
+      //           'table' => 'subcategories',
+      //           'alias' => 'SubCat',
+      //           'type' => 'INNER',
+      //           'conditions' => array(
+      //               'Product.category = SubCat.id',
+      //               '`SubCat`.`deleted`' => 0,)
+      //           ),
     		array(
                 'table' => 'categories',
                 'alias' => 'Category',
                 'type' => 'INNER',
                 'conditions' => array(
-                    'Category.id = SubCat.category',
+                    'Category.id = Product.category',
                     '`Category`.`deleted`' => 0,)
                 ),
         );
@@ -158,7 +158,7 @@ class AdminController extends AppController {
             'Product' => array(
                 'limit' => ADMIN_LIMIT,
                 'page' => $page,
-                'fields' => array('Product.id', 'Product.name_vi', 'Product.name_en', 'Product.available', 'Category.name_vi', 'SubCat.name_vi'),
+                'fields' => array('Product.id', 'Product.name_vi', 'Product.name_en', 'Product.available', 'Category.name_vi',),
                 'joins' => $joins,
                 'conditions' => array('Product.deleted'=>0),
                 'order' => array('created' => 'desc'),
@@ -176,9 +176,10 @@ class AdminController extends AppController {
 		$this->set('title_layout', 'Danh mục');
 		$this->breadcrumb[] = array('Danh mục' => array('controller'=>'admin','action'=>'category'));
 		if(isset($this->request->query['action'])){
-			$this->breadcrumb[] = array('Thêm' => array('controller'=>'admin','action'=>'category?action=add'));
-			$this->set('breadcrumb', $this->breadcrumb);
+			
 			if($this->request->query['action'] == 'add'){
+				$this->breadcrumb[] = array('Thêm' => array('controller'=>'admin','action'=>'category?action=add'));
+				$this->set('breadcrumb', $this->breadcrumb);
 				$this->set('pt', 'Thêm danh mục');
 				$this->set('mode', 'add');
 				if($this->request->is('post')){
@@ -635,6 +636,243 @@ class AdminController extends AppController {
 		$this->set('items', $uploads);
 	}
 
+	function services(){
+		$this->set('tab', 'services');
+		$this->set('pt', 'Dịch vụ');
+		$this->set('title_layout', 'Dịch vụ');
+
+		$uploads = $this->Upload->getAll();
+		$this->set('items', $uploads);
+
+		$data = $this->Service->getAll();
+		$this->set('services', $data);
+
+		$this->breadcrumb[] = array('Dịch vụ' => array('controller'=>'admin','action'=>'services'));
+		if(isset($this->request->query['action'])){
+			
+			if($this->request->query['action'] == 'add'){
+				$this->breadcrumb[] = array('Thêm' => array('controller'=>'admin','action'=>'services?action=add'));
+				$this->set('breadcrumb', $this->breadcrumb);
+				$this->set('pt', 'Thêm dịch vụ');
+				$this->set('mode', 'add');
+				if($this->request->is('post')){
+				
+					$data = $this->data;
+					$file = $_FILES['image_ser'];	
+					$file['new_name'] = 'upl'.date('ymdHis');
+					if($fn = $this->__saveImage($file, DIR_UPLOAD)){
+						$data['image'] = $fn;
+					}
+
+					$this->Service->set($data);
+					if($this->Service->validates()){
+						if($this->Service->save($data)){
+							$this->Session->setFlash('Đã thêm '.$data['name_vi'], 'default', array('class' =>'alert alert-success'));
+						}
+					}else{
+
+						if(@$this->Service->validationErrors['name_vi'] || @$this->Service->validationErrors['description_vi']){
+							$this->set('bar', 1);
+						}
+						else if(@$this->Service->validationErrors['name_en'] || @$this->Service->validationErrors['description_en']){
+							$this->set('bar', 2);
+						}
+							
+						$this->set('item', $data);
+						$this->render('services-detail');
+					}
+				
+				}
+				$this->render('services-detail');
+				return;
+			}
+			else if($this->request->query['action'] == 'edit'){
+				$this->set('pt', 'Cập nhật dịch vụ');
+				$this->set('mode', 'edit');
+				$this->breadcrumb[] = array('Cập nhật' => array('controller'=>'admin','action'=>'services?action=edit'));
+				$this->set('breadcrumb', $this->breadcrumb);
+				if($this->request->is('post')){
+					if(isset($this->request->query['id'])){
+						$data = $this->data;
+						$file = $_FILES['image_ser'];	
+					
+				    	$data = $this->data;
+						$file['new_name'] = 'upl'.date('ymdHis');
+						
+						if($fn = $this->__saveImage($file, DIR_UPLOAD)){
+							$data['image'] = $fn;
+						}
+						$data['id'] = $this->request->query['id'];
+						
+						$this->Service->set($data);
+						if($this->Service->validates()){
+							
+							if($this->Service->save($data)){
+								$this->Session->setFlash('Đã cập nhật '.$data['name_vi'], 'default', array('class' =>'alert alert-success'));
+								$this->redirect(array('action'=>'services'));
+							}
+						}else{
+							if(@$this->Service->validationErrors['name_vi'] || @$this->Service->validationErrors['description_vi']){
+							$this->set('bar', 1);
+							}
+							else if(@$this->Service->validationErrors['name_en'] || @$this->Service->validationErrors['description_en']){
+								$this->set('bar', 2);
+							}
+							$this->set('item',$data);
+							$this->render('cat-detail');
+						}
+					}else{
+						$this->redirect(array('action'=>'services'));
+					}
+				}else{
+					if(isset($this->request->query['id'])){
+						//load data len view
+						$item =  $this->Service->getById($this->request->query['id']);
+						
+						if($item){
+							$this->set('item', $item['Service']);
+							$this->render('services-detail');
+						}
+						else{
+							throw new BadRequestException('not found');
+						}
+					}
+					else{
+						$this->redirect(array('action'=>'services'));
+					}
+				}
+				
+			}
+			else if($this->request->query['action'] == 'delete'){
+				if(isset($this->request->query['id'])){
+					if($this->Service->save(array('id'=>$this->request->query['id'], 'deleted' => 1))){
+						$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
+						$this->redirect($_SERVER['HTTP_REFERER']);
+					}
+				}
+			}
+		}
+		
+		$this->set('breadcrumb', $this->breadcrumb);
+	}
+
+	function testimonial(){
+		$this->set('tab', 'testimonial');
+		$this->set('pt', 'Cảm nghĩ');
+		$this->set('title_layout', 'Cảm nghĩ');
+
+		$uploads = $this->Upload->getAll();
+		$this->set('items', $uploads);
+
+		$data = $this->Testimonial->getAll();
+		$this->set('testimonial', $data);
+
+		$this->breadcrumb[] = array('Cảm nghĩ' => array('controller'=>'admin','action'=>'testimonial'));
+		if(isset($this->request->query['action'])){
+			
+			if($this->request->query['action'] == 'add'){
+				$this->breadcrumb[] = array('Thêm' => array('controller'=>'admin','action'=>'testimonial?action=add'));
+				$this->set('breadcrumb', $this->breadcrumb);
+				$this->set('pt', 'Thêm cảm nghĩ');
+				$this->set('mode', 'add');
+				if($this->request->is('post')){
+				
+					$data = $this->data;
+					$file = $_FILES['image_ser'];	
+					$file['new_name'] = 'upl'.date('ymdHis');
+					if($fn = $this->__saveImage($file, DIR_UPLOAD)){
+						$data['image'] = $fn;
+					}
+
+					$this->Testimonial->set($data);
+
+					if($this->Testimonial->validates()){
+						if($this->Testimonial->save($data)){
+							$this->Session->setFlash('Đã thêm ', 'default', array('class' =>'alert alert-success'));
+						}
+					}else{
+						if(@$this->Testimonial->validationErrors['name_vi'] || @$this->Testimonial->validationErrors['description_vi']){
+							$this->set('bar', 1);
+						}
+						else if(@$this->Testimonial->validationErrors['name_en'] || @$this->Testimonial->validationErrors['description_en']){
+							$this->set('bar', 2);
+						}
+						$this->set('item', $data);
+						$this->render('testimonial-detail');
+					}
+				
+				}
+				$this->render('testimonial-detail');
+				return;
+			}
+			else if($this->request->query['action'] == 'edit'){
+				$this->set('pt', 'Cập nhật cảm nghĩ');
+				$this->set('mode', 'edit');
+				$this->breadcrumb[] = array('Cập nhật' => array('controller'=>'admin','action'=>'testimonial?action=edit'));
+				$this->set('breadcrumb', $this->breadcrumb);
+				if($this->request->is('post')){
+					if(isset($this->request->query['id'])){
+						$data = $this->data;
+						$file = $_FILES['image_ser'];	
+				
+				    	$data = $this->data;
+						$file['new_name'] = 'upl'.date('ymdHis');
+						if($fn = $this->__saveImage($file, DIR_UPLOAD)){
+							$data['image'] = $fn;
+						}
+						$data['id'] = $this->request->query['id'];
+
+						$this->Testimonial->set($data);
+						if($this->Testimonial->validates()){
+							
+							if($this->Testimonial->save($data)){
+								$this->Session->setFlash('Đã cập nhật', 'default', array('class' =>'alert alert-success'));
+								$this->redirect(array('action'=>'testimonial'));
+							}
+						}else{
+							if(@$this->Testimonial->validationErrors['name_vi'] || @$this->Testimonial->validationErrors['description_vi']){
+								$this->set('bar', 1);
+							}
+							else if(@$this->Testimonial->validationErrors['name_en'] || @$this->Testimonial->validationErrors['description_en']){
+								$this->set('bar', 2);
+							}
+							$this->set('item',$data);
+							$this->render('testimonial-detail');
+						}
+					}else{
+						$this->redirect(array('action'=>'testimonial'));
+					}
+				}else{
+					if(isset($this->request->query['id'])){
+						//load data len view
+						$item =  $this->Testimonial->getById($this->request->query['id']);
+						
+						if($item){
+							$this->set('item', $item['Testimonial']);
+							$this->render('testimonial-detail');
+						}
+						else{
+							throw new BadRequestException('not found');
+						}
+					}
+					else{
+						$this->redirect(array('action'=>'testimonial'));
+					}
+				}
+				
+			}
+			else if($this->request->query['action'] == 'delete'){
+				if(isset($this->request->query['id'])){
+					if($this->Testimonial->save(array('id'=>$this->request->query['id'], 'deleted' => 1))){
+						$this->Session->setFlash('Đã xóa.', 'default', array('class' =>'alert alert-success'));
+						$this->redirect($_SERVER['HTTP_REFERER']);
+					}
+				}
+			}
+		}
+		
+		$this->set('breadcrumb', $this->breadcrumb);
+	}
 	private function __saveImage($params, $directory) {
 		$ext = pathinfo($params['name'], PATHINFO_EXTENSION);
 

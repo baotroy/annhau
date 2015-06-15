@@ -3,7 +3,7 @@
 App::uses('AppController', 'Controller');
 
 class IndexController extends AppController {
-	public $uses = array('Category', 'Product', 'Banner', 'Setting');
+	public $uses = array('Category', 'Product', 'Banner', 'Setting', 'Service', 'Testimonial');
 
 	public function index() {
 		
@@ -33,5 +33,11 @@ class IndexController extends AppController {
 		$this->set_facebook($og_title, $og_description, $og_url, $og_image);
 
 		$this->set('title_layout', Message::label('title_home'));
+
+		$data = $this->Service->getAll();
+		$this->set('services', $data);
+
+		$data = $this->Testimonial->getAll();
+		$this->set('testimonial', $data);
 	}
 }

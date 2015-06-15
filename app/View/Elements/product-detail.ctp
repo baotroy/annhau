@@ -54,7 +54,7 @@
 			<h2><?php echo $item['Product']['name_'.$lang]; ?></h2>
 			<p>Web ID: <?php echo $item['Product']['id']; ?></p>
 
-			<p><?php echo Message::label('category'); ?>: <a href="<?php echo $this->base.'/products?c=' .$this->Text->clean($item['SubCat']['name_'.$lang]).'-' . $item['SubCat']['id']; ?>"><b><?php echo $item['SubCat']['name_'.$lang]; ?></b></a></p>
+			<p><?php echo Message::label('category'); ?>: <a href="<?php echo $this->base.'/products?m=' .$this->Text->clean($item['Cat']['name_'.$lang]).'-' . $item['Cat']['id']; ?>"><b><?php echo $item['Cat']['name_'.$lang]; ?></b></a></p>
 			<?php $rated = round($item['Product']['rate']); ?>
 			<p class="rater clearfix">
 				<span class="star-rating <?php if(CakeSession::check('rate_'.$item['Product']['id'])) echo 'rated'; else echo 'unrate'; ?>">

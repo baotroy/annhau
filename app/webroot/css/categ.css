@@ -2754,3 +2754,19 @@ h2.title {
     padding-left: 30px;
   }
 }
+label span{
+  font-weight: 500;
+  font-size: 13px;
+  color: #696763;
+  text-transform: uppercase;
+}
+.mactive{
+  background: #C1A55B !important;
+  border-radius: 0;
+}
+.mactive a{
+  color: #fff !important
+}
+.view.view-first p a{
+  color: #221c1c;
+}

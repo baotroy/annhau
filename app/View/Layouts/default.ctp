@@ -66,7 +66,9 @@
 	    });
 	</script>
 </head>
-<body><?php $lang = CakeSession::read('lang');?>
+<body>
+<div id="main">
+	<?php $lang = CakeSession::read('lang');?>
 
 	<!-- <div id="fb-root"></div> -->
 	<script>(function(d, s, id) {
@@ -333,9 +335,9 @@
         });   
     </script>
 	<a href="#" id="toTop" > <span id="toTopHover" style=""></span></a>
-	<!--//smooth-scrolling-of-move-up-->			<?php //echo $this->element('sql_dump'); ?>
+	<!--//smooth-scrolling-of-move-up-->			<?php echo $this->element('sql_dump'); ?>
 	
 	
-	
+</div>
 </body>
 </html>

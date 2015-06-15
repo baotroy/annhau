@@ -1,13 +1,12 @@
-<!--about-->
+<?php $lang = CakeSession::read('lang'); ?>
 	<div class="about">
 		<div class="container">
 			<div class="services">
-				<h3><?php echo Message::label('mnu_about'); ?></h3>
+				<h3><?php echo $item['name_'.$lang]; ?></h3>
 			</div>	
 			<div class="row">
 				<?php 
-				$lang = CakeSession::read('lang');
-				echo $item['about_'.$lang]; ?>
+				echo $item['content_'.$lang]; ?>
 			</div>
 		</div>	
 	</div>
