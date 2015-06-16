@@ -2566,7 +2566,7 @@ h2.title {
   width: 200px;
 }
 .button_search{
-  background: url(../images/home/searchicon.png) #fff;
+  background: url(../images/searchicon.png) #fff;
   background-repeat: no-repeat;
   background-position: center;
   border-left: none;
@@ -2784,4 +2784,10 @@ a.svi.active, a.svi:hover{
   color: #fff !important;
   border-radius: 0px;
   
+}
+
+.crop {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
 }

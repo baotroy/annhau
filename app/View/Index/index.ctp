@@ -148,9 +148,9 @@
 				<?php $i =0;
 				foreach ($testimonial as $key => $value): ?>			
 						<li class="resp-tab-item" aria-controls="tab_item-<?php echo $i;?>" role="tab">
-							<span>
-								<img src="<?php echo $this->Text->image($value['Testimonial']['image'], DIR_UPLOAD) ?>" height="100"/>
-							</span>
+							<div class="crop" style="background: url('<?php echo $this->Text->image($value['Testimonial']['image'], DIR_UPLOAD) ?>');  background-size:cover; background-repeat:no-repeat; width:120px; height:120px;">
+								<!-- <img src="<?php echo $this->Text->image($value['Testimonial']['image'], DIR_UPLOAD) ?>" width="150"/> -->
+							</div>
 						</li>
 				<?php $i++;endforeach; ?>
 						<div class="clear"></div>
