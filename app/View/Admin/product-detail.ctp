@@ -44,26 +44,13 @@
                                         <select class="form-control" name="category">
                                         <?php foreach ($cats as $cat_key => $cat) {
                                         ?>
-                                        <option value="<?php echo $cat['Category']['id'] ?>" <?php if($item['Product']['category'] == $cat['Category']['id']) echo 'selected'; ?>><?php echo $cat['Category']['name_vi'] ?></option>
+                                        <option value="<?php echo $cat['Category']['id'] ?>" <?php if(@$item['Product']['category'] == $cat['Category']['id']) echo 'selected'; ?>><?php echo $cat['Category']['name_vi'] ?></option>
                                         <?php
                                         } ?>
                                         </select>
                                     </td>
                                 </tr>
-                              <!--   <tr>
-                                    <td width="150">Danh mục con<span class="required">*</span></td>
-                                    <td>
-                                        <select class="form-control jxsubcat" name="category">
-                                    <?php if($sub_cat_list):
-                                            foreach ($sub_cat_list as $sub_key => $subcat) :?>
-                                                 <option value="<?php echo $subcat['SubCat']['id'] ?>" <?php if($subcat['SubCat']['id'] == $item['Product']['category']) echo 'selected'; ?>>
-                                                 <?php echo $subcat['SubCat']['name_vi']; ?>
-                                                 </option>
-                                            <?php endforeach;
-                                        endif; ?>
-                                        </select>
-                                    </td>
-                                </tr> -->
+                            
                                 <tr>
                                     <td width="150">Mô tả (Tiếng Việt)</td>
                                     <td>
