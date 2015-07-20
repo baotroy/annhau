@@ -101,11 +101,11 @@ class AdminController extends AppController {
 						//load data len view
 						$item =  $this->Product->getBy('first', $this->request->query['id'], false);
 
-						$subcat = $this->SubCat->getById($item['Product']['category'], array('SubCat.category'));
-						$this->set('current_cat', $subcat['SubCat']['category']);
+						// $subcat = $this->SubCat->getById($item['Product']['category'], array('SubCat.category'));
+						// $this->set('current_cat', $subcat['SubCat']['category']);
 
-						$subcat_list = $this->SubCat->getByCat($subcat['SubCat']['category']);
-						$this->set('sub_cat_list', $subcat_list);
+						// $subcat_list = $this->SubCat->getByCat($subcat['SubCat']['category']);
+						// $this->set('sub_cat_list', $subcat_list);
 
 						if($item){
 							$this->set('item', $item);
